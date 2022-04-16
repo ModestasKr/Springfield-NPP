@@ -1,0 +1,29 @@
+.Application-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  padding: 1em;
+}
+@media screen and (max-width: 25rem) {
+  .Application-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 55rem) {
+  .Application-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 65rem) {
+  .Application-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

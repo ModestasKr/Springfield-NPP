@@ -1,0 +1,10 @@
+.ExpensePieChart-container {
+  padding: 0.4em 0;
+}
+
+.ExpensePieChart-container h3,
+.ExpensePieChart-container p {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+}
