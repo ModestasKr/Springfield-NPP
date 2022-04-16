@@ -1,20 +1,10 @@
 const mongoose = require("mongoose");
 const app = require("./app");
 
+mongoose.connect(
+  "mongodb+srv://Homerr:vlk2ZmmqVTs3FXP4@cluster0.rqxd5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+);
 
-const DB =
-  "mongodb+srv://Homerr:vlk2ZmmqVTs3FXP4@cluster0.rqxd5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-  mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Prisijungta prie DB...:)");
-  });
-
-const port = 8000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
+app.listen(4000, () => {
+  console.log("listening for requests on port 4000");
 });
