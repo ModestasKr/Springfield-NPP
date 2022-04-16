@@ -8,8 +8,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 function Table() {
   return (
-    <div>
-      <table>
+    <div className="Table-container">
+      <table className="Table-body">
         <tbody className="Table-tbody">
           <tr className="Table-row">
             <td>+/-</td>

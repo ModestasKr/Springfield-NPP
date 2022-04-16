@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 20px;
-  padding: 1em;
+  padding: 3em 1em;
 }
 @media screen and (max-width: 25rem) {
   .Application-container {
