@@ -2,18 +2,19 @@
 import React from "react";
 // Style
 import "./style/Table.css";
+
 // Icons
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 
-function Table() {
+function Table({ id, user }) {
   return (
     <div className="Table-container">
       <table className="Table-body">
         <tbody className="Table-tbody">
           <tr className="Table-row">
             <td>+/-</td>
-            <td>$/£ 1000</td>
+            <td>{user.username}</td>
             {/* Salary, Invesment, Food etc... */}
             <td>Category</td>
             <td>2021-01-01</td>
