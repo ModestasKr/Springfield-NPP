@@ -7,30 +7,24 @@ import "./style/Table.css";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 
-function Table({ id, user }) {
+function Table({ id, user, deleteUserFn }) {
   return (
-    <div className="Table-container">
-      <table className="Table-body">
-        <tbody className="Table-tbody">
-          <tr className="Table-row">
-            <td>+/-</td>
-            <td>{user.username}</td>
-            {/* Salary, Invesment, Food etc... */}
-            <td>Category</td>
-            <td>2021-01-01</td>
+    <tr className="Table-row">
+      <td>+/-</td>
+      <td>{user.username}</td>
+      {/* Salary, Invesment, Food etc... */}
+      <td>Category</td>
+      <td>2021-01-01</td>
 
-            <td className="Table-btn">
-              <button type="button">
-                <FiEdit />
-              </button>
-              <button type="button">
-                <AiOutlineDelete />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <td className="Table-btn">
+        <button type="button">
+          <FiEdit />
+        </button>
+        <button type="button" onClick={() => deleteUserFn(id)}>
+          <AiOutlineDelete />
+        </button>
+      </td>
+    </tr>
   );
 }
 

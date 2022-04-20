@@ -6,7 +6,7 @@ import Table from "./Table";
 import Balance from "./Balance";
 // Components API
 import { getUserById } from "../../api/libraries/apiLibraries";
-// import { deleteUser } from "../../api/libraries/apiLibraries";
+import { deleteUser } from "../../api/libraries/apiLibraries";
 // import { createUser } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Form.css";
@@ -15,7 +15,6 @@ import { BsPlusCircle } from "react-icons/bs";
 
 function Form() {
   const [users, setUser] = useState([]);
-  // const [deleteid, deleteUser] = useState([]);
 
   const {
     register,
@@ -30,14 +29,20 @@ function Form() {
     },
   });
 
-  // Delete Method Neveikia
-  //  http://127.0.0.1:4000/api/v1/users/ 404 (Not Found)
-  // useEffect(() => {
-  //   deleteUser().then((res) => {
-  //      console.log(res.data.data.users.id);
-  //      setUsers(res.data.data.users.id);
-  //   });
-  // }, []);
+  // render automatic
+  //    function getUser{
+  //  getUserById().then((res) => {
+  //     getUserById().then((res) => {
+  //       console.log(res.data.data.users);
+  //       setUser(res.data.data.users);
+  //     });
+  //    }
+
+  // DELETE method
+  function deleteUserFn(id) {
+    console.log(id);
+    deleteUser(id);
+  }
 
   // GET(byoneID) method
   useEffect(() => {
@@ -47,22 +52,24 @@ function Form() {
     });
   }, []);
 
-  // POST and PUT method
-  // useEffect(() => {
-  //   createUser().then((res) => {
-  //     console.log(res.data.data.users);
-  //     setUsers(res.data.data.users);
-  //   });
-  // }, []);
-
   const usersList = users.map((user) => {
-    return <Table key={user._id} id={user._id} user={user} />;
+    return (
+      <Table
+        key={user._id}
+        id={user._id}
+        user={user}
+        deleteUserFn={deleteUserFn}
+      />
+    );
   });
   return (
     <div className="Form-container">
       <Balance />
-      {/* <Table {...usersList} /> */}
-      <div>{usersList}</div>
+      <div>
+        <table className="Table-body">
+          <tbody className="Table-tbody">{usersList}</tbody>
+        </table>
+      </div>
       <div className="Form-body">
         <form className="Form-body-form" onSubmit={handleSubmit()}>
           <label>Accounting</label>
