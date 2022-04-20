@@ -7,7 +7,7 @@ import "./style/Table.css";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 
-function Table({ id, user, deleteUserFn }) {
+function Table({ id, user, deleteUserFn, editUserFn }) {
   return (
     <tr className="Table-row">
       <td>+/-</td>
@@ -17,7 +17,12 @@ function Table({ id, user, deleteUserFn }) {
       <td>2021-01-01</td>
 
       <td className="Table-btn">
-        <button type="button">
+        <button
+          type="button"
+          onClick={() => {
+            editUserFn(user);
+          }}
+        >
           <FiEdit />
         </button>
         <button type="button" onClick={() => deleteUserFn(id)}>

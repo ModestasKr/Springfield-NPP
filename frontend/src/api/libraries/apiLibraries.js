@@ -19,9 +19,14 @@ export async function deleteUser(id) {
   return res;
 }
 
-// Put user incomes and spend
-// PUT  http://127.0.0.1:4000/api/v1/users/ 404 (Not Found)
-// export async function createUser() {
-//   const res = await axiosClient.post("/");
-//   return res;
-// }
+// create user incomes and spend
+export async function createUser() {
+  const res = await axiosClient.post("/");
+  return res;
+}
+
+// update user incomes and spend
+export async function updateUser(id) {
+  const res = await axiosClient.put("/" + id);
+  return res;
+}

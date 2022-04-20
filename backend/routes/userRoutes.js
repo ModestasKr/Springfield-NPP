@@ -12,6 +12,11 @@ const router = express.Router();
 
 router.route("/").get(getAllUsers).post(createUser);
 
+// config
+// 
+/**
+ * router.route("/:id/:subid").get(getUserById)
+ */
 router
   .route("/:id")
   .get(getUserById)

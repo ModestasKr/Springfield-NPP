@@ -7,7 +7,8 @@ import Balance from "./Balance";
 // Components API
 import { getUserById } from "../../api/libraries/apiLibraries";
 import { deleteUser } from "../../api/libraries/apiLibraries";
-// import { createUser } from "../../api/libraries/apiLibraries";
+import { createUser } from "../../api/libraries/apiLibraries";
+import { updateUser } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Form.css";
 // Icon
@@ -15,6 +16,8 @@ import { BsPlusCircle } from "react-icons/bs";
 
 function Form() {
   const [users, setUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
+  const [editingId, setEditingID] = useState("");
 
   const {
     register,
@@ -28,15 +31,6 @@ function Form() {
       date: "",
     },
   });
-
-  // render automatic
-  //    function getUser{
-  //  getUserById().then((res) => {
-  //     getUserById().then((res) => {
-  //       console.log(res.data.data.users);
-  //       setUser(res.data.data.users);
-  //     });
-  //    }
 
   // DELETE method
   function deleteUserFn(id) {
@@ -52,6 +46,26 @@ function Form() {
     });
   }, []);
 
+  // Not working
+  // Create and Update
+  function createUserFn(data) {
+    if (editingId) {
+      // PUT METHOD
+      console.log(data);
+      updateUser(data);
+    } else {
+      // POST METHOD
+      console.log(data);
+      createUser(data);
+    }
+  }
+  // PUT method item
+  function editUserFn(data) {
+    setEditingID(data._id);
+    // update date in the inputs
+    setCurrentUser(data);
+  }
+
   const usersList = users.map((user) => {
     return (
       <Table
@@ -59,6 +73,7 @@ function Form() {
         id={user._id}
         user={user}
         deleteUserFn={deleteUserFn}
+        editUserFn={editUserFn}
       />
     );
   });
@@ -71,9 +86,10 @@ function Form() {
         </table>
       </div>
       <div className="Form-body">
-        <form className="Form-body-form" onSubmit={handleSubmit()}>
+        <form className="Form-body-form" onSubmit={handleSubmit(createUserFn)}>
           <label>Accounting</label>
           <select
+            defaultValue={currentUser.accounting}
             {...register("accounting", {
               required: "This is requires",
             })}
@@ -86,6 +102,7 @@ function Form() {
 
           <label>Category</label>
           <select
+            defaultValue={currentUser.category}
             {...register("category", {
               required: "This is requires",
             })}
@@ -110,7 +127,7 @@ function Form() {
           <label>Amount</label>
           <input
             placeholder="Write a Amount"
-            // defaultValue={currentUser.amount}
+            defaultValue={currentUser.amount}
             {...register("amount", {
               required: "This is requires",
               minLength: {
@@ -127,6 +144,7 @@ function Form() {
 
           <label>Date</label>
           <input
+            defaultValue={currentUser.date}
             type="date"
             {...register("date", {
               required: "This is requires",
