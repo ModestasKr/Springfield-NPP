@@ -76,32 +76,32 @@ const usersSchema = new mongoose.Schema({
 const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
-// const testUsers = new Users({
-//   username: "PetrasRokas",
-//   email: "remf@one.ltsdfsdf",
-//   password: "pass123KK",
-//   balance: "1000",
-//   income: [
-//     {
-//       amount: "500",
-//       date: "2021-01-01",
-//       from: "2021-02-01",
-//       incomeName: "Sport",
-//       category: "other",
-//     },
-//   ],
-//   expense: [
-//     {
-//       amount: "600",
-//       date: "2021-02-03",
-//       date_created: "2021-02-05",
-//       date_updated: "2021-02-06",
-//       expenseName: "Food",
-//       category: "Other",
-//     },
-//   ],
-// });
+const testUsers = new Users({
+  username: "PetradsRokas",
+  email: "rd@one.ltsdfsdf",
+  password: "pass123KK",
+  balance: "10000",
+  income: [
+    {
+      amount: "500",
+      date: "2021-01-01",
+      from: "2021-02-01",
+      incomeName: "Sport",
+      category: "other",
+    },
+  ],
+  expense: [
+    {
+      amount: "600",
+      date: "2021-02-03",
+      date_created: "2021-02-05",
+      date_updated: "2021-02-06",
+      expenseName: "Food",
+      category: "Other",
+    },
+  ],
+});
 
-// testUsers.save();
+testUsers.save();
 
 module.exports = Users;

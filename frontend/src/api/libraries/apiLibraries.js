@@ -6,27 +6,26 @@ export async function getAllUsers() {
   return res;
 }
 
-// Take one by ID
-export async function getUserById() {
-  const res = await axiosClient.get("/");
+// Take one user
+export async function getUserById(id) {
+  const res = await axiosClient.get(`/${id}`);
   return res;
 }
 
-// Delete  user expense
-
+// Delete user
 export async function deleteUser(id) {
-  const res = await axiosClient.delete("/" + id);
+  const res = await axiosClient.delete(`/${id}`);
   return res;
 }
 
-// create user incomes and spend
-export async function createUser() {
-  const res = await axiosClient.post("/");
+// create user
+export async function createUser(data) {
+  const res = await axiosClient.post("/", JSON.stringify(data));
   return res;
 }
 
-// update user incomes and spend
-export async function updateUser(id) {
-  const res = await axiosClient.put("/" + id);
+// update user
+export async function updateUser(data, editingId) {
+  const res = await axiosClient.put(`/${editingId}`, JSON.stringify(data));
   return res;
 }

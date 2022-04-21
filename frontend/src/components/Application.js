@@ -2,11 +2,11 @@
 import React from "react";
 
 // Components
-import IncomePieChart from "./Application/IncomePieChart";
-import ExpensePieChart from "./Application/ExpensePieChart";
-import Form from "./Application/Form";
+import IncomePieChart from "./pieIncome/IncomePieChart";
+import ExpensePieChart from "./pieExpense/ExpensePieChart";
+import Form from "./application/Form";
 // Style
-import "./Application/style/Application.css";
+import "./application/style/Application.css";
 
 function Application() {
   return (

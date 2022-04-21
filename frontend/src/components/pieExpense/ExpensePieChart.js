@@ -1,7 +1,5 @@
 // Libraries
 import React from "react";
-// Style
-import "./style/IncomePieChart.css";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -10,12 +8,14 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+// Style
+import "./style/ExpensePieChart.css";
 // Chart
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
-function IncomePieChart() {
+function ExpensePieChart() {
   var data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
@@ -56,17 +56,16 @@ function IncomePieChart() {
       },
     },
   };
-
   return (
-    <div className="IncomePieChart-container">
-      {/* Text color is green */}
-      <h3>Income</h3>
-      <p>$/£ 1000</p>
-      <div className="IncomePieChart-chart">
+    <div className="ExpensePieChart-container">
+      {/* Text color red */}
+      <h3>Expense</h3>
+      <p>£1000</p>
+      <div className="ExpensePieChart-chart">
         <Pie data={data} height={400} options={options} />
       </div>
     </div>
   );
 }
 
-export default IncomePieChart;
+export default ExpensePieChart;
