@@ -1,5 +1,62 @@
 const mongoose = require("mongoose");
 
+const incomeSchema = new mongoose.Schema({
+  amount: { type: Number, required: [true, "This field is required"] },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  from: {
+    type: String,
+    default: "",
+  },
+  date_created: {
+    type: Date,
+    default: Date.now,
+    unmodifiable: true,
+  },
+  date_updated: {
+    type: Date,
+    default: Date.now,
+  },
+  incomeName: {
+    type: String,
+    default: "Other",
+  },
+  category: {
+    type: String,
+    default: "Other",
+  },
+});
+
+const expenseSchema = new mongoose.Schema({
+  amount: {
+    type: Number,
+    required: [true, "This field is required"],
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  date_created: {
+    type: Date,
+    default: Date.now,
+    unmodifiable: true,
+  },
+  date_updated: {
+    type: Date,
+    default: Date.now,
+  },
+  expenseName: {
+    type: String,
+    default: "Other",
+  },
+  category: {
+    type: String,
+    default: "Other",
+  },
+});
+
 // DB schema
 const usersSchema = new mongoose.Schema({
   username: {
@@ -20,56 +77,8 @@ const usersSchema = new mongoose.Schema({
   balance: {
     type: Number,
   },
-  income: [
-    {
-      amount: {
-        type: Number,
-        required: [true, "This field is required"],
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-      from: {
-        type: String,
-      },
-      incomeName: {
-        type: String,
-      },
-      category: {
-        type: String,
-        default: "Other",
-      },
-    },
-  ],
-  expense: [
-    {
-      amount: {
-        type: Number,
-        required: [true, "This field is required"],
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-      date_created: {
-        type: Date,
-        default: Date.now,
-        unmodifiable: true,
-      },
-      date_updated: {
-        type: Date,
-        default: Date.now,
-      },
-      expenseName: {
-        type: String,
-      },
-      category: {
-        type: String,
-        default: "Other",
-      },
-    },
-  ],
+  income: [incomeSchema],
+  expenses: [expenseSchema],
 });
 
 // Modelis DB lentelės pavadinimas
@@ -77,27 +86,28 @@ const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
 const testUsers = new Users({
-  username: "PetradsRokas",
-  email: "rd@one.ltsdfsdf",
+  username: "Rokas",
+  email: "Norvilis@gmail.com",
   password: "pass123KK",
   balance: "10000",
   income: [
     {
       amount: "500",
       date: "2021-01-01",
-      from: "2021-02-01",
-      incomeName: "Sport",
-      category: "other",
+      incomeName: "Job",
+      category: "Job",
+      date_created: "2021-02-05",
+      date_updated: "2021-02-06",
     },
   ],
-  expense: [
+  expenses: [
     {
       amount: "600",
       date: "2021-02-03",
+      expenseName: "Food",
+      category: "Food",
       date_created: "2021-02-05",
       date_updated: "2021-02-06",
-      expenseName: "Food",
-      category: "Other",
     },
   ],
 });

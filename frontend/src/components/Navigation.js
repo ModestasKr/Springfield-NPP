@@ -12,10 +12,7 @@ function Navigation() {
           <Link to="/application">Application</Link>
         </li>
         <li>
-          <Link to="/income">Income</Link>
-        </li>
-        <li>
-          <Link to="/expense">Expense</Link>
+          <Link to="/history">History</Link>
         </li>
       </ul>
     </nav>

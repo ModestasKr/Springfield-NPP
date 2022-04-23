@@ -7,8 +7,8 @@ export async function getAllUsers() {
 }
 
 // Take one user
-export async function getUserById(id) {
-  const res = await axiosClient.get(`/${id}`);
+export async function getUserById() {
+  const res = await axiosClient.get(`/`);
   return res;
 }
 
@@ -21,11 +21,5 @@ export async function deleteUser(id) {
 // create user
 export async function createUser(data) {
   const res = await axiosClient.post("/", JSON.stringify(data));
-  return res;
-}
-
-// update user
-export async function updateUser(data, editingId) {
-  const res = await axiosClient.put(`/${editingId}`, JSON.stringify(data));
   return res;
 }

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  Components
 import Application from "./components/Application";
 import Navigation from "./components/Navigation";
+import History from "./components/history/History";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         </nav>
         <Routes>
           <Route path="/application" element={<Application />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </BrowserRouter>
     </div>

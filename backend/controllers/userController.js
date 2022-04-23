@@ -21,6 +21,7 @@ exports.getAllUsers = async (req, res) => {
 
 // Sukurti userį
 exports.createUser = async (req, res) => {
+  console.log(req.body);
   try {
     const newUser = await Users.create(req.body);
     res.status(201).json({
@@ -37,7 +38,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// Gauti userį pagal id (cia gal veliau reiks pakeisti pagal email?)
+// Gauti userį pagal id
 exports.getUserById = async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
@@ -95,3 +96,37 @@ exports.deleteUser = async (req, res) => {
     });
   }
 };
+
+// exports.findPlacesAndUpdate = async (req, res) => {
+//   console.log(req.params.id);
+//   console.log(req.params.subId);
+//   console.log(req.body);
+
+//   try {
+//     const updatePlaces = await Tour.findOneAndUpdate(
+//       { _id: req.params.id, "placesToVisit._id": req.params.subId },
+//       {
+//         $set: {
+//           "placesToVisit.$.duration": 99999999,
+//         },
+//       }
+//     );
+
+//     const updatedPlaces = await Tour.findOne({
+//       _id: req.params.id,
+//       "placesToVisit._id": req.params.subId,
+//     });
+
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         places: updatedPlaces,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
