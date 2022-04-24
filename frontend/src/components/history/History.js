@@ -1,7 +1,7 @@
 // Libraries
 import React, { useState, useEffect } from "react";
 // Components API
-import { getAllUsers } from "../../api/libraries/apiLibraries";
+import { getAllUsersData } from "../../api/libraries/apiLibraries";
 // Components
 import HistoryTable from "./HistoryTable.js";
 // Style
@@ -10,8 +10,10 @@ import "./style/History.css";
 function History() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  //   GET method one user data
   useEffect(() => {
-    getAllUsers().then((res) => {
+    getAllUsersData().then((res) => {
       setUsers(res.data.data.users[0]);
       console.log(res.data.data.users[0]);
       setIsLoading(true);

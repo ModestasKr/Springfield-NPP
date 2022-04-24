@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const incomeSchema = new mongoose.Schema({
-  amount: { type: Number, required: [true, "This field is required"] },
+  amount: {
+    type: Number,
+    required: [true, "This field is required"],
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -81,37 +84,37 @@ const usersSchema = new mongoose.Schema({
   expenses: [expenseSchema],
 });
 
-// Modelis DB lentelės pavadinimas
+// ModelDb table name
 const Users = new mongoose.model("Users", usersSchema);
 
 // Duomenų siuntimas į DB
-const testUsers = new Users({
-  username: "Rokas",
-  email: "Norvilis@gmail.com",
-  password: "pass123KK",
-  balance: "10000",
-  income: [
-    {
-      amount: "500",
-      date: "2021-01-01",
-      incomeName: "Job",
-      category: "Job",
-      date_created: "2021-02-05",
-      date_updated: "2021-02-06",
-    },
-  ],
-  expenses: [
-    {
-      amount: "600",
-      date: "2021-02-03",
-      expenseName: "Food",
-      category: "Food",
-      date_created: "2021-02-05",
-      date_updated: "2021-02-06",
-    },
-  ],
-});
+// const testUsers = new Users({
+//   username: "Rokas",
+//   email: "Norvilis@gmail.com",
+//   password: "pass123KK",
+//   balance: "10000",
+//   income: [
+//     {
+//       amount: "500",
+//       date: "2021-01-01",
+//       incomeName: "Job",
+//       category: "Job",
+//       date_created: "2021-02-05",
+//       date_updated: "2021-02-06",
+//     },
+//   ],
+//   expenses: [
+//     {
+//       amount: "600",
+//       date: "2021-02-03",
+//       expenseName: "Food",
+//       category: "Food",
+//       date_created: "2021-02-05",
+//       date_updated: "2021-02-06",
+//     },
+//   ],
+// });
 
-testUsers.save();
+// testUsers.save();
 
 module.exports = Users;

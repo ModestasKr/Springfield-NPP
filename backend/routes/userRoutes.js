@@ -1,20 +1,19 @@
 const express = require("express");
 
 const {
-  getAllUsers,
-  createUser,
-  getUserById,
-  updateUser,
-  deleteUser,
-  // findPlacesAndUpdate,
+  getAllUsersData,
+  findIncomeDataAndUpdate,
+  findExpensesDataAndUpdate,
+  deleteUserIncome,
+  deleteUserExpenses,
 } = require("../controllers/userController");
 
 const router = express.Router();
 
-router.route("/").get(getAllUsers).post(createUser);
-
-router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
-
-// router.route("/:id/:subId").patch(findPlacesAndUpdate);
+router.route("/").get(getAllUsersData);
+router.route("/:id/income/:subID").patch(findIncomeDataAndUpdate);
+router.route("/:id/expenses/:subID").patch(findExpensesDataAndUpdate);
+router.route("/:id/income/:subID").delete(deleteUserIncome);
+router.route("/:id/expenses/:subID").delete(deleteUserExpenses);
 
 module.exports = router;

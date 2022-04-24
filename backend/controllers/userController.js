@@ -1,7 +1,7 @@
 const Users = require("./../models/userModel");
 
-// Gauti visus users
-exports.getAllUsers = async (req, res) => {
+// GET method all user data
+exports.getAllUsersData = async (req, res) => {
   try {
     const users = await Users.find();
     res.status(200).json({
@@ -19,33 +19,27 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// Sukurti userį
-exports.createUser = async (req, res) => {
+// Update Income array
+exports.findIncomeDataAndUpdate = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
   console.log(req.body);
   try {
-    const newUser = await Users.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: {
-        users: newUser,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
+    const updateIncome = await Users.findOneAndUpdate(
+      { _id: req.params.id, "income._id": req.params.subID },
+      {
+        $set: {
+          "income.$.date": req.body.date,
+          "income.$.category": req.body.category,
+          "income.$.amount": req.body.amount,
+        },
+      }
+    );
 
-// Gauti userį pagal id
-exports.getUserById = async (req, res) => {
-  try {
-    const user = await Users.findById(req.params.id);
     res.status(200).json({
       status: "success",
       data: {
-        users: user,
+        income: updateIncome,
       },
     });
   } catch (err) {
@@ -56,20 +50,23 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// Atnaujinti esamą studentą pagal id
-exports.updateUser = async (req, res) => {
+// Update Expenses array
+exports.findExpensesDataAndUpdate = async (req, res) => {
   try {
-    const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
-      // atnaujinus duomenis - gauti atnaujintą studento informaciją
-      new: true,
-      // papildomai patikrintų duomenis pagal DB schemą (studentModel)
-      runValidators: true,
-    });
-
+    const updateExpenses = await Users.findOneAndUpdate(
+      { _id: req.params.id, "expenses._id": req.params.subID },
+      {
+        $set: {
+          "expenses.$.date": req.body.date,
+          "expenses.$.category": req.body.category,
+          "expenses.$.amount": req.body.amount,
+        },
+      }
+    );
     res.status(200).json({
       status: "success",
       data: {
-        user: user,
+        expenses: updateExpenses,
       },
     });
   } catch (err) {
@@ -80,14 +77,15 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// Pašalinti user pagal ID
-exports.deleteUser = async (req, res) => {
+// DELETE method user array
+exports.deleteUserIncome = async (req, res) => {
   try {
-    await Users.findByIdAndDelete(req.params.id);
-
+    const deleteIncome = await Users.findByIdAndDelete(req.params.id);
     res.status(204).json({
       status: "success",
-      data: null,
+      data: {
+        income: deleteIncome,
+      },
     });
   } catch (err) {
     res.status(404).json({
@@ -97,30 +95,37 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// exports.findPlacesAndUpdate = async (req, res) => {
-//   console.log(req.params.id);
-//   console.log(req.params.subId);
-//   console.log(req.body);
+// DELETE method user array
+exports.deleteUserExpenses = async (req, res) => {
+  try {
+    const deleteExpenses = await Users.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: "success",
+      data: {
+        expenses: deleteExpenses,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
 
+// Update user data
+// exports.updateUserData = async (req, res) => {
 //   try {
-//     const updatePlaces = await Tour.findOneAndUpdate(
-//       { _id: req.params.id, "placesToVisit._id": req.params.subId },
-//       {
-//         $set: {
-//           "placesToVisit.$.duration": 99999999,
-//         },
-//       }
-//     );
-
-//     const updatedPlaces = await Tour.findOne({
-//       _id: req.params.id,
-//       "placesToVisit._id": req.params.subId,
+//     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
+//       // atnaujinus duomenis - gauti atnaujintą studento informaciją
+//       new: true,
+//       // papildomai patikrintų duomenis pagal DB schemą (studentModel)
+//       runValidators: true,
 //     });
-
 //     res.status(200).json({
 //       status: "success",
 //       data: {
-//         places: updatedPlaces,
+//         user: user,
 //       },
 //     });
 //   } catch (err) {
