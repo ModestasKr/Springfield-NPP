@@ -24,14 +24,4 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   return res;
 }
 
-// DELETE user income data
-export async function deleteUserIncome(id, subID) {
-  const res = await axiosClient.delete(`/${id}/income/${subID}`);
-  return res;
-}
-
-// DELETE user expenses data
-export async function deleteUserExpenses(id, subID) {
-  const res = await axiosClient.delete(`/${id}/expenses/${subID}`);
-  return res;
-}
+// ADD user income

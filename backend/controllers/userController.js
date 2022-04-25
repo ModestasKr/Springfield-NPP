@@ -19,6 +19,25 @@ exports.getAllUsersData = async (req, res) => {
   }
 };
 
+
+// Get user by id
+exports.getUserById = async (req, res) => {
+  try {
+    const users = await Users.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        users: users,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Update Income array
 exports.findIncomeDataAndUpdate = async (req, res) => {
   console.log(req.params.id);
@@ -78,6 +97,34 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
+// Create a new expense (/:id/expenses)
+exports.createUserExpenses = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      {_id: req.params.id},
+      {$push: {expenses: req.body}},
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
+      status: "success",
+      data: {
+        expenses: updated
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+
 // DELETE method user array
 exports.deleteUserIncome = async (req, res) => {
   try {
@@ -97,14 +144,20 @@ exports.deleteUserIncome = async (req, res) => {
 };
 
 // DELETE method user array
+
+// ("/:id/expenses/delete/:subID")
 exports.deleteUserExpenses = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
   try {
-    const deleteExpenses = await Users.findByIdAndDelete(req.params.id);
-    res.status(204).json({
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { expenses: { _id: req.params.subID } } }
+    );
+    res.status(200).json({
       status: "success",
-      data: {
-        expenses: deleteExpenses,
-      },
+      data: null,
     });
   } catch (err) {
     res.status(404).json({
@@ -114,25 +167,44 @@ exports.deleteUserExpenses = async (req, res) => {
   }
 };
 
-// Update user data
-// exports.updateUserData = async (req, res) => {
-//   try {
-//     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
-//       // atnaujinus duomenis - gauti atnaujintą studento informaciją
-//       new: true,
-//       // papildomai patikrintų duomenis pagal DB schemą (studentModel)
-//       runValidators: true,
-//     });
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         user: user,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };
+// ("/:id/income/delete/:subID")
+exports.deleteUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { income: { _id: req.params.subID } } }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
+
+// Add user income
+exports.addToUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour: updated,
+      },
+
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
