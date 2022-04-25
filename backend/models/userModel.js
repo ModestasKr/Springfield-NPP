@@ -9,10 +9,7 @@ const incomeSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  from: {
-    type: String,
-    default: "",
-  },
+
   date_created: {
     type: Date,
     default: Date.now,

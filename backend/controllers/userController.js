@@ -77,14 +77,23 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
-// DELETE method user array
-exports.deleteUserIncome = async (req, res) => {
+// Add user income
+exports.addToUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
   try {
-    const deleteIncome = await Users.findByIdAndDelete(req.params.id);
-    res.status(204).json({
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
       status: "success",
       data: {
-        income: deleteIncome,
+        tour: updated,
       },
     });
   } catch (err) {
@@ -94,44 +103,3 @@ exports.deleteUserIncome = async (req, res) => {
     });
   }
 };
-
-// DELETE method user array
-exports.deleteUserExpenses = async (req, res) => {
-  try {
-    const deleteExpenses = await Users.findByIdAndDelete(req.params.id);
-    res.status(204).json({
-      status: "success",
-      data: {
-        expenses: deleteExpenses,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
-// Update user data
-// exports.updateUserData = async (req, res) => {
-//   try {
-//     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
-//       // atnaujinus duomenis - gauti atnaujintą studento informaciją
-//       new: true,
-//       // papildomai patikrintų duomenis pagal DB schemą (studentModel)
-//       runValidators: true,
-//     });
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         user: user,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };

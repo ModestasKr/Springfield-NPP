@@ -4,8 +4,7 @@ const {
   getAllUsersData,
   findIncomeDataAndUpdate,
   findExpensesDataAndUpdate,
-  deleteUserIncome,
-  deleteUserExpenses,
+  addToUserIncome,
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -13,7 +12,5 @@ const router = express.Router();
 router.route("/").get(getAllUsersData);
 router.route("/:id/income/:subID").patch(findIncomeDataAndUpdate);
 router.route("/:id/expenses/:subID").patch(findExpensesDataAndUpdate);
-router.route("/:id/income/:subID").delete(deleteUserIncome);
-router.route("/:id/expenses/:subID").delete(deleteUserExpenses);
-
+router.route("/:id/income").patch(addToUserIncome);
 module.exports = router;
