@@ -96,6 +96,7 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
+
 // Create a new expense (/:id/expenses)
 exports.createUserExpenses = async (req, res) => {
   console.log(req.params.id);
@@ -179,6 +180,25 @@ exports.deleteUserIncome = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: null,
+
+// Add user income
+exports.addToUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour: updated,
+      },
     });
   } catch (err) {
     res.status(404).json({
@@ -187,26 +207,3 @@ exports.deleteUserIncome = async (req, res) => {
     });
   }
 };
-
-// Update user data
-// exports.updateUserData = async (req, res) => {
-//   try {
-//     const user = await Users.findByIdAndUpdate(req.params.id, req.body, {
-//       // atnaujinus duomenis - gauti atnaujintą studento informaciją
-//       new: true,
-//       // papildomai patikrintų duomenis pagal DB schemą (studentModel)
-//       runValidators: true,
-//     });
-//     res.status(200).json({
-//       status: "success",
-//       data: {
-//         user: user,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };
