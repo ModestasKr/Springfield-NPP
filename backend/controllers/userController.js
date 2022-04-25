@@ -58,7 +58,7 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        income: updateIncome,
+        users: updateIncome,
       },
     });
   } catch (err) {
@@ -76,6 +76,7 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
       { _id: req.params.id, "expenses._id": req.params.subID },
       {
         $set: {
+          "expenses.$.expenseName": req.body.expenseName,
           "expenses.$.date": req.body.date,
           "expenses.$.category": req.body.category,
           "expenses.$.amount": req.body.amount,
@@ -85,7 +86,7 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        expenses: updateExpenses,
+        users: updateExpenses,
       },
     });
   } catch (err) {
