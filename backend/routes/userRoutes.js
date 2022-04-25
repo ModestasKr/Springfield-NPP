@@ -8,6 +8,8 @@ const {
   deleteUserIncome,
   deleteUserExpenses,
   createUserExpenses,
+  addToUserIncome,
+
 } = require("../controllers/userController");
 
 const router = express.Router();
@@ -19,5 +21,6 @@ router.route("/:id/income/:subID").patch(findIncomeDataAndUpdate);
 router.route("/:id/expenses/:subID").patch(findExpensesDataAndUpdate);
 router.route("/:id/income/delete/:subID").patch(deleteUserIncome);
 router.route("/:id/expenses/delete/:subID").patch(deleteUserExpenses);
+router.route("/:id/income").patch(addToUserIncome);
 
 module.exports = router;
