@@ -19,6 +19,25 @@ exports.getAllUsersData = async (req, res) => {
   }
 };
 
+
+// Get user by id
+exports.getUserById = async (req, res) => {
+  try {
+    const users = await Users.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        users: users,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Update Income array
 exports.findIncomeDataAndUpdate = async (req, res) => {
   console.log(req.params.id);
@@ -77,6 +96,34 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
+// Create a new expense (/:id/expenses)
+exports.createUserExpenses = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      {_id: req.params.id},
+      {$push: {expenses: req.body}},
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
+      status: "success",
+      data: {
+        expenses: updated
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+
 // DELETE method user array
 exports.deleteUserIncome = async (req, res) => {
   try {
@@ -96,14 +143,42 @@ exports.deleteUserIncome = async (req, res) => {
 };
 
 // DELETE method user array
+
+// ("/:id/expenses/delete/:subID")
 exports.deleteUserExpenses = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
   try {
-    const deleteExpenses = await Users.findByIdAndDelete(req.params.id);
-    res.status(204).json({
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { expenses: { _id: req.params.subID } } }
+    );
+    res.status(200).json({
       status: "success",
-      data: {
-        expenses: deleteExpenses,
-      },
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+// ("/:id/income/delete/:subID")
+exports.deleteUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subID);
+
+  try {
+    await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { income: { _id: req.params.subID } } }
+    );
+    res.status(200).json({
+      status: "success",
+      data: null,
     });
   } catch (err) {
     res.status(404).json({
