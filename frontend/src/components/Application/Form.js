@@ -15,8 +15,6 @@ import { BsPlusCircle } from "react-icons/bs";
 function Form() {
   const [user, setUser] = useState({});
   const [income, setIncome] = useState({});
-  const [expense, setExpense] = useState({});
-
   const [incExp, SetIncExp] = useState("income");
   const {
     register,
@@ -31,15 +29,15 @@ function Form() {
     },
   });
 
+  // Testavimas Ritai
+  // ADD Expenses and Income
   function onSubmit(data) {
     console.log(data);
     if ("date" in income) {
       console.log(income);
-    } else {
-      // console.log(expense);
     }
     console.log(user);
-    // createUserIncome(data, user._id);
+
     incExp === "income"
       ? createUserIncome(data, user._id)
       : createUserExpenses(data, user._id);

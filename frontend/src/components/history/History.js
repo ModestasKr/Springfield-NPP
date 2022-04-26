@@ -11,6 +11,7 @@ function History() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Testavimas Ritai
   //   GET method one user data
   useEffect(() => {
     getAllUsersData().then((res) => {
