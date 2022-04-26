@@ -32,10 +32,29 @@ export async function createUserIncome(data, id) {
   console.log(id);
   console.log(data);
   const res = await axiosClient
-    .patch(
-      `http://127.0.0.1:4000/api/v1/users/${id}/income/`,
-      JSON.stringify(data)
-    )
+    .patch(`/${id}/income/`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Added!",
+        icon: "success",
+        button: "Great",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Something went wrong!", "error");
+    });
+  return res;
+}
+
+// ADD user Expenes
+export async function createUserExpenses(data, id) {
+  id = "62666e27cd523e53504dd164";
+  console.log(id);
+  console.log(data);
+  const res = await axiosClient
+    .patch(`/${id}/expenses/`, JSON.stringify(data))
     .then((result) => {
       console.log("Success:", result);
       swal({

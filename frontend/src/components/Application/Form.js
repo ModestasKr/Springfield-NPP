@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // Component API
 import { createUserIncome } from "../../api/libraries/apiLibraries";
+import { createUserExpenses } from "../../api/libraries/apiLibraries";
 
 // Components
 import Balance from "./Balance";
@@ -14,7 +15,9 @@ import { BsPlusCircle } from "react-icons/bs";
 function Form() {
   const [user, setUser] = useState({});
   const [income, setIncome] = useState({});
+  const [expense, setExpense] = useState({});
 
+  const [incExp, SetIncExp] = useState("income");
   const {
     register,
     handleSubmit,
@@ -32,9 +35,14 @@ function Form() {
     console.log(data);
     if ("date" in income) {
       console.log(income);
+    } else {
+      // console.log(expense);
     }
     console.log(user);
-    createUserIncome(data, user._id);
+    // createUserIncome(data, user._id);
+    incExp === "income"
+      ? createUserIncome(data, user._id)
+      : createUserExpenses(data, user._id);
   }
 
   return (
@@ -46,11 +54,16 @@ function Form() {
         <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Accounting</label>
           <select
+            onClick={(e) => {
+              SetIncExp(e.target[e.target.selectedIndex].value);
+              console.log(e.target);
+              console.log(e.target[e.target.selectedIndex].value);
+            }}
             {...register("accounting", {
               required: "This is requires",
             })}
           >
-            <option value="">Select</option>
+            <option value="select">Select</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
           </select>
