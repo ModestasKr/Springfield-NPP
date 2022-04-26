@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // Component API
+import { createUserIncome } from "../../api/libraries/apiLibraries";
 
 // Components
 import Balance from "./Balance";
@@ -11,6 +12,11 @@ import "./style/Form.css";
 import { BsPlusCircle } from "react-icons/bs";
 
 function Form() {
+  const [user, setUser] = useState({});
+  const [income, setIncome] = useState({});
+  const [expense, setExpense] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -23,6 +29,48 @@ function Form() {
       date: "",
     },
   });
+
+  // createUserIncome(data, id).then((res) => {
+  //   console.log(res.data.data.users[0]);
+  //   setUsers(res.data.data.users[0]);
+  //   setIsLoading(true);
+  // });
+  // if (isLoading) {
+  //   return <div>Loading..</div>;
+  // }
+
+  function updateIncomeObject(e) {
+    e.preventDefault();
+    income[e.target.name] = e.target.value;
+    console.log(income);
+  }
+  function updateExpenseObject(e) {
+    e.preventDefault();
+    expense[e.target.name] = e.target.value;
+    console.log(expense);
+  }
+
+  function submitNewIncomeExpense(e) {
+    e.preventDefault();
+    // If no date selected puts current date into income object
+    // cant use ! in front of "date"?
+    if ("date" in income) {
+      console.log(income);
+    } else {
+      income.date = new Date().toISOString().substr(0, 10);
+    }
+    if ("date" in expense) {
+      console.log(expense);
+    } else {
+      expense.date = new Date().toISOString().substr(0, 10);
+    }
+
+    // display == "income" ? user.income.push(income) : user.expenses.push(expense);
+    console.log(user);
+
+    // updateUser(user, user._id);
+    createUserIncome(income, user._id);
+  }
 
   return (
     <div className="Form-container">

@@ -1,4 +1,6 @@
+// Libraries
 import axiosClient from "../apiUsers";
+import swal from "sweetalert";
 
 // GET method allUsers
 export async function getAllUsersData() {
@@ -24,4 +26,23 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   return res;
 }
 
-// ADD user income
+// ADD user Income
+export async function createUserIncome(data, id) {
+  console.log(id);
+  console.log(data);
+  const res = await axiosClient
+    .patch(`/${id}`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Added!",
+        icon: "success",
+        button: "Great",
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Something went wrong!", "error");
+    });
+  return res;
+}

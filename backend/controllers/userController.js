@@ -19,7 +19,6 @@ exports.getAllUsersData = async (req, res) => {
   }
 };
 
-
 // Get user by id
 exports.getUserById = async (req, res) => {
   try {
@@ -103,8 +102,8 @@ exports.createUserExpenses = async (req, res) => {
   console.log(req.params.subId);
   try {
     const updated = await Users.findOneAndUpdate(
-      {_id: req.params.id},
-      {$push: {expenses: req.body}},
+      { _id: req.params.id },
+      { $push: { expenses: req.body } },
       {
         new: true,
       }
@@ -113,7 +112,7 @@ exports.createUserExpenses = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        expenses: updated
+        expenses: updated,
       },
     });
   } catch (err) {
@@ -123,7 +122,6 @@ exports.createUserExpenses = async (req, res) => {
     });
   }
 };
-
 
 // DELETE method user array
 exports.deleteUserIncome = async (req, res) => {
@@ -180,9 +178,17 @@ exports.deleteUserIncome = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
 
 // Add user income
-exports.addToUserIncome = async (req, res) => {
+exports.createUserIncome = async (req, res) => {
   console.log(req.params.id);
   console.log(req.params.subId);
   try {
@@ -199,7 +205,6 @@ exports.addToUserIncome = async (req, res) => {
       data: {
         tour: updated,
       },
-
     });
   } catch (err) {
     res.status(404).json({
