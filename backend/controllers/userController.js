@@ -188,6 +188,7 @@ exports.deleteUserIncome = async (req, res) => {
     });
   }
 };
+      
 
 // Add user income
 exports.addToUserIncome = async (req, res) => {

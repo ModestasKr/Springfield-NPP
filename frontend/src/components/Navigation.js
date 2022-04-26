@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // Style
-import "./application/style/Navigation.css";
+import "./Application/style/Navigation.css";
 
 function Navigation() {
   return (
