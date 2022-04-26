@@ -14,8 +14,6 @@ import { BsPlusCircle } from "react-icons/bs";
 function Form() {
   const [user, setUser] = useState({});
   const [income, setIncome] = useState({});
-  const [expense, setExpense] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -30,46 +28,13 @@ function Form() {
     },
   });
 
-  // createUserIncome(data, id).then((res) => {
-  //   console.log(res.data.data.users[0]);
-  //   setUsers(res.data.data.users[0]);
-  //   setIsLoading(true);
-  // });
-  // if (isLoading) {
-  //   return <div>Loading..</div>;
-  // }
-
-  function updateIncomeObject(e) {
-    e.preventDefault();
-    income[e.target.name] = e.target.value;
-    console.log(income);
-  }
-  function updateExpenseObject(e) {
-    e.preventDefault();
-    expense[e.target.name] = e.target.value;
-    console.log(expense);
-  }
-
-  function submitNewIncomeExpense(e) {
-    e.preventDefault();
-    // If no date selected puts current date into income object
-    // cant use ! in front of "date"?
+  function onSubmit(data) {
+    console.log(data);
     if ("date" in income) {
       console.log(income);
-    } else {
-      income.date = new Date().toISOString().substr(0, 10);
     }
-    if ("date" in expense) {
-      console.log(expense);
-    } else {
-      expense.date = new Date().toISOString().substr(0, 10);
-    }
-
-    // display == "income" ? user.income.push(income) : user.expenses.push(expense);
     console.log(user);
-
-    // updateUser(user, user._id);
-    createUserIncome(income, user._id);
+    createUserIncome(data, user._id);
   }
 
   return (
@@ -78,7 +43,7 @@ function Form() {
         <Balance />
       </div>
       <div className="Form-body">
-        <form className="Form-body-form" onSubmit={handleSubmit()}>
+        <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Accounting</label>
           <select
             {...register("accounting", {
