@@ -75,12 +75,12 @@ function History() {
   }
 
   return (
-    <Table bordered>
+    <Table>
       <thead>
         <tr>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Date</th>
+          <th>Suma</th>
+          <th>Kategorijos</th>
+          <th>Data</th>
         </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>

@@ -60,7 +60,7 @@ function IncomePieChart() {
   return (
     <div className="IncomePieChart-container">
       {/* Text color is green */}
-      <h3>Income</h3>
+      <h3>Pajamos</h3>
       <p>£1000</p>
       <div className="IncomePieChart-chart">
         <Pie data={data} height={400} options={options} />
