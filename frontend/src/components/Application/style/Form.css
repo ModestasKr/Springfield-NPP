@@ -6,7 +6,7 @@
 }
 
 .Form-body-form {
-  max-width: 15rem;
+  max-width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -19,7 +19,8 @@
 
 .error {
   color: var(--text-color-300);
-  font-size: 0.8rem;
+
+  font-size: 0.63rem;
 }
 
 label {
