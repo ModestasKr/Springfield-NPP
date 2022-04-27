@@ -69,3 +69,26 @@ export async function createUserExpenses(data, id) {
     });
   return res;
 }
+
+// Delete expenses
+export async function deleteUserExpenses(id, subID) {
+  const response = await axiosClient
+    .patch(`/${id}/expenses/delete/${subID}`)
+    .then((result) => {
+      console.log("Success:", result);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+// Delete incomes
+export async function deleteUserIncome(id, subID) {
+  const response = await axiosClient
+    .patch(`/${id}/income/delete/${subID}`)
+    .then((result) => {
+      console.log("Success:", result);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

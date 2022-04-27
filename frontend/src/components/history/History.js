@@ -1,29 +1,49 @@
 // Libraries
 import React, { useState, useEffect } from "react";
 // Components API
-import { getAllUsersData } from "../../api/libraries/apiLibraries";
+import { getAllUsersData,deleteUserIncome, deleteUserExpenses } from "../../api/libraries/apiLibraries";
 // Components
 import HistoryTable from "./HistoryTable.js";
 // Style
 import "./style/History.css";
+import { Table } from 'reactstrap';
+
 
 function History() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [userID, setUserID] = useState(0);
 
-  // Testavimas Ritai
   //   GET method one user data
   useEffect(() => {
     getAllUsersData().then((res) => {
-      setUsers(res.data.data.users[0]);
-      console.log(res.data.data.users[0]);
+      setUsers(res.data.data.users[userID]);
+      setUserID(res.data.data.users[userID]._id)
       setIsLoading(true);
+      // kode setUserID nepasikeicia?
+      console.log("useEffect " + userID)
+    
     });
   }, []);
 
+
+  function deleteItem(userID, subID, type){
+    console.log("userio id:" + users._id);
+    console.log("subid " + subID);
+
+    if (type === "income" ){
+      console.log("income")
+      deleteUserIncome(users._id, subID)
+    } else {
+      deleteUserExpenses(users._id, subID)
+      console.log("expenses")
+    }
+
+  }
+  
   if (isLoading) {
-    let { income } = users;
-    let { expenses } = users;
+    let { income } = users
+    let { expenses } = users
 
     let incomeExpenses = [...income, ...expenses];
 
@@ -39,27 +59,34 @@ function History() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
-    var userIncomeExpenses = incomeExpensesSortedByDate.map((user) => {
-      return <HistoryTable key={user._id} id={user._id} user={user} />;
+    var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
+      return <HistoryTable 
+          key={item._id} 
+          subID={item._id}  
+          incomeName = {item.incomeName}
+          category = {item.category}
+          amount = {item.amount}
+          deleteItem = {deleteItem}
+          type =  {item.type}
+          // type = {item.type}
+      />;
     });
   }
 
   return (
-    <>
-      <div className="History-container">
-        <table className="History-table">
-          <thead>
+      <Table bordered>
+        <thead>
             <tr>
-              <th>Accounting</th>
               <th>Amount</th>
+              <th>Expense name</th>
               <th>Category</th>
               <th>Date</th>
+              <th>id</th>
             </tr>
-          </thead>
-          <tbody>{userIncomeExpenses}</tbody>
-        </table>
-      </div>
-    </>
+        </thead>
+        <tbody>{userIncomeExpenses}</tbody>
+    </Table>
+    
   );
 }
 
