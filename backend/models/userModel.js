@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const incomeSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    default: "income",
+  },
   amount: {
     type: Number,
     required: [true, "This field is required"],
@@ -29,6 +33,10 @@ const incomeSchema = new mongoose.Schema({
 });
 
 const expenseSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    default: "expenses",
+  },
   amount: {
     type: Number,
     required: [true, "This field is required"],
@@ -91,6 +99,7 @@ const Users = new mongoose.model("Users", usersSchema);
 //   balance: "10000",
 //   income: [
 //     {
+//       type: "income",
 //       amount: "500",
 //       date: "2021-01-01",
 //       incomeName: "Job",
@@ -101,6 +110,7 @@ const Users = new mongoose.model("Users", usersSchema);
 //   ],
 //   expenses: [
 //     {
+//       type:"expenses",
 //       amount: "600",
 //       date: "2021-02-03",
 //       expenseName: "Food",
