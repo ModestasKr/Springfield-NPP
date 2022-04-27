@@ -62,6 +62,7 @@ function History() {
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
         <HistoryTable
+          getAllUsersData={getAllUsersData}
           key={item._id}
           subID={item._id}
           date={item.date}
@@ -69,6 +70,8 @@ function History() {
           amount={item.amount}
           deleteItem={deleteItem}
           type={item.type}
+          userId={users._id}
+
         />
       );
     });
@@ -81,6 +84,7 @@ function History() {
           <th>Amount</th>
           <th>Category</th>
           <th>Date</th>
+          <th>user id</th>
         </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>
@@ -89,3 +93,7 @@ function History() {
 }
 
 export default History;
+
+
+
+//////////////////////////////////////////////////////////
