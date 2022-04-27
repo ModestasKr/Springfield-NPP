@@ -13,9 +13,12 @@ import "./style/Form.css";
 import { BsPlusCircle } from "react-icons/bs";
 
 function Form() {
+  // UseState
   const [user, setUser] = useState({});
   const [income, setIncome] = useState({});
   const [incExp, SetIncExp] = useState("income");
+
+  // react-hook-form
   const {
     register,
     handleSubmit,
@@ -32,11 +35,11 @@ function Form() {
   // Testavimas Ritai
   // ADD Expenses and Income
   function onSubmit(data) {
-    console.log(data);
+    // console.log(data);
     if ("date" in income) {
-      console.log(income);
+      // console.log(income);
     }
-    console.log(user);
+    // console.log(user);
 
     incExp === "income"
       ? createUserIncome(data, user._id)
@@ -54,18 +57,20 @@ function Form() {
           <select
             onClick={(e) => {
               SetIncExp(e.target[e.target.selectedIndex].value);
-              console.log(e.target);
-              console.log(e.target[e.target.selectedIndex].value);
+              // console.log(e.target);
+              // console.log(e.target[e.target.selectedIndex].value);
             }}
             {...register("accounting", {
               required: "This is requires",
             })}
           >
-            <option value="select">Select</option>
+            <option value="select" disabled>
+              Select
+            </option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
           </select>
-          <p className="error">{errors.accounting?.message}</p>
+          <span className="error">{errors.accounting?.message}</span>
 
           <label>Category</label>
           <select
@@ -73,7 +78,9 @@ function Form() {
               required: "This is requires",
             })}
           >
-            <option value="">Select</option>
+            <option value="" disabled>
+              Select
+            </option>
             <option value="Food and Drinks">Food and Drinks</option>
             <option value="Shopping">Shopping</option>
             <option value="Housing">Housing</option>
@@ -91,16 +98,23 @@ function Form() {
           <p className="error">{errors.category?.message}</p>
 
           <label>Amount</label>
+
           <input
             placeholder="Write a Amount"
             {...register("amount", {
               required: "This is requires",
               minLength: {
-                value: 1,
+                minLength: 1,
                 message: "Minimum lenght is 1",
               },
+
+              pattern: {
+                pattern: /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
+                message: "Badly typed symbols",
+              },
+
               maxLength: {
-                value: 1000000,
+                maxLength: 10,
                 message: "Max lenght is 1000000",
               },
             })}
@@ -112,6 +126,10 @@ function Form() {
             type="date"
             {...register("date", {
               required: "This is requires",
+              minLength: {
+                min: "1899-01-01",
+                message: "Max lenght is 1899-01-01",
+              },
             })}
           />
           <p className="error">{errors.date?.message}</p>

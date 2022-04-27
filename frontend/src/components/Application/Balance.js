@@ -7,7 +7,7 @@ function Balance() {
       <h3>New Record</h3>
       <p>Balance</p>
       {/* Green or Red */}
-      <p>Money</p>
+      {/* <p>Money</p> */}
     </div>
   );
 }
