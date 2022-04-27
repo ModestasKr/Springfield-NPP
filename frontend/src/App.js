@@ -1,9 +1,10 @@
 // Libraries
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  Components
-import Application from "./components/Application";
-import Navigation from "./components/Navigation";
-import History from "./components/history/History";
+import Application from "./components/page/Application";
+import Navigation from "./components/page/Navigation";
+import History from "./components//history/History";
+import Home from "./components/page/Home";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/application" element={<Application />} />
           <Route path="/history" element={<History />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -6,25 +6,28 @@ import "./style/TableHistory.css";
 // import { FiEdit } from "react-icons/fi";
 // import { AiOutlineDelete } from "react-icons/ai";
 
-function HistoryTable({ userID, subID, incomeName, category, amount, deleteItem, type}) {
-
-//const date = user.date.toString().substr(0, 10);
+function HistoryTable({
+  userID,
+  subID,
+  category,
+  amount,
+  deleteItem,
+  type,
+  date,
+}) {
+  // const date = users.date.toString().substr(0, 10);
 
   return (
-  <tr>
+    <tr>
       <td>{amount}</td>
-      <td>{incomeName}</td>
       <td>{category}</td>
-      <td>data</td>
-      <td>{subID}</td>
-      <td><button
-        type="button"
-        onClick={() => deleteItem(userID, subID, type)}
-      >
-        delete
-      </button></td>
-      
-  </tr>
+      <td>{date}</td>
+      <td>
+        <button type="button" onClick={() => deleteItem(userID, subID, type)}>
+          Ištrinti
+        </button>
+      </td>
+    </tr>
   );
 }
 
