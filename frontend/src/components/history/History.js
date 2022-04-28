@@ -82,8 +82,6 @@ function History() {
           <th>Kategorija</th>
           <th>Data</th>
           <th></th>
-          <th>Kategorijos</th>
-          <th>Data</th>
         </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>

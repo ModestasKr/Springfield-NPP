@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 // Component API
 import { createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
+// Hooks
+
 // Components
 import Balance from "./Balance";
 // Style
@@ -58,10 +60,10 @@ function Form() {
               // console.log(e.target[e.target.selectedIndex].value);
             }}
             {...register("accounting", {
-              required: "This is requires",
+              required: "Įvestyje neparinkti duomenys",
             })}
           >
-            <option value="" disabled>
+            <option value="" select="true">
               Pasirinkti
             </option>
             <option value="income">Pajamos</option>
@@ -72,10 +74,10 @@ function Form() {
           <label>Kategorijos</label>
           <select
             {...register("category", {
-              required: "This is requires",
+              required: "Įvestyje neparinkti duomenys",
             })}
           >
-            <option value="" disabled>
+            <option value="" select="true">
               Pasirinkti
             </option>
             <option value="Food and Drinks">Maistas ir gėrimai</option>
@@ -97,6 +99,7 @@ function Form() {
 
           <input
             placeholder="Parašykite suma"
+            type="number"
             step="0.01"
             {...register("amount", {
               required: "Įvestyje nesuvesti duomenys",
@@ -117,7 +120,12 @@ function Form() {
           <p className="error">{errors.amount?.message}</p>
 
           <label>Data</label>
-          <input type="date" min="2021-01-01" max="2041-01-01" />
+          <input
+            type="date"
+            min="2021-01-01"
+            max="2041-01-01"
+            defaultValue={new Date().toISOString().substr(0, 10)}
+          />
           <button className="Form-btn" type="submit">
             Pridėti
           </button>
