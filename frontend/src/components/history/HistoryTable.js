@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import EditExpensesHistoryForm from "./EditExpensesHistoryForm";
 import EditIncomeHistoryForm from "./EditIncomeHistoryForm";
 
@@ -19,10 +19,24 @@ function HistoryTable({
   const dateWithoutZeros = date.toString().substr(0, 10);
   const [editFormStatus, setEditFormStatus] = useState(false);
 
+
   return (
     <>
       <tr>
         <td>{amount}</td>
+
+  let colorClass = (str) => {
+    if (str === "income") {
+      return "table-income";
+    } else {
+      return "table-expense";
+    }
+  };
+  return (
+    <div>
+      <tr>
+        <td className={colorClass(type)}>{amount}</td>
+
         <td>{category}</td>
         <td>{name}</td>
         <td>{dateWithoutZeros}</td>
@@ -73,7 +87,11 @@ function HistoryTable({
           />
         )}
       </tr>
+
     </>
+
+    </div>
+
   );
 }
 
