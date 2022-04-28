@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { findExpensesDataAndUpdate } from "../../api/libraries/apiLibraries";
+// import { Render } from "./History";
 import { useForm } from "react-hook-form";
+import History from "./History";
+
+
 
 
 function EditExpensesHistoryForm({
@@ -13,7 +17,8 @@ function EditExpensesHistoryForm({
     deleteItem,
     type,
     date,
-    userId,
+    userID,
+    Render,
 }) {
   const [userUpdateExpense, setUserUpdateIncome] = useState({
     amount: amount,
@@ -35,11 +40,12 @@ function EditExpensesHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findExpensesDataAndUpdate(userUpdateExpense, userId, id).then(() =>
-    getAllUsersData()
+    findExpensesDataAndUpdate(userUpdateExpense, userID, id).then(() =>
+    Render()
     );
     setEditFormStatus(!editFormStatus);
   }
+
   return (
     <>
       <td className="custom-td">

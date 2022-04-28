@@ -13,7 +13,8 @@ function EditIncomeHistoryForm({
     deleteItem,
     type,
     date,
-    userId,
+    userID,
+    Render,
 }) {
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     amount: amount,
@@ -35,8 +36,8 @@ function EditIncomeHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findIncomeDataAndUpdate(userUpdateIncome, userId, id).then(() =>
-    getAllUsersData()
+    findIncomeDataAndUpdate(userUpdateIncome, userID, id).then(() =>
+    Render()
     );
     setEditFormStatus(!editFormStatus);
   }

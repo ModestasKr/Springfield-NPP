@@ -12,14 +12,20 @@ function History() {
 
   //   GET method one user data
   useEffect(() => {
+    Render()
+  }, []);
+
+  function Render(){
     getAllUsersData().then((res) => {
-      setUsers(res.data.data.users[userID]);
-      setUserID(res.data.data.users[userID]._id);
+      setUsers(res.data.data.users[0]);
+      setUserID(res.data.data.users[0]._id);
       setIsLoading(true);
       // kodel setUserID nepasikeicia??
       console.log("useEffect " + userID);
     });
-  }, []);
+  }
+  
+
 
   if (isLoading) {
     let { income } = users;
@@ -48,6 +54,7 @@ function History() {
         deleteUserExpenses(users._id, subID);
         console.log("expenses");
       }
+      Render()
     }
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
@@ -64,14 +71,15 @@ function History() {
           deleteItem={deleteItem}
           type={item.type}
           name={item.name}
-          userId={users._id}
+          userID={users._id}
+          Render={Render}
         />
       );
     });
   }
 
   return (
-    <div className="History-container">
+    <>
       <table>
       <thead>
         <tr>
@@ -85,7 +93,7 @@ function History() {
       </thead>
       <tbody>{userIncomeExpenses}</tbody>
       </table>
-      </div>
+      </>
   );
 }
 

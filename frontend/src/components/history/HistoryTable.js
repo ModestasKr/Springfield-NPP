@@ -15,6 +15,7 @@ function HistoryTable({
   date,
   name,
   userID,
+  Render,
 }) {
   const dateWithoutZeros = date.toString().substr(0, 10);
   const [editFormStatus, setEditFormStatus] = useState(false);
@@ -26,7 +27,7 @@ function HistoryTable({
     }
   };
   return (
-    <div>
+    <>
       <tr>
         <td className={colorClass(type)}>{amount}</td>
         <td>{category}</td>
@@ -60,7 +61,8 @@ function HistoryTable({
             deleteItem={deleteItem}
             type={type}
             date={date}
-            userId={userId}
+            userID={userID}
+            Render={Render}
           />
         )}
         {editFormStatus && type === "expenses" && (
@@ -75,11 +77,12 @@ function HistoryTable({
             deleteItem={deleteItem}
             type={type}
             date={date}
-            userId={userId}
+            userID={userID}
+            Render={Render}
           />
         )}
       </tr>
-    </div>
+    </>
   );
 }
 
