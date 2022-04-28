@@ -1,16 +1,9 @@
-// Libraries
+
 import React, { useState, useEffect } from "react";
-// Components API
-import {
-  getAllUsersData,
-  deleteUserIncome,
-  deleteUserExpenses,
-} from "../../api/libraries/apiLibraries";
-// Components
 import HistoryTable from "./HistoryTable.js";
-// Style
 import "./style/History.css";
 import { Table } from "reactstrap";
+import {getAllUsersData, deleteUserIncome, deleteUserExpenses,} from "../../api/libraries/apiLibraries";
 
 function History() {
   const [users, setUsers] = useState([]);
@@ -23,7 +16,7 @@ function History() {
       setUsers(res.data.data.users[userID]);
       setUserID(res.data.data.users[userID]._id);
       setIsLoading(true);
-      // kode setUserID nepasikeicia?
+      // kodel setUserID nepasikeicia??
       console.log("useEffect " + userID);
     });
   }, []);
@@ -43,7 +36,7 @@ function History() {
       }
       return 0;
     }
-
+    // tikrai cia su deleto userID viskas ok????
     function deleteItem(userID, subID, type) {
       console.log("userio id:" + users._id);
       console.log("subid " + subID);
@@ -78,22 +71,23 @@ function History() {
   }
 
   return (
-    <Table bordered>
+    <div className="History-container">
+      <table>
       <thead>
         <tr>
+        <th>Date</th>
           <th>Amount</th>
           <th>Category</th>
-          <th>Date</th>
-          <th>user id</th>
+          <th>Type</th>
+           <th></th>
+           <th></th>
         </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>
-    </Table>
+      </table>
+      </div>
   );
 }
 
 export default History;
 
-
-
-//////////////////////////////////////////////////////////

@@ -17,16 +17,16 @@ function HistoryTable({
   date,
   userID,
 }) {
-  // const date = users.date.toString().substr(0, 10);
+  const dateWithoutZeros = date.toString().substr(0, 10);
   const [editFormStatus, setEditFormStatus] = useState(false);
   
   return (
     <>
     <tr>
+    <td>{dateWithoutZeros}</td>
       <td>{amount}</td>
       <td>{category}</td>
-      <td>{date}</td>
-      
+      <td>{type}</td>
       <td>
         <button type="button" onClick={() => deleteItem(userID, subID, type)}>
           Ištrinti
