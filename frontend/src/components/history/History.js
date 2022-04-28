@@ -35,10 +35,10 @@ function History() {
     let incomeExpenses = [...income, ...expenses];
 
     function sortByDate(a, b) {
-      if (a.createdAt < b.createdAt) {
+      if (a.date_created < b.date_created) {
         return 1;
       }
-      if (a.createdAt > b.createdAt) {
+      if (a.date_created > b.date_created) {
         return -1;
       }
       return 0;
@@ -78,9 +78,10 @@ function History() {
     <Table bordered>
       <thead>
         <tr>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Date</th>
+          <th>Suma</th>
+          <th>Kategorija</th>
+          <th>Data</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>

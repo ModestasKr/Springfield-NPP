@@ -1,1 +1,35 @@
+table {
+    margin: auto;
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 60%;
+    justify-content: center;
+    text-align: center;
+}
 
+tr {
+    border: 1px solid black;
+}
+
+th {
+    border: 2px solid black;
+}
+
+thead {
+    width: 80%;
+}
+
+.table-income {
+    /* background-color: lightgreen; */
+    color: lightgreen;
+}
+
+.table-expense {
+    /* background-color: salmon; */
+    color: salmon;
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0);
+    font-weight:bold;
+}
