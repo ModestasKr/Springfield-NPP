@@ -87,28 +87,27 @@ function EditExpensesHistoryForm({
               {...register("category", { required: true })}
               onChange={(e) => updateExpenseObject(e)}
             >
-              <option value="Food and Drinks">Maistas ir gėrimai</option>
-              <option value="Shopping">Apsipirkinėjimas</option>
-              <option value="Housing">Namai</option>
-              <option value="Transportation">Transportas</option>
-              <option value="Vehicle">Mašina</option>
-              <option value="Life and Entertainment">Pramogos</option>
-              <option value="Communication,PC">Elektronika</option>
-              <option value="Transportation">Transportas</option>
-              <option value="Financial expenses">Mokesčiai</option>
-              <option value="Invesments">Investicijos</option>
-              <option value="Others">Kita</option>
+              <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
+              <option value="Apsipirkimai">Apsipirkimai</option>
+              <option value="Namams">Namams</option>
+              <option value="Transportas">Transportas</option>
+              <option value="Mašina">Mašina</option>
+              <option value="Gyvenimas ir linksmybės">Gyvenimas ir linksmybės</option>
+              <option value="Elektronika">Elektronika</option>
+              <option value="Financinės išlaidos">Financinės išlaidos</option>
+              <option value="Investicijos">Investicijos</option>
+              <option value="Kita">Kita</option>
 
             </select>
           </div>
           <div>
-            <button type="submit" className="btn">
+            <button type="submit" className="btn">Pataisyti
             </button>
             <button
               type="button"
               className="btn"
               onClick={() => setEditFormStatus(!editFormStatus)}
-            >
+            >Atšaukti
              
             </button>
           </div>

@@ -81,14 +81,7 @@ function History() {
           <th>Type</th>
            <th></th>
            <th></th>
-    <Table>
-      <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Kategorija</th>
-          <th>Data</th>
-          <th></th>
-        </tr>
+           </tr>
       </thead>
       <tbody>{userIncomeExpenses}</tbody>
       </table>
