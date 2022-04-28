@@ -88,7 +88,8 @@ function EditIncomeHistoryForm({
               onChange={(e) => updateIncomeObject(e)}
             >
               <option value="Alga">Alga</option>
-              <option value="Pensija">Premija</option>
+              <option value="Pensija">Pensija</option>
+              <option value="Premija">Premija</option>
               <option value="Dovana">Dovana</option>
               <option value="Kita">Kita</option>
             </select>
