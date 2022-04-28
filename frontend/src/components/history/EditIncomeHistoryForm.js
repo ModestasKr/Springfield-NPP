@@ -101,17 +101,6 @@ function EditIncomeHistoryForm({
             {...register("name")}
             onChange={(e) => updateIncomeObject(e)}/>
           </div> */}
-          <div className="mb-1">
-            <input
-              className="custom-input"
-              type="date"
-              name="date"
-              id="date-inp"
-              min="2010-01-01"
-              defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateIncomeObject(e)}
-            />
-          </div>
           <div>
             <input
             type="text"
