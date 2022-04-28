@@ -9,11 +9,6 @@ function History() {
   const [isLoading, setIsLoading] = useState(false);
   const [userID, setUserID] = useState(0);
 
-  //   GET method one user data
-  useEffect(() => {
-    Render()
-  }, []);
-
   function Render(){
     getAllUsersData().then((res) => {
       setUsers(res.data.data.users[0]);
@@ -22,6 +17,10 @@ function History() {
     });
   }
   
+    //   GET method one user data
+  useEffect(() => {
+    Render()
+  }, []);
 
   if (isLoading) {
     let { income } = users;
@@ -50,6 +49,7 @@ function History() {
         deleteUserExpenses(users._id, subID);
         console.log("expenses");
       }
+      Render()
       Render()
     }
 
