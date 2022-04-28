@@ -99,8 +99,13 @@ function Form() {
           <input
           placeholder="Parašykite pavadinimą"
           type="text"
-          {...register("name")} />
-          
+          {...register("name", {
+            maxLength: {
+              value: 40,
+              message: "Max 40 simbolių"
+            }
+          })} />
+          <p className="error">{errors.name?.message}</p>
           <label>Suma</label>
           <input
             placeholder="Parašykite suma"

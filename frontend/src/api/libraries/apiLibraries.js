@@ -12,8 +12,20 @@ export async function getAllUsersData() {
 export async function findIncomeDataAndUpdate(data, id, subID) {
   const res = await axiosClient.patch(
     `/${id}/income/${subID}`,
-    JSON.stringify(data)
-  );
+    JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Klaida ištaisyta",
+        icon: "success",
+        button: "Gerai",
+        timer: 500,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Klaida!", "error");
+    });
   return res;
 }
 
@@ -21,8 +33,20 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
 export async function findExpensesDataAndUpdate(data, id, subID) {
   const res = await axiosClient.patch(
     `/${id}/expenses/${subID}`,
-    JSON.stringify(data)
-  );
+    JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Klaida ištaisyta",
+        icon: "success",
+        button: "Gerai",
+        timer: 500,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal("Oops", "Klaida!", "error");
+    });
   return res;
 }
 
@@ -84,10 +108,17 @@ export async function deleteUserExpenses(id, subID) {
     .patch(`/${id}/expenses/delete/${subID}`)
     .then((result) => {
       console.log("Success:", result);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+    swal({
+      text: "Ištrinta!",
+      icon: "success",
+      button: "Gerai",
+      timer: 500,
     });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    swal("Oops", "Klaida!", "error");
+  });
 }
 // Delete incomes
 export async function deleteUserIncome(id, subID) {
@@ -95,8 +126,15 @@ export async function deleteUserIncome(id, subID) {
     .patch(`/${id}/income/delete/${subID}`)
     .then((result) => {
       console.log("Success:", result);
+      swal({
+        text: "Ištrinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 500,
+      });
     })
     .catch((error) => {
       console.error("Error:", error);
+      swal("Oops", "Klaida!", "error");
     });
 }
