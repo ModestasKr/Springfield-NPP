@@ -25,6 +25,7 @@ function Form() {
   } = useForm({
     defaultValue: {
       accounting: "",
+      name: "",
       category: "",
       amount: "",
       date: "",
@@ -70,7 +71,6 @@ function Form() {
             <option value="expense">Išlaidos</option>
           </select>
           <span className="error">{errors.accounting?.message}</span>
-
           <label>Kategorijos</label>
           <select
             {...register("category", {
@@ -80,23 +80,28 @@ function Form() {
             <option value="" select="true">
               Pasirinkti
             </option>
-            <option value="Food and Drinks">Maistas ir gėrimai</option>
-            <option value="Shopping">Apsipirkimai</option>
-            <option value="Housing">Namams</option>
-            <option value="Transportation">Transportas</option>
-            <option value="Vehicle">Mašina</option>
-            <option value="Life and Entertainment">
+            <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
+            <option value="Apsipirkimai">Apsipirkimai</option>
+            <option value="Namams">Namams</option>
+            <option value="Transportas">Transportas</option>
+            <option value="Mašina">Mašina</option>
+            <option value="Gyvenimas ir linksmybės">
               Gyvenimas ir linksmybės
             </option>
-            <option value="Communication,PC">komunikacija,PC</option>
-            <option value="Financial expenses">Finansinės išlaidos</option>
-            <option value="Invesments">Investavimas</option>
-            <option value="Others">Kitas</option>
+            <option value="Komunikacija,PC">Komunikacija,PC</option>
+            <option value="Finansinės išlaidos">Finansinės išlaidos</option>
+            <option value="Investavimas">Investavimas</option>
+            <option value="Kitas">Kitas</option>
           </select>
           <p className="error">{errors.category?.message}</p>
 
+          <label>Pavadinimas</label>
+          <input
+          placeholder="Parašykite pavadinimą"
+          type="text"
+          {...register("name")} />
+          
           <label>Suma</label>
-
           <input
             placeholder="Parašykite suma"
             type="number"

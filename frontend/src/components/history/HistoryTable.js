@@ -15,6 +15,7 @@ function HistoryTable({
   deleteItem,
   type,
   date,
+  name,
   userID,
 }) {
   const dateWithoutZeros = date.toString().substr(0, 10);
@@ -26,6 +27,8 @@ function HistoryTable({
     <td>{dateWithoutZeros}</td>
       <td>{amount}</td>
       <td>{category}</td>
+      <td>{name}</td>
+      <td>{dateFixed}</td>
       <td>{type}</td>
       <td>
         <button type="button" onClick={() => deleteItem(userID, subID, type)}>

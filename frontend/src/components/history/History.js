@@ -63,8 +63,8 @@ function History() {
           amount={item.amount}
           deleteItem={deleteItem}
           type={item.type}
+          name={item.name}
           userId={users._id}
-
         />
       );
     });
@@ -75,13 +75,13 @@ function History() {
       <table>
       <thead>
         <tr>
-        <th>Date</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Type</th>
-           <th></th>
-           <th></th>
-           </tr>
+          <th>Suma</th>
+          <th>Kategorija</th>
+          <th>Pavadinimas</th>
+          <th>Data</th>
+          <th></th>
+        </tr>
+
       </thead>
       <tbody>{userIncomeExpenses}</tbody>
       </table>
