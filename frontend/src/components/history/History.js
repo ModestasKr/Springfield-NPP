@@ -1,24 +1,30 @@
-
 import React, { useState, useEffect } from "react";
 import HistoryTable from "./HistoryTable.js";
 import "./style/History.css";
-import { Table } from "reactstrap";
-import {getAllUsersData, deleteUserIncome, deleteUserExpenses,} from "../../api/libraries/apiLibraries";
+
+import {
+  getAllUsersData,
+  deleteUserIncome,
+  deleteUserExpenses,
+} from "../../api/libraries/apiLibraries";
 
 function History() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userID, setUserID] = useState(0);
 
-  //   GET method one user data
-  useEffect(() => {
+  function Render() {
     getAllUsersData().then((res) => {
-      setUsers(res.data.data.users[userID]);
-      setUserID(res.data.data.users[userID]._id);
+      setUsers(res.data.data.users[0]);
+      setUserID(res.data.data.users[0]._id);
       setIsLoading(true);
       // kodel setUserID nepasikeicia??
       console.log("useEffect " + userID);
     });
+  }
+  //   GET method one user data
+  useEffect(() => {
+    Render();
   }, []);
 
   if (isLoading) {
@@ -48,6 +54,7 @@ function History() {
         deleteUserExpenses(users._id, subID);
         console.log("expenses");
       }
+      Render();
     }
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
@@ -73,21 +80,19 @@ function History() {
   return (
     <div className="History-container">
       <table>
-      <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Kategorija</th>
-          <th>Pavadinimas</th>
-          <th>Data</th>
-          <th></th>
-        </tr>
-
-      </thead>
-      <tbody>{userIncomeExpenses}</tbody>
+        <thead>
+          <tr>
+            <th>Suma</th>
+            <th>Kategorija</th>
+            <th>Pavadinimas</th>
+            <th>Data</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>{userIncomeExpenses}</tbody>
       </table>
-      </div>
+    </div>
   );
 }
 
 export default History;
-
