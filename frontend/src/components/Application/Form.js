@@ -115,7 +115,10 @@ function Form() {
               required: "Įvestyje nesuvesti duomenys",
               pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
               minLength: 1,
-              maxLength: 10,
+              maxLength: {
+                value: 10,
+                message: "Max 10 skaitmenų"
+              },
               // minLength: {
               //   minLength: 1,
               //   message: "Mažiausias ilgis yra 1 simbolis",

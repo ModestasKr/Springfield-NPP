@@ -92,19 +92,10 @@ function EditIncomeHistoryForm({
               <option value="Kita">Kita</option>
             </select>
           </div>
-          {/* <div>
-            <input
-            placeholder="Pavadinimas"
-            className="custom-input"
-            name="name"
-            id="name"
-            {...register("name")}
-            onChange={(e) => updateIncomeObject(e)}/>
-          </div> */}
           <div>
             <input
             type="text"
-            className="custom-input" 
+            placeholder="Pavadinimas"
             id="name"
             defaultValue={name}
             {...register("name", {
