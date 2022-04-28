@@ -100,7 +100,7 @@ function EditIncomeHistoryForm({
               type="button"
               className="btn"
               onClick={() => setEditFormStatus(!editFormStatus)}
-            >
+            >Atšaukti
              
             </button>
           </div>
