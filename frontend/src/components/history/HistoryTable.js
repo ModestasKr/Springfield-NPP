@@ -27,9 +27,29 @@ function HistoryTable({
       <td>{amount}</td>
       <td>{category}</td>
       <td>{type}</td>
+  const dateFixed = date.toString().substr(0, 10);
+   
+
+  let colorClass = (str) => {
+    if (str === "income") {
+      return "table-income";
+    } else {
+      return "table-expense";
+    }
+  };
+
+
+  return (
+    <tr id="">
+      <td className={colorClass(type)} >{amount}</td>
+      <td>{category}</td>
+      <td>{dateFixed}</td>
       <td>
-        <button type="button" onClick={() => deleteItem(userID, subID, type)}>
+        <button onClick={() => deleteItem(userID, subID, type)}>
           Ištrinti
+        </button>
+        <button >
+          Redaguoti
         </button>
       </td>
       <td>

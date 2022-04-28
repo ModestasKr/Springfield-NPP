@@ -9,7 +9,7 @@ function Navigation() {
     <nav className="Nav-container">
       <ul className="Nav-links">
         <li>
-          <Link to="/home">Namai</Link>
+          <Link to="/">Namai</Link>
         </li>
         <li>
           <Link to="/application">Aplikacija</Link>

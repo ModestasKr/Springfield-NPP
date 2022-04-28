@@ -59,7 +59,7 @@ function ExpensePieChart() {
   return (
     <div className="ExpensePieChart-container">
       {/* Text color red */}
-      <h3>Expense</h3>
+      <h3>Išlaidos</h3>
       <p>£1000</p>
       <div className="ExpensePieChart-chart">
         <Pie data={data} height={400} options={options} />
