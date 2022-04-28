@@ -4,8 +4,8 @@ import "./style/Balance.css";
 function Balance() {
   return (
     <div className="Balance-container">
-      <h3>New Record</h3>
-      <p>Balance</p>
+      <h3>Naujas įrašas</h3>
+      <p>Balansas</p>
       {/* Green or Red */}
       {/* <p>Money</p> */}
     </div>

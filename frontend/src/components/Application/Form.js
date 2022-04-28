@@ -4,13 +4,10 @@ import { useForm } from "react-hook-form";
 // Component API
 import { createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
-
 // Components
 import Balance from "./Balance";
 // Style
 import "./style/Form.css";
-// Icon
-import { BsPlusCircle } from "react-icons/bs";
 
 function Form() {
   // UseState
@@ -53,7 +50,7 @@ function Form() {
       </div>
       <div className="Form-body">
         <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>
-          <label>Accounting</label>
+          <label>Apskaita</label>
           <select
             onClick={(e) => {
               SetIncExp(e.target[e.target.selectedIndex].value);
@@ -64,78 +61,65 @@ function Form() {
               required: "This is requires",
             })}
           >
-            <option value="select" disabled>
-              Select
+            <option value="" disabled>
+              Pasirinkti
             </option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="income">Pajamos</option>
+            <option value="expense">Išlaidos</option>
           </select>
           <span className="error">{errors.accounting?.message}</span>
 
-          <label>Category</label>
+          <label>Kategorijos</label>
           <select
             {...register("category", {
               required: "This is requires",
             })}
           >
             <option value="" disabled>
-              Select
+              Pasirinkti
             </option>
-            <option value="Food and Drinks">Food and Drinks</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Housing">Housing</option>
-            <option value="Transportation">Transportation</option>
-            <option value="Vehicle">Vehicle</option>
+            <option value="Food and Drinks">Maistas ir gėrimai</option>
+            <option value="Shopping">Apsipirkimai</option>
+            <option value="Housing">Namams</option>
+            <option value="Transportation">Transportas</option>
+            <option value="Vehicle">Mašina</option>
             <option value="Life and Entertainment">
-              Life and Entertainment
+              Gyvenimas ir linksmybės
             </option>
-            <option value="Communication,PC">Communication,PC</option>
-            <option value="Financial expenses">Financial expenses</option>
-            <option value="Invesments">Invesments</option>
-            <option value="Income">Income</option>
-            <option value="Others">Others</option>
+            <option value="Communication,PC">komunikacija,PC</option>
+            <option value="Financial expenses">Finansinės išlaidos</option>
+            <option value="Invesments">Investavimas</option>
+            <option value="Others">Kitas</option>
           </select>
           <p className="error">{errors.category?.message}</p>
 
-          <label>Amount</label>
+          <label>Suma</label>
 
           <input
-            placeholder="Write a Amount"
+            placeholder="Parašykite suma"
+            step="0.01"
             {...register("amount", {
-              required: "This is requires",
+              required: "Įvestyje nesuvesti duomenys",
               minLength: {
                 minLength: 1,
-                message: "Minimum lenght is 1",
+                message: "Mažiausias ilgis yra 1 simbolis",
               },
-
               pattern: {
-                pattern: /^((?!0)\d{1,10}|0|\.\d{1,2})($|\.$|\.\d{1,2}$)/,
-                message: "Badly typed symbols",
+                pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+                message: "Blogai suvesti simboliai",
               },
-
               maxLength: {
                 maxLength: 10,
-                message: "Max lenght is 1000000",
+                message: "Didžiausias ilgis yra 10 simbolių",
               },
             })}
           />
           <p className="error">{errors.amount?.message}</p>
 
-          <label>Date</label>
-          <input
-            type="date"
-            {...register("date", {
-              required: "This is requires",
-              minLength: {
-                min: "1899-01-01",
-                message: "Max lenght is 1899-01-01",
-              },
-            })}
-          />
-          <p className="error">{errors.date?.message}</p>
-
+          <label>Data</label>
+          <input type="date" min="2021-01-01" max="2041-01-01" />
           <button className="Form-btn" type="submit">
-            <BsPlusCircle />
+            Pridėti
           </button>
         </form>
       </div>

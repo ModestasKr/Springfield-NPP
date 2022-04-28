@@ -36,14 +36,18 @@ export async function createUserIncome(data, id) {
     .then((result) => {
       console.log("Success:", result);
       swal({
-        text: "Added!",
+        text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
-        button: "Great",
+        button: "Puiku",
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Something went wrong!", "error");
+      swal(
+        "Nepavyko",
+        "Duomenys blogai suvesti, galimai rašybos klaida!",
+        "error"
+      );
     });
   return res;
 }
@@ -58,14 +62,18 @@ export async function createUserExpenses(data, id) {
     .then((result) => {
       console.log("Success:", result);
       swal({
-        text: "Added!",
+        text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
-        button: "Great",
+        button: "Puiku",
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      swal("Oops", "Something went wrong!", "error");
+      swal(
+        "Nepavyko",
+        "Duomenys blogai suvesti, galimai rašybos klaida!",
+        "error"
+      );
     });
   return res;
 }

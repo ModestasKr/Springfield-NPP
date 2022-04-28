@@ -13,14 +13,20 @@
 }
 
 .Form-btn {
-  max-width: 2rem;
+  border-radius: 7px;
+  padding: 0.5em 6em;
   align-self: center;
+  background-color: var(--backGround-color-200);
+  transition: 0.3s;
+}
+
+.Form-btn:hover {
+  background-color: var(--backGround-color-300);
 }
 
 .error {
   color: var(--text-color-300);
-
-  font-size: 0.63rem;
+  font-size: 0.8rem;
 }
 
 label {
@@ -29,15 +35,11 @@ label {
 }
 
 ::placeholder {
-  color: black;
+  color: var(--color-1000);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-}
-
-.Form-btn {
-  font-size: 1.3rem;
 }

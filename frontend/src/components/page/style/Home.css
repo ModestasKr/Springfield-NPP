@@ -1,0 +1,49 @@
+@media screen and (max-width: 25rem) {
+  .Home-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.Home-body-1,
+.Home-body-2 {
+  margin: 4em;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.Home-body-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+img {
+  width: 25rem;
+  display: block;
+  max-width: 100%;
+}
+
+h1 {
+  padding: 2em 0;
+  text-align: center;
+}
+
+hr {
+  margin: 0 4em;
+}
+
+button {
+  border-radius: 7px;
+  background-color: var(--backGround-color-200);
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: var(--backGround-color-300);
+}
