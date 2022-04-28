@@ -33,7 +33,6 @@ function HistoryTable({
         <td>{category}</td>
         <td>{name}</td>
         <td>{dateWithoutZeros}</td>
-        <td>{type}</td>
         <td>
           <button type="button" onClick={() => deleteItem(userID, subID, type)}>
             Ištrinti
@@ -63,6 +62,7 @@ function HistoryTable({
             date={date}
             userID={userID}
             Render={Render}
+            name={name}
           />
         )}
         {editFormStatus && type === "expenses" && (
@@ -79,6 +79,7 @@ function HistoryTable({
             date={date}
             userID={userID}
             Render={Render}
+            name={name}
           />
         )}
       </tr>
