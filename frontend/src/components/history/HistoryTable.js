@@ -14,6 +14,7 @@ function HistoryTable({
   deleteItem,
   type,
   date,
+  name,
 }) {
   const dateFixed = date.toString().substr(0, 10);
    
@@ -31,6 +32,7 @@ function HistoryTable({
     <tr id="">
       <td className={colorClass(type)} >{amount}</td>
       <td>{category}</td>
+      <td>{name}</td>
       <td>{dateFixed}</td>
       <td>
         <button onClick={() => deleteItem(userID, subID, type)}>

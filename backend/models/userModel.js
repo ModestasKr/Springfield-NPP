@@ -22,7 +22,7 @@ const incomeSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  incomeName: {
+  name: {
     type: String,
     default: "Other",
   },
@@ -54,7 +54,7 @@ const expenseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  expenseName: {
+  name: {
     type: String,
     default: "Other",
   },

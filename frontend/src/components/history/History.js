@@ -69,6 +69,7 @@ function History() {
           amount={item.amount}
           deleteItem={deleteItem}
           type={item.type}
+          name={item.name}
         />
       );
     });
@@ -80,6 +81,7 @@ function History() {
         <tr>
           <th>Suma</th>
           <th>Kategorija</th>
+          <th>Pavadinimas</th>
           <th>Data</th>
           <th></th>
         </tr>
