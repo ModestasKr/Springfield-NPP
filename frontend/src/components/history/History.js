@@ -19,8 +19,6 @@ function History() {
       setUsers(res.data.data.users[0]);
       setUserID(res.data.data.users[0]._id);
       setIsLoading(true);
-      // kodel setUserID nepasikeicia??
-      console.log("useEffect " + userID);
     });
   }
   
