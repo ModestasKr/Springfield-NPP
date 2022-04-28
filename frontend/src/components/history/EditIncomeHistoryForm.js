@@ -15,10 +15,12 @@ function EditIncomeHistoryForm({
     date,
     userID,
     Render,
+    name,
 }) {
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     amount: amount,
     type: type,
+    name: name,
     date: date,
     category: category,
   });
@@ -45,17 +47,6 @@ function EditIncomeHistoryForm({
     <>
       <td className="custom-td">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-1">
-            <input
-              className="custom-input"
-              type="date"
-              name="date"
-              id="date-inp"
-              min="2010-01-01"
-              defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateIncomeObject(e)}
-            />
-          </div>
           <div className="mb-1">
             <input
               className="custom-input"
@@ -94,6 +85,27 @@ function EditIncomeHistoryForm({
               <option value="Dovana">Dovana</option>
               <option value="Kita">Kita</option>
             </select>
+          </div>
+          <div>
+            <input
+            type="text"
+            className="custom-input" 
+            id="name"
+            defaultValue={name}
+            {...register("name")}
+            onChange={(e) => updateIncomeObject(e)}
+            />
+          </div>
+          <div className="mb-1">
+            <input
+              className="custom-input"
+              type="date"
+              name="date"
+              id="date-inp"
+              min="2010-01-01"
+              defaultValue={date.slice(0, 10)}
+              onChange={(e) => updateIncomeObject(e)}
+            />
           </div>
           <div>
             <button type="submit" className="btn">Pataisyti

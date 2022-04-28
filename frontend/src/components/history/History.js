@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import HistoryTable from "./HistoryTable.js";
 import "./style/History.css";
-import { Table } from "reactstrap";
 import {getAllUsersData, deleteUserIncome, deleteUserExpenses,} from "../../api/libraries/apiLibraries";
 
 function History() {
@@ -25,7 +24,6 @@ function History() {
     });
   }
   
-
 
   if (isLoading) {
     let { income } = users;
