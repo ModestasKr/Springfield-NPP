@@ -103,7 +103,9 @@ function EditExpensesHistoryForm({
             className="custom-input" 
             id="name"
             defaultValue={name}
-            {...register("name")}
+            {...register("name", {
+              maxLength: 40,
+            })}
             onChange={(e) => updateExpenseObject(e)}
             />
           </div>

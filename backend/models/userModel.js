@@ -25,6 +25,7 @@ const incomeSchema = new mongoose.Schema({
   name: {
     type: String,
     default: "Other",
+    maxLength: [40, "Too long"],
   },
   category: {
     type: String,
@@ -57,6 +58,7 @@ const expenseSchema = new mongoose.Schema({
   name: {
     type: String,
     default: "Other",
+    maxLength: [40, "Too long"],
   },
   category: {
     type: String,
