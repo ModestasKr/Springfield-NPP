@@ -26,6 +26,7 @@ function EditExpensesHistoryForm({
     type: type,
     date: date,
     category: category,
+    name: name,
   });
 
   function updateExpenseObject(e) {

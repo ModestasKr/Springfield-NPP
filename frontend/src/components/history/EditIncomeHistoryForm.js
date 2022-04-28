@@ -23,6 +23,7 @@ function EditIncomeHistoryForm({
     name: name,
     date: date,
     category: category,
+    name: name,
   });
 
   function updateIncomeObject(e) {
@@ -79,12 +80,37 @@ function EditIncomeHistoryForm({
               {...register("category", { required: true })}
               onChange={(e) => updateIncomeObject(e)}
             >
-              <option value="Alga">Alga</option>
-              <option value="Pensija">Pensija</option>
-              <option value="Premija">Premija</option>
-              <option value="Dovana">Dovana</option>
+              <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
+              <option value="Apsipirkimai">Apsipirkimai</option>
+              <option value="Namams">Namams</option>
+              <option value="Transportas">Transportas</option>
+              <option value="Mašina">Mašina</option>
+              <option value="Gyvenimas ir linksmybės">Gyvenimas ir linksmybės</option>
+              <option value="Elektronika">Elektronika</option>
+              <option value="Financinės išlaidos">Financinės išlaidos</option>
+              <option value="Investicijos">Investicijos</option>
               <option value="Kita">Kita</option>
             </select>
+          </div>
+          {/* <div>
+            <input
+            placeholder="Pavadinimas"
+            className="custom-input"
+            name="name"
+            id="name"
+            {...register("name")}
+            onChange={(e) => updateIncomeObject(e)}/>
+          </div> */}
+          <div className="mb-1">
+            <input
+              className="custom-input"
+              type="date"
+              name="date"
+              id="date-inp"
+              min="2010-01-01"
+              defaultValue={date.slice(0, 10)}
+              onChange={(e) => updateIncomeObject(e)}
+            />
           </div>
           <div>
             <input

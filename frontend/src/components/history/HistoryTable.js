@@ -33,7 +33,6 @@ function HistoryTable({
         <td>{category}</td>
         <td>{name}</td>
         <td>{dateWithoutZeros}</td>
-        <td>{type}</td>
         <td>
           <button type="button" onClick={() => deleteItem(userID, subID, type)}>
             Ištrinti
