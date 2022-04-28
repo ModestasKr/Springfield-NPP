@@ -133,6 +133,7 @@ function Form() {
             min="2021-01-01"
             max="2041-01-01"
             defaultValue={new Date().toISOString().substr(0, 10)}
+            {...register("date")}
           />
           <button className="Form-btn" type="submit">
             Pridėti
