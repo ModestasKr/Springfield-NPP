@@ -19,12 +19,14 @@ function EditExpensesHistoryForm({
     date,
     userID,
     Render,
+    name,
 }) {
   const [userUpdateExpense, setUserUpdateIncome] = useState({
     amount: amount,
     type: type,
     date: date,
     category: category,
+    name: name,
   });
 
   function updateExpenseObject(e) {
