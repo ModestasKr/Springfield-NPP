@@ -79,8 +79,22 @@ function EditIncomeHistoryForm({
               </span>
             )}
           </div>
+          <div className="mb-1">
+            <select
+              className="custom-input"
+              name="category"
+              id="category"
+              {...register("category", { required: true })}
+              onChange={(e) => updateIncomeObject(e)}
+            >
+              <option value="Alga">Alga</option>
+              <option value="Pensija">Premija</option>
+              <option value="Dovana">Dovana</option>
+              <option value="Kita">Kita</option>
+            </select>
+          </div>
           <div>
-            <button type="submit" className="btn">
+            <button type="submit" className="btn">Pataisyti
             </button>
             <button
               type="button"

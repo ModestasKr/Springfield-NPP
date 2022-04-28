@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { findIncomeDataAndUpdate } from "../../api/libraries/apiLibraries";
+import { findExpensesDataAndUpdate } from "../../api/libraries/apiLibraries";
 import { useForm } from "react-hook-form";
 
 
@@ -15,17 +15,17 @@ function EditExpensesHistoryForm({
     date,
     userId,
 }) {
-  const [userUpdateIncome, setUserUpdateIncome] = useState({
+  const [userUpdateExpense, setUserUpdateIncome] = useState({
     amount: amount,
     type: type,
     date: date,
     category: category,
   });
 
-  function updateIncomeObject(e) {
+  function updateExpenseObject(e) {
     e.preventDefault();
-    userUpdateIncome[e.target.name] = e.target.value;
-    console.log(userUpdateIncome);
+    userUpdateExpense[e.target.name] = e.target.value;
+    console.log(userUpdateExpense);
   }
 
   const {
@@ -35,7 +35,7 @@ function EditExpensesHistoryForm({
   } = useForm();
 
   function onSubmit() {
-    findIncomeDataAndUpdate(userUpdateIncome, userId, id).then(() =>
+    findExpensesDataAndUpdate(userUpdateExpense, userId, id).then(() =>
     getAllUsersData()
     );
     setEditFormStatus(!editFormStatus);
@@ -52,7 +52,7 @@ function EditExpensesHistoryForm({
               id="date-inp"
               min="2010-01-01"
               defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpenseObject(e)}
             />
           </div>
           <div className="mb-1">
@@ -70,7 +70,7 @@ function EditExpensesHistoryForm({
                 // min: 1,
                 maxLength: 10,
               })}
-              onChange={(e) => updateIncomeObject(e)}
+              onChange={(e) => updateExpenseObject(e)}
             />
             {errors.sum && (
               <span className="text-danger fw-light">
@@ -78,6 +78,28 @@ function EditExpensesHistoryForm({
                 skaičius.
               </span>
             )}
+          </div>
+          <div className="mb-1">
+            <select
+              className="custom-input"
+              name="category"
+              id="category"
+              {...register("category", { required: true })}
+              onChange={(e) => updateExpenseObject(e)}
+            >
+              <option value="Food and Drinks">Maistas ir gėrimai</option>
+              <option value="Shopping">Apsipirkinėjimas</option>
+              <option value="Housing">Namai</option>
+              <option value="Transportation">Transportas</option>
+              <option value="Vehicle">Mašina</option>
+              <option value="Life and Entertainment">Pramogos</option>
+              <option value="Communication,PC">Elektronika</option>
+              <option value="Transportation">Transportas</option>
+              <option value="Financial expenses">Mokesčiai</option>
+              <option value="Invesments">Investicijos</option>
+              <option value="Others">Kita</option>
+
+            </select>
           </div>
           <div>
             <button type="submit" className="btn">
