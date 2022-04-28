@@ -50,6 +50,7 @@ exports.findIncomeDataAndUpdate = async (req, res) => {
           "income.$.date": req.body.date,
           "income.$.category": req.body.category,
           "income.$.amount": req.body.amount,
+          "income.$.name": req.body.name,
         },
       }
     );
@@ -75,7 +76,7 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
       { _id: req.params.id, "expenses._id": req.params.subID },
       {
         $set: {
-          "expenses.$.expenseName": req.body.expenseName,
+          "expenses.$.name": req.body.name,
           "expenses.$.date": req.body.date,
           "expenses.$.category": req.body.category,
           "expenses.$.amount": req.body.amount,

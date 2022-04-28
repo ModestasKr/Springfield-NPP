@@ -55,17 +55,6 @@ function EditExpensesHistoryForm({
           <div className="mb-1">
             <input
               className="custom-input"
-              type="date"
-              name="date"
-              id="date-inp"
-              min="2010-01-01"
-              defaultValue={date.slice(0, 10)}
-              onChange={(e) => updateExpenseObject(e)}
-            />
-          </div>
-          <div className="mb-1">
-            <input
-              className="custom-input"
               placeholder="Suma"
               type="number"
               name="amount"
@@ -107,6 +96,27 @@ function EditExpensesHistoryForm({
               <option value="Kita">Kita</option>
 
             </select>
+          </div>
+          <div>
+            <input
+            type="text"
+            className="custom-input" 
+            id="name"
+            defaultValue={name}
+            {...register("name")}
+            onChange={(e) => updateExpenseObject(e)}
+            />
+          </div>
+          <div className="mb-1">
+            <input
+              className="custom-input"
+              type="date"
+              name="date"
+              id="date-inp"
+              min="2010-01-01"
+              defaultValue={date.slice(0, 10)}
+              onChange={(e) => updateExpenseObject(e)}
+            />
           </div>
           <div>
             <button type="submit" className="btn">Pataisyti
