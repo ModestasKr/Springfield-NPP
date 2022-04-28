@@ -108,18 +108,21 @@ function Form() {
             step="0.01"
             {...register("amount", {
               required: "Įvestyje nesuvesti duomenys",
-              minLength: {
-                minLength: 1,
-                message: "Mažiausias ilgis yra 1 simbolis",
-              },
-              pattern: {
-                pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-                message: "Blogai suvesti simboliai",
-              },
-              maxLength: {
-                maxLength: 10,
-                message: "Didžiausias ilgis yra 10 simbolių",
-              },
+              pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+              minLength: 1,
+              maxLength: 10,
+              // minLength: {
+              //   minLength: 1,
+              //   message: "Mažiausias ilgis yra 1 simbolis",
+              // },
+              // pattern: {
+              //   pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+              //   message: "Blogai suvesti simboliai",
+              // },
+              // maxLength: {
+              //   maxLength: 10,
+              //   message: "Didžiausias ilgis yra 10 simbolių",
+              // },
             })}
           />
           <p className="error">{errors.amount?.message}</p>
