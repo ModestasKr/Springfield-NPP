@@ -1,8 +1,11 @@
-
 import React, { useState, useEffect } from "react";
 import HistoryTable from "./HistoryTable.js";
 import "./style/History.css";
-import {getAllUsersData, deleteUserIncome, deleteUserExpenses,} from "../../api/libraries/apiLibraries";
+import {
+  getAllUsersData,
+  deleteUserIncome,
+  deleteUserExpenses,
+} from "../../api/libraries/apiLibraries";
 
 function History() {
   const [users, setUsers] = useState([]);
@@ -10,11 +13,7 @@ function History() {
   const [userID, setUserID] = useState(0);
 
   //   GET method one user data
-  useEffect(() => {
-    Render()
-  }, []);
-
-  function Render(){
+  function Render() {
     getAllUsersData().then((res) => {
       setUsers(res.data.data.users[0]);
       setUserID(res.data.data.users[0]._id);
@@ -22,7 +21,10 @@ function History() {
   
     });
   }
-  
+
+  useEffect(() => {
+    Render();
+  }, []);
 
   if (isLoading) {
     let { income } = users;
@@ -51,7 +53,8 @@ function History() {
         deleteUserExpenses(users._id, subID);
         console.log("expenses");
       }
-      Render()
+      Render();
+      Render();
     }
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
@@ -77,22 +80,22 @@ function History() {
 
   return (
     <>
-      <table>
-      <thead>
-        <tr>
-          <th>Suma</th>
-          <th>Kategorija</th>
-          <th>Pavadinimas</th>
-          <th>Data</th>
-          <th></th>
-        </tr>
-
-      </thead>
-      <tbody>{userIncomeExpenses}</tbody>
-      </table>
-      </>
+      <div className="History-container">
+        <table className="History-body">
+          <thead className="History-thead">
+            <tr>
+              <th>Suma</th>
+              <th>Kategorija</th>
+              <th>Pavadinimas</th>
+              <th>Data</th>
+              <th>Pasirinkimas</th>
+            </tr>
+          </thead>
+          <tbody>{userIncomeExpenses}</tbody>
+        </table>
+      </div>
+    </>
   );
 }
 
 export default History;
-

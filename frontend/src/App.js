@@ -5,7 +5,7 @@ import Application from "./components/page/Application";
 import Navigation from "./components/page/Navigation";
 import History from "./components//history/History";
 import Home from "./components/page/Home";
-import Footer from "./components/page/Footer";
+// import Footer from "./components/page/Footer";
 // Style
 import "./app.css";
 
@@ -23,9 +23,9 @@ function App() {
           <Route path="/home/application" element={<Home />} />
           <Route path="/home/history" element={<Home />} />
         </Routes>
-        <footer className="Footer-container">
+        {/* <footer className="Footer-container">
           <Footer />
-        </footer>
+        </footer> */}
       </BrowserRouter>
     </div>
   );

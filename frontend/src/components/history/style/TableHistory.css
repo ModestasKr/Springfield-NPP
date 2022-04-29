@@ -1,7 +1,13 @@
 .table-income {
-  color: blueviolet;
+  color: rgb(49, 226, 43);
 }
 
 .table-expense {
   color: red;
+}
+
+.HistoryTable-button {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

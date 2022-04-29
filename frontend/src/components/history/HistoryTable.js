@@ -28,22 +28,20 @@ function HistoryTable({
   };
   return (
     <>
-      <tr>
+      <tr className="HistoryTable-row">
         <td className={colorClass(type)}>{amount}</td>
         <td>{category}</td>
         <td>{name}</td>
         <td>{dateWithoutZeros}</td>
-        <td>
+        <td className="HistoryTable-button">
           <button type="button" onClick={() => deleteItem(userID, subID, type)}>
             Ištrinti
           </button>
-        </td>
-        <td>
           <button
             className="button"
             onClick={() => setEditFormStatus(!editFormStatus)}
           >
-            Update
+            Atnaujinti
           </button>
         </td>
       </tr>
