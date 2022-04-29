@@ -3,23 +3,21 @@ import { findExpensesDataAndUpdate } from "../../api/libraries/apiLibraries";
 // import { Render } from "./History";
 import { useForm } from "react-hook-form";
 import History from "./History";
-
-
-
+import "./style/EditExpenses.css";
 
 function EditExpensesHistoryForm({
-    getAllUsersData,
-    id,
-    category,
-    amount,
-    editFormStatus,
-    setEditFormStatus,
-    deleteItem,
-    type,
-    date,
-    userID,
-    Render,
-    name,
+  getAllUsersData,
+  id,
+  category,
+  amount,
+  editFormStatus,
+  setEditFormStatus,
+  deleteItem,
+  type,
+  date,
+  userID,
+  Render,
+  name,
 }) {
   const [userUpdateExpense, setUserUpdateIncome] = useState({
     amount: amount,
@@ -43,16 +41,19 @@ function EditExpensesHistoryForm({
 
   function onSubmit() {
     findExpensesDataAndUpdate(userUpdateExpense, userID, id).then(() =>
-    Render()
+      Render()
     );
     setEditFormStatus(!editFormStatus);
   }
 
   return (
     <>
-      <td className="custom-td">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-1">
+      <td className="EditHistoryForm-td">
+        <form
+          className="EditHistoryForm-form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="EditHistoryForm-body">
             <input
               className="custom-input"
               placeholder="Suma"
@@ -75,8 +76,7 @@ function EditExpensesHistoryForm({
                 skaičius.
               </span>
             )}
-          </div>
-          <div className="mb-1">
+
             <select
               className="custom-input"
               name="category"
@@ -89,27 +89,26 @@ function EditExpensesHistoryForm({
               <option value="Namams">Namams</option>
               <option value="Transportas">Transportas</option>
               <option value="Mašina">Mašina</option>
-              <option value="Gyvenimas ir linksmybės">Gyvenimas ir linksmybės</option>
+              <option value="Gyvenimas ir linksmybės">
+                Gyvenimas ir linksmybės
+              </option>
               <option value="Elektronika">Elektronika</option>
               <option value="Financinės išlaidos">Financinės išlaidos</option>
               <option value="Investicijos">Investicijos</option>
               <option value="Kita">Kita</option>
-
             </select>
-          </div>
-          <div>
+
             <input
-            type="text"
-            className="custom-input" 
-            id="name"
-            defaultValue={name}
-            {...register("name", {
-              maxLength: 40,
-            })}
-            onChange={(e) => updateExpenseObject(e)}
+              type="text"
+              className="custom-input"
+              id="name"
+              defaultValue={name}
+              {...register("name", {
+                maxLength: 40,
+              })}
+              onChange={(e) => updateExpenseObject(e)}
             />
-          </div>
-          <div className="mb-1">
+
             <input
               className="custom-input"
               type="date"
@@ -120,15 +119,16 @@ function EditExpensesHistoryForm({
               onChange={(e) => updateExpenseObject(e)}
             />
           </div>
-          <div>
-            <button type="submit" className="btn">Pataisyti
+          <div className="EditHistoryForm-button">
+            <button type="submit" className="btn">
+              Pataisyti
             </button>
             <button
               type="button"
               className="btn"
               onClick={() => setEditFormStatus(!editFormStatus)}
-            >Atšaukti
-             
+            >
+              Atšaukti
             </button>
           </div>
         </form>

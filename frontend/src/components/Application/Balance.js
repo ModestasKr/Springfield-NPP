@@ -7,7 +7,7 @@ function Balance() {
       <h3>Naujas įrašas</h3>
       <p>Balansas</p>
       {/* Green or Red */}
-      {/* <p>Money</p> */}
+      <p>Money</p>
     </div>
   );
 }
