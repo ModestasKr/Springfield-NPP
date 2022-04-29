@@ -19,6 +19,7 @@ function History() {
       setUsers(res.data.data.users[0]);
       setUserID(res.data.data.users[0]._id);
       setIsLoading(true);
+  
     });
   }
   
