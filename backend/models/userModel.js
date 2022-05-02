@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const incomeSchema = new mongoose.Schema({
   type: {
@@ -83,11 +84,24 @@ const usersSchema = new mongoose.Schema({
     minlength: [8, "Password is too short (Minimum length is 8)"],
     required: [true, "Password is required"],
   },
+  repeatPassword: {
+    type: String,
+    minlength: [8, "Password is too short (Minimum length is 8)"],
+    required: [true, "Password is required"],
+  },
   balance: {
     type: Number,
   },
   income: [incomeSchema],
   expenses: [expenseSchema],
+});
+
+// encrypting password before saving
+usersSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 // ModelDb table name
