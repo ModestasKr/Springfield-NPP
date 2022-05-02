@@ -214,3 +214,56 @@ exports.createUserIncome = async (req, res) => {
     });
   }
 };
+
+
+//////////////////////////////////////
+
+// exports.getBalance = async (req, res) => {
+//     try {
+//       const getBalance = await Users.find();
+    
+//     res.status(200).json({
+//       data: {
+//         expenses: users
+        
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err,
+//     });
+//   }
+// };
+
+exports.getBalance = async (req, res) => {
+  try {
+    const users = await Users.find();
+    let expensesSuma = 0;
+    
+    users[0].expenses.forEach((expense)=>{
+      expensesSuma += expense.amount
+    })
+    let incomeSuma = 0;
+    users[0].income.forEach((income)=>{
+      incomeSuma += income.amount
+    })
+    let balansas = incomeSuma - expensesSuma;
+
+
+    res.status(200).json({
+      
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: users[0].expenses,balansas,
+        income: users[0].income,balansas
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
