@@ -8,6 +8,12 @@ export async function getAllUsersData() {
   return res;
 }
 
+// GET method visas balansas
+export async function getBalance(id) {
+  const res = await axiosClient.get(`/${id}/expenses/balance`);
+  return res;
+}
+
 // UPDATE user data income
 export async function findIncomeDataAndUpdate(data, id, subID) {
   const res = await axiosClient.patch(
