@@ -84,11 +84,7 @@ const usersSchema = new mongoose.Schema({
     minlength: [8, "Password is too short (Minimum length is 8)"],
     required: [true, "Password is required"],
   },
-  repeatPassword: {
-    type: String,
-    minlength: [8, "Password is too short (Minimum length is 8)"],
-    required: [true, "Password is required"],
-  },
+
   balance: {
     type: Number,
   },

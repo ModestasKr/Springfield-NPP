@@ -17,6 +17,12 @@ function Navigation() {
         <li>
           <Link to="/history">Istorija</Link>
         </li>
+        <li>
+          <Link to="/login">Prisijungti</Link>
+        </li>
+        <li>
+          <Link to="/register">Registruotis</Link>
+        </li>
       </ul>
     </nav>
   );
