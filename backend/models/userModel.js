@@ -94,59 +94,21 @@ const usersSchema = new mongoose.Schema({
   expenses: [expenseSchema],
 });
 
-// encrypting password before saving
-// usersSchema.pre("save", async function (next) {
-//   if (!this.isModified("password")) {
-//     next();
-//   }
-//   this.password = await bcrypt.hash(this.password, 10);
-// });
-
 // verify password
 usersSchema.methods.comparePassword = async function(yourPassword){
   return await bcrypt.compare(yourPassword, this.password);
 }
 
 // get the token
-// usersSchema.methods.jwtGenerateToken = function(){
-//   return jwt.sign({id: this.id}, process.env.JWT_SECRET, {
-//       expiresIn: 3600
-//   });
-// }
+usersSchema.methods.jwtGenerateToken = function(){
+  return jwt.sign({id: this.id}, `${process.env.JWT_SECRET}`, {
+    expiresIn: 3600
+  });
+}
 
 // ModelDb table name
 const Users = new mongoose.model("Users", usersSchema);
 
-// Duomenų siuntimas į DB
-// const testUsers = new Users({
-//   username: "Rokas",
-//   email: "Norvilis@gmail.com",
-//   password: "pass123KK",
-//   balance: "10000",
-//   income: [
-//     {
-//       type: "income",
-//       amount: "500",
-//       date: "2021-01-01",
-//       incomeName: "Job",
-//       category: "Job",
-//       date_created: "2021-02-05",
-//       date_updated: "2021-02-06",
-//     },
-//   ],
-//   expenses: [
-//     {
-//       type:"expenses",
-//       amount: "600",
-//       date: "2021-02-03",
-//       expenseName: "Food",
-//       category: "Food",
-//       date_created: "2021-02-05",
-//       date_updated: "2021-02-06",
-//     },
-//   ],
-// });
 
-// testUsers.save();
 
 module.exports = Users;
