@@ -266,3 +266,73 @@ exports.getBalance = async (req, res) => {
     });
   }
 };
+
+
+
+exports.getDate = async (req, res) => {
+  try {
+    const users = await Users.find();
+    let dated = 0
+    console.log(dated)
+    users[0].expenses.forEach((dateExpense)=>{
+      dated = dateExpense.date
+      console.log(dateExpense.date)
+    })
+
+    res.status(200).json({
+      
+      status: "success",
+      results: users.length,
+      data: {
+        date: dateExpense.date.toString().substr(0, 7)
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+
+exports.getUserExpensesByMonth = async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    const users = await Users.find({ _id: req.params.id });
+
+    const { expenses } = users[0];
+    // console.log(income);
+
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+
+    const filteredYear = expenses.filter(
+      (expItem) => expItem.date.getFullYear() === currentYear
+    );
+
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() === currentMonth
+    );
+
+    const allExpensesCurrentMonth = filteredMonth.reduce(
+      (n, { amount }) => n + amount,
+      0
+    );
+
+    // console.log(allExpensesCurrentMonth);
+
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        expenses: allExpensesCurrentMonth,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "error",
+      message: err,
+    });
+  }
+};
