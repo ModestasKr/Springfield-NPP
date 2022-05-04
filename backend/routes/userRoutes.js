@@ -2,7 +2,7 @@ const express = require("express");
 
 const {
   getAllUsersData,
-  getUserById,
+  // getUserById,
   findIncomeDataAndUpdate,
   findExpensesDataAndUpdate,
   deleteUserIncome,

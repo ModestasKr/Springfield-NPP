@@ -97,14 +97,15 @@ function Form() {
 
           <label>Pavadinimas</label>
           <input
-          placeholder="Parašykite pavadinimą"
-          type="text"
-          {...register("name", {
-            maxLength: {
-              value: 40,
-              message: "Max 40 simbolių"
-            }
-          })} />
+            placeholder="Parašykite pavadinimą"
+            type="text"
+            {...register("name", {
+              maxLength: {
+                value: 40,
+                message: "Max 40 simbolių",
+              },
+            })}
+          />
           <p className="error">{errors.name?.message}</p>
           <label>Suma</label>
           <input
@@ -117,7 +118,7 @@ function Form() {
               minLength: 1,
               maxLength: {
                 value: 10,
-                message: "Max 10 skaitmenų"
+                message: "Max 10 skaitmenų",
               },
               // minLength: {
               //   minLength: 1,
