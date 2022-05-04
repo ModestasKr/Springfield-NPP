@@ -14,6 +14,12 @@ export async function getBalance(id) {
   return res;
 }
 
+export async function getUserExpensesByMonth(id) {
+  id = "62666e27cd523e53504dd164";
+  const res = await axiosClient.get(`/${id}/expenses/current/month`);
+  return res;
+}
+
 // UPDATE user data income
 export async function findIncomeDataAndUpdate(data, id, subID) {
   const res = await axiosClient
