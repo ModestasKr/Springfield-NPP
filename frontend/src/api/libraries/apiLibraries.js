@@ -164,3 +164,40 @@ export async function createUser(data) {
       );
     });
 }
+
+// Login
+export async function loginUser(data){
+  const res = await axiosClient
+  .post("/login", JSON.stringify(data))
+  .then((result) => {
+    console.log("Success:", result);
+    swal({
+      text: "Pavyko prisijungti!",
+      icon: "success",
+      button: "Puiku",
+    });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    swal(
+      "Nepavyko",
+      "Duomenys blogai suvesti, galimai rašybos klaida!",
+      "error"
+    );
+  });
+}
+
+//Logout
+
+export async function logoutUser(data){
+  const res = await axiosClient
+  .post("/logout", JSON.stringify(data))
+  .then((result) => {
+    console.log("Success:", result);
+    swal({
+      text: "Sėkmingai atsijungta!",
+      icon: "success",
+      button: "Puiku",
+    });
+  })
+}
