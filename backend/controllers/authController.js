@@ -48,10 +48,16 @@ exports.loginUser = async (req, res, next)=>{
           message: "Invalid credentials"
         })
       }
-      res.status(200).json({
-        success: true,
-        user
-      })
+      
+      // const token = await user.jwtGenerateToken();
+
+      // res.status(200).json({
+      //   success: true,
+      //   token
+      // })
+
+
+      generateToken(user, 200, res);
   }
   catch(err){
       console.log(err);
@@ -64,3 +70,29 @@ exports.loginUser = async (req, res, next)=>{
  
 }
 
+const generateToken = async (user, statusCode, res) => {
+
+  const token = await user.jwtGenerateToken();
+
+  const options = {
+    httpOnly: true,
+    expires: new Date(Date.now() + process.env.EXPIRE_TOKEN)
+  };
+  res
+  .status(statusCode)
+  .cookie("token", token, options)
+  .json({
+    success: true,
+    token
+  })
+}
+
+//Logout user
+
+exports.logoutUser = (req, res, next) => {
+  res.clearCookie("token");
+  res.status(200).json({
+    success: true,
+    message: "Atsijungta"
+  })
+}
