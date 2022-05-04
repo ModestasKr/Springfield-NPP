@@ -2,7 +2,7 @@ const express = require("express");
 
 const {
   getAllUsersData,
-  getUserById,
+  // getUserById,
   findIncomeDataAndUpdate,
   findExpensesDataAndUpdate,
   deleteUserIncome,
@@ -15,7 +15,7 @@ const {
 const router = express.Router();
 
 router.route("/").get(getAllUsersData);
-router.route("/:id").get(getUserById);
+// router.route("/:id").get(getUserById);
 router.route("/:id/expenses/balance").get(getBalance);
 router.route("/:id/expenses").patch(createUserExpenses);
 router.route("/:id/income").patch(createUserIncome);
