@@ -5,25 +5,14 @@ import {
   getAllUsersData,
   deleteUserIncome,
   deleteUserExpenses,
-  getBalance,
 } from "../../api/libraries/apiLibraries";
 
 function History() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userID, setUserID] = useState(0);
-  const [balance, setBalance] = useState(0)
- 
-
-  function getUserBalance(){
-    getBalance().then((res) =>{
-      setBalance(res.data.data.balansas)
-     
-    })
-  }
-
-  getUserBalance()
-
+  
+  
   //   GET method one user data
   function Render() {
     getAllUsersData().then((res) => {
@@ -93,7 +82,6 @@ function History() {
   return (
     <>
       <div className="History-container">
-      <h3>{balance}</h3>
         <table className="History-body">
           <thead className="History-thead">
             <tr>
