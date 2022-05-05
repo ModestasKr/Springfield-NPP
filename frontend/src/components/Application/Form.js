@@ -100,9 +100,10 @@ function Form() {
             placeholder="Parašykite pavadinimą"
             type="text"
             {...register("name", {
+              required: "Įvestyje nesuvesti duomenys",
               maxLength: {
                 value: 40,
-                message: "Max 40 simbolių",
+                message: "Daugiausia 40 simbolių",
               },
             })}
           />
@@ -114,24 +115,18 @@ function Form() {
             step="0.01"
             {...register("amount", {
               required: "Įvestyje nesuvesti duomenys",
-              pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-              minLength: 1,
+              pattern: {
+                value: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+                message: "Tokios sumos nėra",
+              },
+              minLength: {
+                value: 1,
+                message: "Mažiausia 1 skaitmuo",
+              },
               maxLength: {
                 value: 10,
-                message: "Max 10 skaitmenų",
+                message: "Daugiausia 10 skaitmenų",
               },
-              // minLength: {
-              //   minLength: 1,
-              //   message: "Mažiausias ilgis yra 1 simbolis",
-              // },
-              // pattern: {
-              //   pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-              //   message: "Blogai suvesti simboliai",
-              // },
-              // maxLength: {
-              //   maxLength: 10,
-              //   message: "Didžiausias ilgis yra 10 simbolių",
-              // },
             })}
           />
           <p className="error">{errors.amount?.message}</p>
@@ -146,6 +141,9 @@ function Form() {
           />
           <button className="Form-btn" type="submit">
             Pridėti
+          </button>
+          <button className="Login-form-btn" type="reset">
+            Anuliuoti
           </button>
         </form>
       </div>
