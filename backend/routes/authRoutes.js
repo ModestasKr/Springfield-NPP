@@ -3,12 +3,19 @@ const router = express.Router();
 
 // const { createUser, getEmail } = require("../controllers/authController");
 
+
 const {
   createUser,
   loginUser,
   logoutUser,
   getEmail,
 } = require("../controllers/authController");
+
+
+const { createUser, loginUser, logoutUser, getEmail } = require("../controllers/authController");
+
+
+
 
 router.route("/register").post(createUser);
 

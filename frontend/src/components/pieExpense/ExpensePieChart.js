@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/ExpensePieChart.css";
 // Chart
@@ -16,6 +17,17 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function ExpensePieChart() {
+  
+  const [UserExpensesByMonth, setUserExpensesByMonth] = useState()
+  
+  function getCurrentExpensesMonth(){
+    getUserExpensesByMonth().then((res) =>{
+      setUserExpensesByMonth(res.data.data.expenses)
+     
+    })
+  }
+  getCurrentExpensesMonth()
+
   var data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
@@ -60,7 +72,7 @@ function ExpensePieChart() {
     <div className="ExpensePieChart-container">
       {/* Text color red */}
       <h3>Išlaidos</h3>
-      <p>£1000</p>
+      <p>{UserExpensesByMonth} EUR</p>
       <div className="ExpensePieChart-chart">
         <Pie data={data} height={400} options={options} />
       </div>

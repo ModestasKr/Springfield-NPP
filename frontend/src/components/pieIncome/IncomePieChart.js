@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 // Style
 import "./style/IncomePieChart.css";
 import {
@@ -10,12 +10,22 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { getUserIncomeByMonth } from "../../api/libraries/apiLibraries";
 // Chart
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function IncomePieChart() {
+  const [UserIncomeByMonth, setUserIncomeByMonth] = useState()
+  
+  function getCurrentIncomeMonth(){
+    getUserIncomeByMonth().then((res) =>{
+      setUserIncomeByMonth(res.data.data.income)
+    })
+  }
+  getCurrentIncomeMonth()
+
   var data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
@@ -61,7 +71,7 @@ function IncomePieChart() {
     <div className="IncomePieChart-container">
       {/* Text color is green */}
       <h3>Pajamos</h3>
-      <p>£1000</p>
+      <p>{UserIncomeByMonth} EUR</p>
       <div className="IncomePieChart-chart">
         <Pie data={data} height={400} options={options} />
       </div>

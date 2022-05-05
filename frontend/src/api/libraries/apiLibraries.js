@@ -188,7 +188,6 @@ export async function loginUser(data){
 }
 
 //Logout
-
 export async function logoutUser(data){
   const res = await axiosClient
   .post("/logout", JSON.stringify(data))
@@ -200,4 +199,25 @@ export async function logoutUser(data){
       button: "Puiku",
     });
   })
+}
+
+// Get user expenses by current month
+export async function getUserExpensesByMonth(id) {
+  id = "62666e27cd523e53504dd164";
+  const res = await axiosClient.get(`/${id}/expenses/current/month`);
+  return res;
+}
+
+// Get user income by current month
+export async function getUserIncomeByMonth(id) {
+  id = "62666e27cd523e53504dd164";
+  const res = await axiosClient.get(`/${id}/income/current/month`);
+  return res;
+}
+
+// Get user balance by current month
+export async function getUserBalanceByMonth(id) {
+  id = "62666e27cd523e53504dd164";
+  const res = await axiosClient.get(`/${id}/balance/current/month`);
+  return res;
 }
