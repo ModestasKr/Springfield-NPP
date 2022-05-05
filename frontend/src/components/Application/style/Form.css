@@ -13,33 +13,6 @@
 }
 
 .Form-btn {
-  border-radius: 7px;
   padding: 0.5em 6em;
   align-self: center;
-  background-color: var(--backGround-color-200);
-  transition: 0.3s;
-}
-
-.Form-btn:hover {
-  background-color: var(--backGround-color-300);
-}
-
-.error {
-  color: var(--text-color-300);
-  font-size: 0.8rem;
-}
-
-label {
-  color: var(--text-color-100);
-  font-size: 0.9rem;
-}
-
-::placeholder {
-  color: var(--color-1000);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
 }

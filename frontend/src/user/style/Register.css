@@ -1,17 +1,21 @@
-.Main-container {
-  margin: 2em;
-  /* padding: 2em; */
+.Registration-container {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.Registration-body {
+  max-width: 80%;
   display: grid;
-  grid-template-columns: 450px 1fr;
-  grid-column-gap: 20px;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  margin: 3em 3em;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.35);
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: var(--backGround-color-100);
 }
 
-.Main-form {
-  padding: 1em 0;
+.Registration-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -19,15 +23,10 @@
   align-items: center;
 }
 
-.Main-form > * {
-  width: 15rem;
-}
-
-.Main-form :nth-child(19) {
-  margin: 2em 0;
-  max-width: 5rem;
-}
-
-.Main-form-btn {
+.Registration-form-btn {
   padding: 0.5em 0;
+}
+
+.Registration-form > * {
+  width: 15rem;
 }
