@@ -37,8 +37,14 @@
 }
 
 button {
+  border-radius: 7px;
+  transition: 0.3s;
   cursor: pointer;
-  background-color: var(--backGround-color-100);
+  background-color: var(--backGround-color-200);
+}
+
+button:hover {
+  background-color: var(--backGround-color-300);
 }
 
 button,
@@ -53,8 +59,37 @@ select {
   border-radius: 7px;
 }
 
+.error {
+  color: var(--text-color-300);
+  font-size: 0.8rem;
+}
+
+label {
+  color: var(--text-color-100);
+  font-size: 0.9rem;
+}
+
+::placeholder {
+  color: var(--color-1000);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
 .ExpensePieChart-chart,
 .IncomePieChart-chart {
   max-width: 100%;
   box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
 }

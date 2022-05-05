@@ -25,11 +25,6 @@
   gap: 20px;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
 h1 {
   padding: 2em 0;
   text-align: center;
@@ -37,14 +32,4 @@ h1 {
 
 hr {
   margin: 0 4em;
-}
-
-button {
-  border-radius: 7px;
-  background-color: var(--backGround-color-200);
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: var(--backGround-color-300);
 }
