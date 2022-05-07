@@ -74,7 +74,8 @@ function History() {
         <Fragment>
         {editContactId === item._id && item.type === "expenses" ? (
          <EditExpenses 
-            key={item._id}
+            getAllUsersData={getAllUsersData}
+            // key={item._id}
             handleCancelClick = {handleCancelClick}
             subID={item._id}
             date={item.date}
@@ -88,7 +89,8 @@ function History() {
           />
          ) : editContactId === item._id && item.type === "income" ? (
          <EditIncome 
-            key={item._id}
+            getAllUsersData={getAllUsersData}
+            // key={item._id}
             handleCancelClick = {handleCancelClick}
             subID={item._id}
             date={item.date}
@@ -103,6 +105,7 @@ function History() {
          )
           : (
           <ReadOnlyRow 
+            getAllUsersData={getAllUsersData}
             key={item._id}
             subID={item._id}
             date={item.date}
