@@ -18,19 +18,17 @@ exports.createUser = async (req, res) => {
   }
 };
 
+//get user email to check
 
-// Check email
-exports.getEmail = async (req, res) => {
-  console.log(req.params.email);
-
+exports.getUserEmail = async (req, res) => {
   try {
-    const email = await Users.findOne({ email: req.body.email });
-
+    const user = await Users.exists(req.query);
+    console.log(user);
     res.status(200).json({
       status: "success",
-      results: email.length,
+      results: user.length,
       data: {
-        email: email,
+        users: user,
       },
     });
   } catch (err) {
@@ -41,74 +39,65 @@ exports.getEmail = async (req, res) => {
   }
 };
 
+//  Login
 
-exports.loginUser = async (req, res, next)=>{
-
-  try{
-      const {email, password} = req.body;
-      if(!email || !password){
-     
-          return res.status(400).json({
-            success: false,
-            message: "Email and password are required"
-          })
-      }
-
-      // check user e-mail
-      const user = await Users.findOne({email});
-      if(!user){
-         
-          return res.status(400).json({
-            success: false,
-            message: "Invalid credentials"
-          })
-      }
-      // check user passw
-      const isMatched = await user.comparePassword(password);
-      if (!isMatched){
-        return res.status(400).json({
-          success: false,
-          message: "Invalid credentials"
-        })
-      }
-      
-      // const token = await user.jwtGenerateToken();
-
-      // res.status(200).json({
-      //   success: true,
-      //   token
-      // })
-
-
-      generateToken(user, 200, res);
-  }
-  catch(err){
-      console.log(err);
-     
+exports.loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Can't log in, check your credentials"
-      })
+        message: "Email and password are required",
+      });
+    }
+
+    // check user e-mail
+    const user = await Users.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+    // check user passw
+    const isMatched = await user.comparePassword(password);
+    if (!isMatched) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // const token = await user.jwtGenerateToken();
+
+    // res.status(200).json({
+    //   success: true,
+    //   token
+    // })
+
+    generateToken(user, 200, res);
+  } catch (err) {
+    console.log(err);
+
+    return res.status(400).json({
+      success: false,
+      message: "Can't log in, check your credentials",
+    });
   }
- 
-}
+};
 
 const generateToken = async (user, statusCode, res) => {
-
   const token = await user.jwtGenerateToken();
 
   const options = {
     httpOnly: true,
-    expires: new Date(Date.now() + process.env.EXPIRE_TOKEN)
+    expires: new Date(Date.now() + process.env.EXPIRE_TOKEN),
   };
-  res
-  .status(statusCode)
-  .cookie("token", token, options)
-  .json({
+  res.status(statusCode).cookie("token", token, options).json({
     success: true,
-    token
-  })
-}
+    token,
+  });
+};
 
 //Logout user
 
@@ -116,7 +105,6 @@ exports.logoutUser = (req, res, next) => {
   res.clearCookie("token");
   res.status(200).json({
     success: true,
-    message: "Atsijungta"
-  })
-}
-
+    message: "Atsijungta",
+  });
+};
