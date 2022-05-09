@@ -1,8 +1,8 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // Api Libraries
-import { createUser } from "../api/libraries/apiLibraries";
+import { createUser, getUserEmail } from "../../src/api/libraries/apiLibraries";
 // Style
 import "./style/Register.css";
 // Images
@@ -23,10 +23,17 @@ function Registration() {
       date: "",
     },
   });
+  let [emailAlreadyExists, setEmailAlreadyExists] = useState(false);
 
   function onSubmit(data) {
     console.log(data);
     createUser(data);
+  }
+  function doesEmailExist(res) {
+    console.log(res.data.data.users);
+    res.data.data.users
+      ? emailAlreadyExists(false)
+      : setEmailAlreadyExists(true);
   }
 
   let password = watch("password");
@@ -69,9 +76,23 @@ function Registration() {
                 value: 50,
                 message: "Daugiausia simbolių galima įvesti 50",
               },
+              validate: {
+                emailExists: (value) => {
+                  let pass;
+                  getUserEmail(value, pass).then((res) =>
+                    doesEmailExist(res, value)
+                  );
+                  return pass;
+                },
+              },
             })}
           />
           <span className="error">{errors.email?.message}</span>
+          <span className="error">
+            {" "}
+            {errors.email?.type === "emailExists" &&
+              "El. paštas jau naudojamas."}
+          </span>
           <label>Slaptažodis</label>
           <input
             type="password"
