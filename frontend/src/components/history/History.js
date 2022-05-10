@@ -4,6 +4,7 @@ import ReadOnlyRow from "./ReadOnlyRow.js";
 import EditExpenses from "./EditExpenses.js";
 import EditIncome from "./EditIncome.js";
 import "./style/History.css";
+import { v4 as uuidv4 } from 'uuid';
 
 function History() {
   const [users, setUsers] = useState([]);
@@ -74,8 +75,7 @@ function History() {
         <Fragment>
         {editContactId === item._id && item.type === "expenses" ? (
          <EditExpenses 
-            getAllUsersData={getAllUsersData}
-            // key={item._id}
+            key={uuidv4()}
             handleCancelClick = {handleCancelClick}
             subID={item._id}
             date={item.date}
@@ -89,8 +89,7 @@ function History() {
           />
          ) : editContactId === item._id && item.type === "income" ? (
          <EditIncome 
-            getAllUsersData={getAllUsersData}
-            // key={item._id}
+            key={item._id.toString()}
             handleCancelClick = {handleCancelClick}
             subID={item._id}
             date={item.date}
@@ -105,7 +104,6 @@ function History() {
          )
           : (
           <ReadOnlyRow 
-            getAllUsersData={getAllUsersData}
             key={item._id}
             subID={item._id}
             date={item.date}
