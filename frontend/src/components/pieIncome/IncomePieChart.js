@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 // Style
 import "./style/IncomePieChart.css";
 import {
@@ -18,7 +18,8 @@ ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function IncomePieChart() {
   const [UserIncomeByMonth, setUserIncomeByMonth] = useState()
-  
+  const [chart, setChart] = useState([])
+
   function getCurrentIncomeMonth(){
     getUserIncomeByMonth().then((res) =>{
       setUserIncomeByMonth(res.data.data.income)
@@ -26,12 +27,26 @@ function IncomePieChart() {
   }
   getCurrentIncomeMonth()
 
+  function getCurrentIncomeCategoryMonth(){
+    getUserIncomeByMonth().then((res) =>{
+      getUserIncomeByMonth(res.data.data.currentIncomeC.category)
+      console.log(res.data.data.currentIncomeC)
+      setChart(res.data.data.currentIncomeC)
+    })
+  }
+
+  useEffect(() => {
+    getCurrentIncomeCategoryMonth();
+  }, []);
+  
+console.log("chart", chart)
+
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: chart?.map(item => item.category),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: `${chart?.currentIncomeC?.length}`,
+        data: chart?.map(item => item.amount),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -50,9 +65,9 @@ function IncomePieChart() {
         ],
         borderWidth: 1,
       },
+
     ],
   };
-
   var options = {
     maintainAspectRatio: false,
     // scales: {

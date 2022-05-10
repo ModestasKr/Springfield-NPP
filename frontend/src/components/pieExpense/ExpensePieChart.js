@@ -1,5 +1,7 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+// Style
+import "./style/ExpensePieChart.css";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -9,31 +11,42 @@ import {
   Legend,
 } from "chart.js";
 import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
-// Style
-import "./style/ExpensePieChart.css";
 // Chart
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
-function ExpensePieChart() {
-  
+function IncomePieChart() {
   const [UserExpensesByMonth, setUserExpensesByMonth] = useState()
-  
+  const [chart, setChart] = useState([])
+
   function getCurrentExpensesMonth(){
     getUserExpensesByMonth().then((res) =>{
       setUserExpensesByMonth(res.data.data.expenses)
-     
     })
   }
   getCurrentExpensesMonth()
 
+  function getCurrentExpensesCategoryMonth(){
+    getUserExpensesByMonth().then((res) =>{
+      getUserExpensesByMonth(res.data.data.currentExpensesC.category)
+      console.log(res.data.data.currentExpensesC)
+      setChart(res.data.data.currentExpensesC)
+    })
+  }
+
+  useEffect(() => {
+    getCurrentExpensesCategoryMonth();
+  }, []);
+  
+console.log("chart", chart)
+
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: chart?.map(item => item.category),
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: `${chart?.length}`,
+        data: chart?.map(item => item.amount),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -52,9 +65,9 @@ function ExpensePieChart() {
         ],
         borderWidth: 1,
       },
+
     ],
   };
-
   var options = {
     maintainAspectRatio: false,
     // scales: {
@@ -68,9 +81,10 @@ function ExpensePieChart() {
       },
     },
   };
+
   return (
-    <div className="ExpensePieChart-container">
-      {/* Text color red */}
+    <div className="IncomePieChart-container">
+      {/* Text color is green */}
       <h3>Išlaidos</h3>
       <p>{UserExpensesByMonth} EUR</p>
       <div className="ExpensePieChart-chart">
@@ -80,4 +94,4 @@ function ExpensePieChart() {
   );
 }
 
-export default ExpensePieChart;
+export default IncomePieChart;
