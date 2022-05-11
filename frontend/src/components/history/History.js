@@ -4,30 +4,24 @@ import ReadOnlyRow from "./ReadOnlyRow.js";
 import EditExpenses from "./EditExpenses.js";
 import EditIncome from "./EditIncome.js";
 import "./style/History.css";
+import {
+  getAllUsersData,
+  deleteUserIncome,
+  deleteUserExpenses,
+} from "../../api/libraries/apiLibraries";
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 import { v4 as uuidv4 } from 'uuid';
 
 function History() {
   const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [userID, setUserID] = useState(0);
-  const [editContactId, setEditContactId] = useState(null);
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
- 
-  //   GET method one user data
-  function Render() {
-    getAllUsersData().then((res) => {
-      setUsers(res.data.data.users[0]);
-      setUserID(res.data.data.users[0]._id);
-      setIsLoading(true);
-      
-    });
-  }
 
   useEffect(() => {
-    Render();
-  }, []);
+    setUsers(userData);
+  }, [userData]);
 
-  if (isLoading) {
+  if (users !== undefined && users.hasOwnProperty("email")) {
     let { income } = users;
     let { expenses } = users;
 
@@ -49,13 +43,15 @@ function History() {
 
       if (type === "income") {
         console.log("income");
-        deleteUserIncome(users._id, subID);
+        deleteUserIncome(users._id, subID).then(() => {
+          updateUserData(users._id);
+        });
       } else {
-        deleteUserExpenses(users._id, subID);
+        deleteUserExpenses(users._id, subID).then(() => {
+          updateUserData(users._id);
+        });
         console.log("expenses");
       }
-      Render();
-      Render();
     }
 
     const handleEditClick = (event, subID, type) => {
@@ -72,6 +68,19 @@ function History() {
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
+        <HistoryTable
+          getAllUsersData={getAllUsersData}
+          key={item._id}
+          subID={item._id}
+          date={item.date}
+          category={item.category}
+          amount={item.amount}
+          deleteItem={deleteItem}
+          type={item.type}
+          name={item.name}
+          userID={users._id}
+        />
+
         <Fragment>
         {editContactId === item._id && item.type === "expenses" ? (
          <EditExpenses 

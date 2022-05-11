@@ -13,10 +13,13 @@ import {
 import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
 // Chart
 import { Pie } from "react-chartjs-2";
+// Context
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
-function IncomePieChart() {
+function ExpensePieChart() {
+  const { userData } = useGlobalUserContext(UserContext);
   const [UserExpensesByMonth, setUserExpensesByMonth] = useState()
   const [chart, setChart] = useState([])
 
@@ -25,8 +28,11 @@ function IncomePieChart() {
       setUserExpensesByMonth(res.data.data.expenses)
     })
   }
-  getCurrentExpensesMonth()
+  useEffect(() => {
+    getCurrentExpensesMonth();
+  }, [userData]);
 
+  //currentExpenseC.category nereikia
   function getCurrentExpensesCategoryMonth(){
     getUserExpensesByMonth().then((res) =>{
       getUserExpensesByMonth(res.data.data.currentExpensesC.category)
@@ -102,11 +108,7 @@ console.log(labels)
   };
   var options = {
     maintainAspectRatio: false,
-    // scales: {
-    //   y: {
-    //     beginAtZero: true,
-    //   },
-    // },
+
     legend: {
       labels: {
         fontSize: 26,
@@ -126,4 +128,4 @@ console.log(labels)
   );
 }
 
-export default IncomePieChart;
+export default ExpensePieChart;

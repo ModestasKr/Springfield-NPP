@@ -8,6 +8,11 @@ export async function getAllUsersData() {
   return res;
 }
 
+export async function getUserById(id) {
+  const res = await axiosClient.get(`/${id}`);
+  return res;
+}
+
 // GET method visas balansas
 export async function getBalance(id) {
   const res = await axiosClient.get(`/${id}/expenses/balance`);
@@ -56,9 +61,8 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
 
 // ADD user Income
 export async function createUserIncome(data, id) {
-  id = "6273a835d97ec7308cefadab";
-  console.log(id);
-  console.log(data);
+  // console.log(id);
+  // console.log(data);
   const res = await axiosClient
     .patch(`/${id}/income/`, JSON.stringify(data))
     .then((result) => {
@@ -82,7 +86,6 @@ export async function createUserIncome(data, id) {
 
 // ADD user Expenes
 export async function createUserExpenses(data, id) {
-  id = "6273a835d97ec7308cefadab";
   console.log(id);
   console.log(data);
   const res = await axiosClient
@@ -111,7 +114,7 @@ export async function deleteUserExpenses(id, subID) {
   const response = await axiosClient
     .patch(`/${id}/expenses/delete/${subID}`)
     .then((result) => {
-      console.log("Success:", result);
+      // console.log("Success:", result);
       swal({
         text: "Ištrinta!",
         icon: "success",
@@ -129,7 +132,7 @@ export async function deleteUserIncome(id, subID) {
   const response = await axiosClient
     .patch(`/${id}/income/delete/${subID}`)
     .then((result) => {
-      console.log("Success:", result);
+      // console.log("Success:", result);
       swal({
         text: "Ištrinta!",
         icon: "success",
@@ -148,7 +151,7 @@ export async function createUser(data) {
   const res = await axiosClient
     .post("/register", JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
+      // console.log("Success:", result);
       swal({
         text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
@@ -167,10 +170,12 @@ export async function createUser(data) {
 
 // Login
 export async function loginUser(data) {
+  let response;
   const res = await axiosClient
     .post("/login", JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
+      response = result;
+      // console.log("Success:", result);
       swal({
         text: "Pavyko prisijungti!",
         icon: "success",
@@ -185,21 +190,23 @@ export async function loginUser(data) {
         "error"
       );
     });
+  // console.log(response);
+  return response;
 }
 
-// find email
-export async function getUserEmail(email) {
-  const res = await axiosClient.get(`/email?email=${email}`);
-  console.log(res);
-  return res;
-}
+// // find email
+// export async function getUserEmail(email) {
+//   const res = await axiosClient.get(`/email?email=${email}`);
+//   console.log(res);
+//   return res;
+// }
 
 //Logout
 export async function logoutUser(data) {
   const res = await axiosClient
     .post("/logout", JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
+      // console.log("Success:", result);
       swal({
         text: "Sėkmingai atsijungta!",
         icon: "success",
@@ -210,21 +217,18 @@ export async function logoutUser(data) {
 
 // Get user expenses by current month
 export async function getUserExpensesByMonth(id) {
-  id = "6273a835d97ec7308cefadab";
   const res = await axiosClient.get(`/${id}/expenses/current/month`);
   return res;
 }
 
 // Get user income by current month
 export async function getUserIncomeByMonth(id) {
-  id = "6273a835d97ec7308cefadab";
   const res = await axiosClient.get(`/${id}/income/current/month`);
   return res;
 }
 
 // Get user balance by current month
 export async function getUserBalanceByMonth(id) {
-  id = "6273a835d97ec7308cefadab";
-  const res = await axiosClient.get(`/${id}/balance/current/month`);
+  const res = await axiosClient.post(`/${id}/balance/current/month`);
   return res;
 }

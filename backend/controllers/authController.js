@@ -87,6 +87,7 @@ exports.loginUser = async (req, res, next) => {
 };
 
 const generateToken = async (user, statusCode, res) => {
+  console.log(user);
   const token = await user.jwtGenerateToken();
 
   const options = {
@@ -95,7 +96,8 @@ const generateToken = async (user, statusCode, res) => {
   };
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
-    token,
+    token: token,
+    user: user,
   });
 };
 

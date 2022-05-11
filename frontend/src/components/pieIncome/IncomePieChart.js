@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // Style
 import "./style/IncomePieChart.css";
 import {
@@ -13,19 +13,27 @@ import {
 import { getUserIncomeByMonth } from "../../api/libraries/apiLibraries";
 // Chart
 import { Pie } from "react-chartjs-2";
+// Context
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function IncomePieChart() {
+  const { userData } = useGlobalUserContext(UserContext);
   const [UserIncomeByMonth, setUserIncomeByMonth] = useState()
   const [chart, setChart] = useState([])
-
+  
+  function getCurrentIncomeMonth() {
+    console.log(userData._id);
+    getUserIncomeByMonth(userData._id).then((res) => {
+      setUserIncomeByMonth(res.data.data.income);
+    });
+    
   function getCurrentIncomeMonth(){
     getUserIncomeByMonth().then((res) =>{
       setUserIncomeByMonth(res.data.data.income)
     })
-  }
-  getCurrentIncomeMonth()
+  };
 
   function getCurrentIncomeCategoryMonth(){
     getUserIncomeByMonth().then((res) =>{
@@ -36,7 +44,8 @@ function IncomePieChart() {
 
   useEffect(() => {
     getCurrentIncomeCategoryMonth();
-  }, []);
+    getCurrentIncomeMonth();
+  }, [userData]);
 
   var names = chart?.map(item => {
     if(item.amount !== 0){

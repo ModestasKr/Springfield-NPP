@@ -1,11 +1,14 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 // Component API
 import { createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
-// Hooks
-
+// Context
+import {
+  useGlobalUserContext,
+  UserContext,
+} from "../../context/UserContext.js";
 // Components
 import Balance from "./Balance";
 // Style
@@ -16,7 +19,7 @@ function Form() {
   const [user, setUser] = useState({});
   const [income, setIncome] = useState({});
   const [incExp, SetIncExp] = useState("income");
-
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
   // react-hook-form
   const {
     register,
@@ -32,24 +35,31 @@ function Form() {
     },
   });
 
-  // Testavimas Ritai
-  // ADD Expenses and Income
+  console.log(user);
+  console.log(userData);
+
+  useEffect(() => {
+    setUser(userData);
+  }, [userData]);
+
   function onSubmit(data) {
-    // console.log(data);
     if ("date" in income) {
-      // console.log(income);
     }
-    // console.log(user);
 
     incExp === "income"
-      ? createUserIncome(data, user._id)
-      : createUserExpenses(data, user._id);
+      ? createUserIncome(data, user._id).then(() => {
+          console.log(user._id);
+          updateUserData(user._id);
+        })
+      : createUserExpenses(data, user._id).then(() => {
+          updateUserData(user._id);
+        });
   }
 
   return (
     <div className="Form-container">
       <div>
-        <Balance />
+        <Balance id={user._id} />
       </div>
       <div className="Form-body">
         <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>

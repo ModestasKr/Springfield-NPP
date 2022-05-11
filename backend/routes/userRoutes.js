@@ -26,6 +26,6 @@ router.route("/:id/income/delete/:subID").patch(deleteUserIncome);
 router.route("/:id/expenses/delete/:subID").patch(deleteUserExpenses);
 router.route("/:id/expenses/current/month").get(getUserExpensesByMonth);
 router.route("/:id/income/current/month").get(getUserIncomeByMonth);
-router.route("/:id/balance/current/month").get(getUserBalanceByMonth);
+router.route("/:id/balance/current/month").post(getUserBalanceByMonth);
 
 module.exports = router;
