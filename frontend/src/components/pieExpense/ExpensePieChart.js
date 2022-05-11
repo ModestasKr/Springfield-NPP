@@ -31,8 +31,8 @@ function ExpensePieChart() {
   }
   useEffect(() => {
     console.log(userData !== undefined)
-    console.log(userData._id)
-    if (userData !== undefined){
+    console.log(userData)
+    if (userData !== undefined && userData.hasOwnProperty("email")){
     getCurrentExpensesMonth();
     getCurrentExpensesCategoryMonth()
     }

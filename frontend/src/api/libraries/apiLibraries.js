@@ -223,7 +223,8 @@ export async function getUserExpensesByMonth(id) {
 
 // Get user income by current month
 export async function getUserIncomeByMonth(id) {
-  const res = await axiosClient.get(`/${id}/income/current/month`);
+  console.log("belekas" + id)
+  const res = await axiosClient.post(`/${id}/income/current/month`);
   return res;
 }
 
