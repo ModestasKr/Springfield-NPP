@@ -6,28 +6,17 @@ import {
   deleteUserIncome,
   deleteUserExpenses,
 } from "../../api/libraries/apiLibraries";
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
 function History() {
   const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [userID, setUserID] = useState(0);
-  
-  
-  //   GET method one user data
-  function Render() {
-    getAllUsersData().then((res) => {
-      setUsers(res.data.data.users[0]);
-      setUserID(res.data.data.users[0]._id);
-      setIsLoading(true);
-  
-    });
-  }
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    Render();
-  }, []);
+    setUsers(userData);
+  }, [userData]);
 
-  if (isLoading) {
+  if (users !== undefined && users.hasOwnProperty("email")) {
     let { income } = users;
     let { expenses } = users;
 
@@ -49,13 +38,15 @@ function History() {
 
       if (type === "income") {
         console.log("income");
-        deleteUserIncome(users._id, subID);
+        deleteUserIncome(users._id, subID).then(() => {
+          updateUserData(users._id);
+        });
       } else {
-        deleteUserExpenses(users._id, subID);
+        deleteUserExpenses(users._id, subID).then(() => {
+          updateUserData(users._id);
+        });
         console.log("expenses");
       }
-      Render();
-      Render();
     }
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
@@ -73,7 +64,6 @@ function History() {
           type={item.type}
           name={item.name}
           userID={users._id}
-          Render={Render}
         />
       );
     });

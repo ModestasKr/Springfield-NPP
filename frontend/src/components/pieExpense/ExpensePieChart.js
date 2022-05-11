@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -13,20 +13,24 @@ import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
 import "./style/ExpensePieChart.css";
 // Chart
 import { Pie } from "react-chartjs-2";
+// Context
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function ExpensePieChart() {
-  
-  const [UserExpensesByMonth, setUserExpensesByMonth] = useState()
-  
-  function getCurrentExpensesMonth(){
-    getUserExpensesByMonth().then((res) =>{
-      setUserExpensesByMonth(res.data.data.expenses)
-     
-    })
+  const { userData } = useGlobalUserContext(UserContext);
+  const [UserExpensesByMonth, setUserExpensesByMonth] = useState();
+
+  function getCurrentExpensesMonth() {
+    console.log(userData._id);
+    getUserExpensesByMonth(userData._id).then((res) => {
+      setUserExpensesByMonth(res.data.data.expenses);
+    });
   }
-  getCurrentExpensesMonth()
+  useEffect(() => {
+    getCurrentExpensesMonth();
+  }, [userData]);
 
   var data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -57,11 +61,7 @@ function ExpensePieChart() {
 
   var options = {
     maintainAspectRatio: false,
-    // scales: {
-    //   y: {
-    //     beginAtZero: true,
-    //   },
-    // },
+
     legend: {
       labels: {
         fontSize: 26,

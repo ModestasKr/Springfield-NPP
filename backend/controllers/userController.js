@@ -97,6 +97,33 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
   }
 };
 
+// Add user income
+exports.createUserIncome = async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.params.subId);
+  try {
+    const updated = await Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { income: req.body } },
+      {
+        new: true,
+      }
+    );
+    console.log(updated);
+    res.status(200).json({
+      status: "success",
+      data: {
+        income: updated,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Create a new expense (/:id/expenses)
 exports.createUserExpenses = async (req, res) => {
   console.log(req.params.id);
@@ -188,33 +215,6 @@ exports.deleteUserIncome = async (req, res) => {
   }
 };
 
-// Add user income
-exports.createUserIncome = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subId);
-  try {
-    const updated = await Users.findOneAndUpdate(
-      { _id: req.params.id },
-      { $push: { income: req.body } },
-      {
-        new: true,
-      }
-    );
-    console.log(updated);
-    res.status(200).json({
-      status: "success",
-      data: {
-        tour: updated,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message: err,
-    });
-  }
-};
-
 // Siaip sitos funkcijos nebereik, bet tegul dar pabuna kaip pvz gal dar panaudosim
 
 // exports.getBalance = async (req, res) => {
@@ -248,7 +248,6 @@ exports.createUserIncome = async (req, res) => {
 //     });
 //   }
 // };
-
 
 // Get user expenses by current month
 exports.getUserExpensesByMonth = async (req, res) => {
@@ -289,7 +288,7 @@ exports.getUserExpensesByMonth = async (req, res) => {
 
 // Get user income by current month
 exports.getUserIncomeByMonth = async (req, res) => {
-  // console.log(req.params.id);
+  console.log(req.params.id, "LOL");
   try {
     const users = await Users.find({ _id: req.params.id });
     const { income } = users[0];
@@ -327,43 +326,44 @@ exports.getUserIncomeByMonth = async (req, res) => {
 
 // Get user income by current month
 exports.getUserBalanceByMonth = async (req, res) => {
+  console.log(req.params.id, "Sveiki");
   try {
-      const users = await Users.find({ _id: req.params.id });
-      const { income } = users[0];
-      //Gaunam current month incomes
-      const currentYearI = new Date().getFullYear();
-      const currentMonthI = new Date().getMonth();
-      const filteredYearI = income.filter(
-        (incomeItem) => incomeItem.date.getFullYear() === currentYearI
-      );
-      const filteredMonthI = filteredYearI.filter(
-        (item) => item.date.getMonth() === currentMonthI
-      );
-      const allIncomeCurrentMonth = filteredMonthI.reduce(
-        (n, { amount }) => n + amount,
-        0
-      );
-      //Gaunam current month expenses
-      const { expenses } =users[0];
-      const currentYear = new Date().getFullYear();
-      const currentMonth = new Date().getMonth();
-      const filteredYear = expenses.filter(
-        (expItem) => expItem.date.getFullYear() === currentYear
-      );
-      const filteredMonth = filteredYear.filter(
-        (item) => item.date.getMonth() === currentMonth
-      );
-      const allExpensesCurrentMonth = filteredMonth.reduce(
-        (n, { amount }) => n + amount,
-        0
-      );
+    const users = await Users.find({ _id: req.params.id });
+    const { income } = users[0];
+    //Gaunam current month incomes
+    const currentYearI = new Date().getFullYear();
+    const currentMonthI = new Date().getMonth();
+    const filteredYearI = income.filter(
+      (incomeItem) => incomeItem.date.getFullYear() === currentYearI
+    );
+    const filteredMonthI = filteredYearI.filter(
+      (item) => item.date.getMonth() === currentMonthI
+    );
+    const allIncomeCurrentMonth = filteredMonthI.reduce(
+      (n, { amount }) => n + amount,
+      0
+    );
+    //Gaunam current month expenses
+    const { expenses } = users[0];
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const filteredYear = expenses.filter(
+      (expItem) => expItem.date.getFullYear() === currentYear
+    );
+    const filteredMonth = filteredYear.filter(
+      (item) => item.date.getMonth() === currentMonth
+    );
+    const allExpensesCurrentMonth = filteredMonth.reduce(
+      (n, { amount }) => n + amount,
+      0
+    );
 
-      var currentMonthBalance = (allIncomeCurrentMonth - allExpensesCurrentMonth)
+    var currentMonthBalance = allIncomeCurrentMonth - allExpensesCurrentMonth;
 
     res.status(200).json({
       status: "success",
       data: {
-        balance:  currentMonthBalance,
+        balance: currentMonthBalance,
       },
     });
   } catch (err) {
