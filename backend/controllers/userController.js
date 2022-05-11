@@ -263,13 +263,13 @@ exports.getUserExpensesByMonth = async (req, res) => {
       (expItem) => expItem.date.getFullYear() === currentYear
     );
 
-    const filteredExpensesC = expenses.filter(
-      (expensesC) => expensesC.category);
-
+   
     const filteredMonth = filteredYear.filter(
       (item) => item.date.getMonth() === currentMonth
     );
     
+    const filteredExpensesC = filteredMonth.filter(
+      (expensesC) => expensesC.category);
 
     const allExpensesCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
@@ -306,13 +306,13 @@ exports.getUserIncomeByMonth = async (req, res) => {
       (incomeItem) => incomeItem.date.getFullYear() === currentYear
     );
 
-    const filteredIncomeC = income.filter(
-      (incomeC) => incomeC.category);
-
-
+   
     const filteredMonth = filteredYear.filter(
       (item) => item.date.getMonth() === currentMonth
     );
+
+    const filteredIncomeC = filteredMonth.filter(
+      (incomeC) => incomeC.category);
 
     const allIncomeCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
@@ -384,51 +384,52 @@ exports.getUserBalanceByMonth = async (req, res) => {
     });
   }
 };
+    
+// exports.getUserBalanceByMonth = async (req, res) => {
+//   try {
+//       const users = await Users.find({ _id: req.params.id });
+//       const { income } = users[0];
+//       //Gaunam current month incomes
+//       const currentYearI = new Date().getFullYear();
+//       const currentMonthI = new Date().getMonth();
+//       const filteredYearI = income.filter(
+//         (incomeItem) => incomeItem.date.getFullYear() === currentYearI
+//       );
+//       const filteredMonthI = filteredYearI.filter(
+//         (item) => item.date.getMonth() === currentMonthI
+//       );
+//       const allIncomeCurrentMonth = filteredMonthI.reduce(
+//         (n, { amount }) => n + amount,
+//         0
+//       );
 
-exports.getUserBalanceByMonth = async (req, res) => {
-  try {
-      const users = await Users.find({ _id: req.params.id });
-      const { income } = users[0];
-      //Gaunam current month incomes
-      const currentYearI = new Date().getFullYear();
-      const currentMonthI = new Date().getMonth();
-      const filteredYearI = income.filter(
-        (incomeItem) => incomeItem.date.getFullYear() === currentYearI
-      );
-      const filteredMonthI = filteredYearI.filter(
-        (item) => item.date.getMonth() === currentMonthI
-      );
-      const allIncomeCurrentMonth = filteredMonthI.reduce(
-        (n, { amount }) => n + amount,
-        0
-      );
-      //Gaunam current month expenses
-      const { expenses } =users[0];
-      const currentYear = new Date().getFullYear();
-      const currentMonth = new Date().getMonth();
-      const filteredYear = expenses.filter(
-        (expItem) => expItem.date.getFullYear() === currentYear
-      );
-      const filteredMonth = filteredYear.filter(
-        (item) => item.date.getMonth() === currentMonth
-      );
-      const allExpensesCurrentMonth = filteredMonth.reduce(
-        (n, { amount }) => n + amount,
-        0
-      );
+//       //Gaunam current month expenses
+//       const { expenses } =users[0];
+//       const currentYear = new Date().getFullYear();
+//       const currentMonth = new Date().getMonth();
+//       const filteredYear = expenses.filter(
+//         (expItem) => expItem.date.getFullYear() === currentYear
+//       );
+//       const filteredMonth = filteredYear.filter(
+//         (item) => item.date.getMonth() === currentMonth
+//       );
+//       const allExpensesCurrentMonth = filteredMonth.reduce(
+//         (n, { amount }) => n + amount,
+//         0
+//       );
 
-      var currentMonthBalance = (allIncomeCurrentMonth - allExpensesCurrentMonth)
+//       var currentMonthBalance = (allIncomeCurrentMonth - allExpensesCurrentMonth)
 
-    res.status(200).json({
-      status: "success",
-      data: {
-        balance:  currentMonthBalance,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "error",
-      message: err,
-    });
-  }
-};
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         balance:  currentMonthBalance,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "error",
+//       message: err,
+//     });
+//   }
+// };
