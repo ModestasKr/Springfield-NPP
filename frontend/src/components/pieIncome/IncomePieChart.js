@@ -19,25 +19,76 @@ import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function IncomePieChart() {
-  const [UserIncomeByMonth, setUserIncomeByMonth] = useState();
   const { userData } = useGlobalUserContext(UserContext);
-
+  const [UserIncomeByMonth, setUserIncomeByMonth] = useState()
+  const [chart, setChart] = useState([])
+  
   function getCurrentIncomeMonth() {
     console.log(userData._id);
     getUserIncomeByMonth(userData._id).then((res) => {
       setUserIncomeByMonth(res.data.data.income);
     });
+    
+  function getCurrentIncomeMonth(){
+    getUserIncomeByMonth().then((res) =>{
+      setUserIncomeByMonth(res.data.data.income)
+    })
+  };
+
+  function getCurrentIncomeCategoryMonth(){
+    getUserIncomeByMonth().then((res) =>{
+      getUserIncomeByMonth(res.data.data.currentIncomeC.category)
+      setChart(res.data.data.duomenys)
+    })
   }
 
   useEffect(() => {
+    getCurrentIncomeCategoryMonth();
     getCurrentIncomeMonth();
   }, [userData]);
+
+  var names = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.name
+    }
+  });
+
+  var labels = [];
+
+  for(let i=0;i<chart.length;i++){
+    names.forEach((item) => {
+      if(item !== undefined){
+        labels.indexOf(item) === -1 ? labels.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+  var sums = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.amount
+    }
+  });
+
+  var categorySum = [];
+
+  for(let i=0;i<sums.length;i++){
+    sums.forEach((item) => {
+      if(item > 0){
+        categorySum.indexOf(item) === -1 ? categorySum.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+console.log(categorySum)
+
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: labels,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: `${chart?.length}`,
+        data: categorySum,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -56,9 +107,9 @@ function IncomePieChart() {
         ],
         borderWidth: 1,
       },
+
     ],
   };
-
   var options = {
     maintainAspectRatio: false,
     // scales: {

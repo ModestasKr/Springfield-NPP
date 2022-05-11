@@ -1,5 +1,7 @@
 // Libraries
-import React, { useEffect, useState } from "react";
+import React, { useState , useEffect } from "react";
+// Style
+import "./style/ExpensePieChart.css";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -9,8 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
-// Style
-import "./style/ExpensePieChart.css";
 // Chart
 import { Pie } from "react-chartjs-2";
 // Context
@@ -20,24 +20,71 @@ ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function ExpensePieChart() {
   const { userData } = useGlobalUserContext(UserContext);
-  const [UserExpensesByMonth, setUserExpensesByMonth] = useState();
+  const [UserExpensesByMonth, setUserExpensesByMonth] = useState()
+  const [chart, setChart] = useState([])
 
-  function getCurrentExpensesMonth() {
-    console.log(userData._id);
-    getUserExpensesByMonth(userData._id).then((res) => {
-      setUserExpensesByMonth(res.data.data.expenses);
-    });
+  function getCurrentExpensesMonth(){
+    getUserExpensesByMonth().then((res) =>{
+      setUserExpensesByMonth(res.data.data.expenses)
+    })
   }
   useEffect(() => {
     getCurrentExpensesMonth();
   }, [userData]);
 
+  //currentExpenseC.category nereikia
+  function getCurrentExpensesCategoryMonth(){
+    getUserExpensesByMonth().then((res) =>{
+      getUserExpensesByMonth(res.data.data.currentExpensesC.category)
+      setChart(res.data.data.duomenys)
+    })
+  }
+
+  useEffect(() => {
+    getCurrentExpensesCategoryMonth();
+  }, []);
+
+  var names = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.name
+    }
+  });
+
+  var labels = [];
+
+  for(let i=0;i<chart.length;i++){
+    names.forEach((item) => {
+      if(item !== undefined){
+        labels.indexOf(item) === -1 ? labels.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+  var sums = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.amount
+    }
+  });
+
+  var categorySum = [];
+
+  for(let i=0;i<sums.length;i++){
+    sums.forEach((item) => {
+      if(item > 0){
+        categorySum.indexOf(item) === -1 ? categorySum.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+console.log(labels)
   var data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: labels,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: labels,
+        data: categorySum,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -56,9 +103,9 @@ function ExpensePieChart() {
         ],
         borderWidth: 1,
       },
+
     ],
   };
-
   var options = {
     maintainAspectRatio: false,
 
@@ -68,9 +115,10 @@ function ExpensePieChart() {
       },
     },
   };
+
   return (
-    <div className="ExpensePieChart-container">
-      {/* Text color red */}
+    <div className="IncomePieChart-container">
+      {/* Text color is green */}
       <h3>Išlaidos</h3>
       <p>{UserExpensesByMonth} EUR</p>
       <div className="ExpensePieChart-chart">
