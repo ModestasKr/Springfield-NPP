@@ -30,23 +30,56 @@ function IncomePieChart() {
   function getCurrentIncomeCategoryMonth(){
     getUserIncomeByMonth().then((res) =>{
       getUserIncomeByMonth(res.data.data.currentIncomeC.category)
-      console.log(res.data.data.currentIncomeC)
-      setChart(res.data.data.currentIncomeC)
+      setChart(res.data.data.duomenys)
     })
   }
 
   useEffect(() => {
     getCurrentIncomeCategoryMonth();
   }, []);
-  
-console.log("chart", chart)
+
+  var names = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.name
+    }
+  });
+
+  var labels = [];
+
+  for(let i=0;i<chart.length;i++){
+    names.forEach((item) => {
+      if(item !== undefined){
+        labels.indexOf(item) === -1 ? labels.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+  var sums = chart?.map(item => {
+    if(item.amount !== 0){
+      return item.amount
+    }
+  });
+
+  var categorySum = [];
+
+  for(let i=0;i<sums.length;i++){
+    sums.forEach((item) => {
+      if(item > 0){
+        categorySum.indexOf(item) === -1 ? categorySum.push(item) : console.log("This item already exists");
+        return;
+      }
+    })
+  }
+
+console.log(categorySum)
 
   var data = {
-    labels: chart?.map(item => item.category),
+    labels: labels,
     datasets: [
       {
-        label: `${chart?.currentIncomeC?.length}`,
-        data: chart?.map(item => item.amount),
+        label: `${chart?.length}`,
+        data: categorySum,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

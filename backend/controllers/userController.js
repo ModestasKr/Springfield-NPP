@@ -275,6 +275,60 @@ exports.getUserExpensesByMonth = async (req, res) => {
       (n, { amount }) => n + amount,
       0
     );
+
+
+//////////////////////////
+
+let mig = 0;
+let apsi = 0;
+let nam = 0;
+let trans = 0;
+let car = 0;
+let fun = 0;
+let pc = 0;
+let finans = 0;
+let stonk = 0;
+let kita = 0;
+
+const allCategorySum = {
+  maistas: mig,
+  apsipirkimai: apsi,
+  namams: nam,
+  transportas: trans,
+  masina: car,
+  gyvenimas: fun,
+  pc,
+  finansines: finans,
+  investavimas: stonk,
+  kita,
+}
+
+users[0].expenses.forEach(item => {
+  if(item.category == 'Namams'){
+    nam += item.amount
+  } else if(item.category == 'Transportas'){
+    trans += item.amount
+  } else if(item.category == 'Mašina'){
+    car += item.amount
+  } else if(item.category == 'Maistas ir gėrimai'){
+    mig += item.amount
+  } else if(item.category == 'Gyvenimas ir linksmybės'){
+    fun += item.amount
+  } else if(item.category == 'Komunikacija,PC'){
+    pc += item.amount
+  } else if(item.category == 'Finansinės išlaidos'){
+    finans += item.amount
+  } else if(item.category == 'Investavimas'){
+    stonk += item.amount
+  } else if(item.category == 'Kitas'){
+    kita += item.amount
+  } else if(item.category == 'Apsipirkimai'){
+    apsi += item.amount
+  }
+})
+
+
+//////////////////////////
     // console.log(allExpensesCurrentMonth);
     res.status(200).json({
       status: "success",
@@ -282,6 +336,29 @@ exports.getUserExpensesByMonth = async (req, res) => {
       data: {
         expenses: allExpensesCurrentMonth,
         currentExpensesC:  filteredExpensesC,
+        duomenys: [
+          
+          {name:"maistas",
+           amount:mig},
+           {name:"namams",
+           amount:nam},
+           {name:"transportas",
+           amount:trans},
+           {name:"masina",
+           amount:car},
+           {name:"gyvenimas",
+           amount:fun},
+           {name:"komunikacija,pc",
+           amount:pc},
+           {name:"finansai",
+           amount:finans},
+           {name:"investavimas",
+           amount:stonk},
+           {name:"kita",
+           amount:kita},
+           {name:"apsipirkimai",
+           amount:apsi},
+        ]
       },
     });
   } catch (err) {
@@ -318,6 +395,57 @@ exports.getUserIncomeByMonth = async (req, res) => {
       (n, { amount }) => n + amount,
       0
     );
+
+    /////////////
+
+    let mig = 0;
+    let apsi = 0;
+    let nam = 0;
+    let trans = 0;
+    let car = 0;
+    let fun = 0;
+    let pc = 0;
+    let finans = 0;
+    let stonk = 0;
+    let kita = 0;
+
+    const allCategorySum = {
+      maistas: mig,
+      apsipirkimai: apsi,
+      namams: nam,
+      transportas: trans,
+      masina: car,
+      gyvenimas: fun,
+      pc,
+      finansines: finans,
+      investavimas: stonk,
+      kita,
+    }
+
+    users[0].income.forEach(item => {
+      if(item.category == 'Namams'){
+        nam += item.amount
+      } else if(item.category == 'Transportas'){
+        trans += item.amount
+      } else if(item.category == 'Mašina'){
+        car += item.amount
+      } else if(item.category == 'Maistas ir gėrimai'){
+        mig += item.amount
+      } else if(item.category == 'Gyvenimas ir linksmybės'){
+        fun += item.amount
+      } else if(item.category == 'Komunikacija,PC'){
+        pc += item.amount
+      } else if(item.category == 'Finansinės išlaidos'){
+        finans += item.amount
+      } else if(item.category == 'Investavimas'){
+        stonk += item.amount
+      } else if(item.category == 'Kitas'){
+        kita += item.amount
+      } else if(item.category == 'Apsipirkimai'){
+        apsi += item.amount
+      }
+    })
+
     // console.log(allIncomeCurrentMonth);
     res.status(200).json({
       status: "success",
@@ -325,6 +453,29 @@ exports.getUserIncomeByMonth = async (req, res) => {
       data: {
         income: allIncomeCurrentMonth,
         currentIncomeC: filteredIncomeC,
+        duomenys: [
+          
+          {name:"maistas",
+           amount:mig},
+           {name:"namams",
+           amount:nam},
+           {name:"transportas",
+           amount:trans},
+           {name:"masina",
+           amount:car},
+           {name:"gyvenimas",
+           amount:fun},
+           {name:"komunikacija,pc",
+           amount:pc},
+           {name:"finansai",
+           amount:finans},
+           {name:"investavimas",
+           amount:stonk},
+           {name:"kita",
+           amount:kita},
+           {name:"apsipirkimai",
+           amount:apsi},
+        ],
       },
     });
   } catch (err) {
