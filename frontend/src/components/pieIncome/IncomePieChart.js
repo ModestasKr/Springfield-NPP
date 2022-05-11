@@ -24,7 +24,7 @@ function IncomePieChart() {
   const [chart, setChart] = useState([])
   
   function getCurrentIncomeMonth() {
-    console.log(userData._id);
+    console.log(userData);
     getUserIncomeByMonth(userData._id).then((res) => {
       setUserIncomeByMonth(res.data.data.income);
     });
@@ -37,8 +37,8 @@ function IncomePieChart() {
   }
   useEffect(() => {
     console.log(userData !== undefined)
-    console.log(userData._id)
-    if (userData !== undefined){
+    console.log(userData)
+    if (userData !== undefined && userData.hasOwnProperty("email")){
     getCurrentIncomeMonth();
     getCurrentIncomeCategoryMonth()
     }

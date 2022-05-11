@@ -371,6 +371,7 @@ users[0].expenses.forEach(item => {
 // Get user income by current month
 exports.getUserIncomeByMonth = async (req, res) => {
   console.log(req.params.id, "LOL");
+  
   try {
     const users = await Users.find({ _id: req.params.id });
     const { income } = users[0];
@@ -388,7 +389,7 @@ exports.getUserIncomeByMonth = async (req, res) => {
     );
 
     const filteredIncomeC = filteredMonth.filter(
-      (incomeC) => incomeC.category);
+      (incomeC) => incomeC.amount);
 
     const allIncomeCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
@@ -421,6 +422,7 @@ exports.getUserIncomeByMonth = async (req, res) => {
       kita,
     }
 
+
     users[0].income.forEach(item => {
       if(item.category == 'Namams'){
         nam += item.amount
@@ -444,14 +446,14 @@ exports.getUserIncomeByMonth = async (req, res) => {
         apsi += item.amount
       }
     })
-
+    // console.log(filteredIncomeC)
     // console.log(allIncomeCurrentMonth);
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
         income: allIncomeCurrentMonth,
-        currentIncomeC: filteredIncomeC,
+        currentIncomeC: filteredMonth,
         duomenys: [
           
           {name:"maistas",
