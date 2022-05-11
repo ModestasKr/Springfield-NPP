@@ -122,7 +122,7 @@ function Form() {
           <input
             placeholder="Parašykite suma"
             type="number"
-            step="0.01"
+            // step="0.01"
             {...register("amount", {
               required: "Įvestyje nesuvesti duomenys",
               pattern: {

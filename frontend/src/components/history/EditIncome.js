@@ -10,6 +10,7 @@ const EditIncome = ({
   type,
   date,
   userID,
+  updateUserData,
   Render,
   name,
   setEditContactId,
@@ -36,7 +37,8 @@ const EditIncome = ({
       } = useForm();
     
       function onSubmit() {
-        findIncomeDataAndUpdate(userUpdateIncome, userID, subID).then(() => Render());
+        findIncomeDataAndUpdate(userUpdateIncome, userID, subID).then(() => 
+        updateUserData(userID));
         setEditContactId(null);
       }
      

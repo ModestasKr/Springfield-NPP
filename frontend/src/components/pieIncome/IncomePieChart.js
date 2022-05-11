@@ -28,23 +28,20 @@ function IncomePieChart() {
     getUserIncomeByMonth(userData._id).then((res) => {
       setUserIncomeByMonth(res.data.data.income);
     });
-    
-  function getCurrentIncomeMonth(){
-    getUserIncomeByMonth().then((res) =>{
-      setUserIncomeByMonth(res.data.data.income)
-    })
-  };
+  }
 
   function getCurrentIncomeCategoryMonth(){
-    getUserIncomeByMonth().then((res) =>{
-      getUserIncomeByMonth(res.data.data.currentIncomeC.category)
+    getUserIncomeByMonth(userData._id).then((res) =>{
       setChart(res.data.data.duomenys)
     })
   }
-
   useEffect(() => {
-    getCurrentIncomeCategoryMonth();
+    console.log(userData !== undefined)
+    console.log(userData._id)
+    if (userData !== undefined){
     getCurrentIncomeMonth();
+    getCurrentIncomeCategoryMonth()
+    }
   }, [userData]);
 
   var names = chart?.map(item => {

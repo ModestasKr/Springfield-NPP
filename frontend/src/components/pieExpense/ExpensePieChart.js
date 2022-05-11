@@ -24,25 +24,28 @@ function ExpensePieChart() {
   const [chart, setChart] = useState([])
 
   function getCurrentExpensesMonth(){
-    getUserExpensesByMonth().then((res) =>{
+    getUserExpensesByMonth(userData._id).then((res) =>{
+      console.log(userData._id)
       setUserExpensesByMonth(res.data.data.expenses)
     })
   }
   useEffect(() => {
+    console.log(userData !== undefined)
+    console.log(userData._id)
+    if (userData !== undefined){
     getCurrentExpensesMonth();
+    getCurrentExpensesCategoryMonth()
+    }
   }, [userData]);
 
   //currentExpenseC.category nereikia
   function getCurrentExpensesCategoryMonth(){
-    getUserExpensesByMonth().then((res) =>{
-      getUserExpensesByMonth(res.data.data.currentExpensesC.category)
+    getUserExpensesByMonth(userData._id).then((res) =>{
+     
       setChart(res.data.data.duomenys)
     })
   }
 
-  useEffect(() => {
-    getCurrentExpensesCategoryMonth();
-  }, []);
 
   var names = chart?.map(item => {
     if(item.amount !== 0){
