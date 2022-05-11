@@ -4,17 +4,14 @@ import ReadOnlyRow from "./ReadOnlyRow.js";
 import EditExpenses from "./EditExpenses.js";
 import EditIncome from "./EditIncome.js";
 import "./style/History.css";
-import {
-  getAllUsersData,
-  deleteUserIncome,
-  deleteUserExpenses,
-} from "../../api/libraries/apiLibraries";
 import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 import { v4 as uuidv4 } from 'uuid';
 
 function History() {
   const [users, setUsers] = useState([]);
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
+  const [editContactId, setEditContactId] = useState(null);
+
 
 
   useEffect(() => {
@@ -68,19 +65,6 @@ function History() {
 
     var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
       return (
-        <HistoryTable
-          getAllUsersData={getAllUsersData}
-          key={item._id}
-          subID={item._id}
-          date={item.date}
-          category={item.category}
-          amount={item.amount}
-          deleteItem={deleteItem}
-          type={item.type}
-          name={item.name}
-          userID={users._id}
-        />
-
         <Fragment>
         {editContactId === item._id && item.type === "expenses" ? (
          <EditExpenses 
@@ -92,8 +76,8 @@ function History() {
             amount={item.amount}
             type={item.type}
             name={item.name}
+            updateUserData = {updateUserData}
             userID={users._id}
-            Render={Render}
             setEditContactId = {setEditContactId}
           />
          ) : editContactId === item._id && item.type === "income" ? (
@@ -102,12 +86,12 @@ function History() {
             handleCancelClick = {handleCancelClick}
             subID={item._id}
             date={item.date}
+            updateUserData = {updateUserData}
             category={item.category}
             amount={item.amount}
             type={item.type}
             name={item.name}
             userID={users._id}
-            Render={Render}
             setEditContactId = {setEditContactId}
             />
          )
@@ -116,13 +100,13 @@ function History() {
             key={item._id}
             subID={item._id}
             date={item.date}
+            updateUserData = {updateUserData}
             category={item.category}
             amount={item.amount}
             deleteItem={deleteItem}
             type={item.type}
             name={item.name}
             userID={users._id}
-            Render={Render}
             handleEditClick = {handleEditClick}
             />
          )

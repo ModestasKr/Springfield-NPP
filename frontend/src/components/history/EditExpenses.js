@@ -10,7 +10,8 @@ const EditExpenses = ({
   type,
   date,
   userID,
-  Render,
+  userData,
+  updateUserData,
   name,
   setEditContactId,
 }) => {
@@ -36,7 +37,7 @@ const EditExpenses = ({
     
       function onSubmit() {
         findExpensesDataAndUpdate(userUpdateExpense, userID, subID).then(() =>
-          Render()
+          updateUserData(userID)
         );
         setEditContactId(null);
       }
