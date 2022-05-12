@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 // Style
 import "./style/Navigation.css";
-
+//
 function Navigation() {
   const { logOut, userData } = useGlobalUserContext(UserContext)
   let redirect = useNavigate();
