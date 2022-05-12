@@ -275,7 +275,7 @@ exports.getUserExpensesByMonth = async (req, res) => {
       0
     );
 
-
+const expense = filteredExpensesC;
 //////////////////////////
 
 let mig = 0;
@@ -302,7 +302,7 @@ const allCategorySum = {
   kita,
 }
 
-users[0].expenses.forEach(item => {
+expense.forEach(item => {
   if(item.category == 'Namams'){
     nam += item.amount
   } else if(item.category == 'Transportas'){
@@ -396,6 +396,7 @@ exports.getUserIncomeByMonth = async (req, res) => {
       0
     );
 
+    const incomee = filteredIncomeC;
     /////////////
 
     let mig = 0;
@@ -423,7 +424,7 @@ exports.getUserIncomeByMonth = async (req, res) => {
     }
 
 
-    users[0].income.forEach(item => {
+    incomee.forEach(item => {
       if(item.category == 'Namams'){
         nam += item.amount
       } else if(item.category == 'Transportas'){
