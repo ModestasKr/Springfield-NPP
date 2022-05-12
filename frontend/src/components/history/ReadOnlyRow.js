@@ -1,25 +1,25 @@
 import React from "react";
-import "./style/History.css";
+import "./style/Button.css";
 
-const ReadOnlyRow = ({ 
-    subID,
-    category,
-    amount,
-    deleteItem,
-    type,
-    date,
-    name,
-    userID,
-    handleEditClick,
-  }) => {
-    const dateWithoutZeros = date.toString().substr(0, 10);
-    let colorClass = (str) => {
-      if (str === "income") {
-        return "table-income";
-      } else {
-        return "table-expense";
-      }
-    };
+const ReadOnlyRow = ({
+  subID,
+  category,
+  amount,
+  deleteItem,
+  type,
+  date,
+  name,
+  userID,
+  handleEditClick,
+}) => {
+  const dateWithoutZeros = date.toString().substr(0, 10);
+  let colorClass = (str) => {
+    if (str === "income") {
+      return "table-income";
+    } else {
+      return "table-expense";
+    }
+  };
   return (
     <tr className="ReadOnlyRow-row">
       <td className={colorClass(type)}>{amount}</td>
@@ -33,9 +33,9 @@ const ReadOnlyRow = ({
         >
           Keisti
         </button>
-          <button type="button" onClick={() => deleteItem(userID, subID, type)}>
-            Ištrinti
-          </button>
+        <button type="button" onClick={() => deleteItem(userID, subID, type)}>
+          Ištrinti
+        </button>
       </td>
     </tr>
   );
