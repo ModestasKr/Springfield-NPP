@@ -19,8 +19,10 @@ function Application() {
       <ExpensePieChart />
       
     </div>
-    <div className="line-chart"><LineChart2 />2022</div>
-    <div className="line-chart"><Linechart />2021</div>
+    <p>2022</p>
+    <div className="line-chart"><LineChart2 /></div>
+    <p>2021</p>
+    <div className="line-chart"><Linechart /></div>
   </div>
   );
 }

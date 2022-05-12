@@ -34,3 +34,8 @@
   height: 350px;
   border: 1px solid black;
 }
+
+p{
+  text-align: center;
+  margin: 0;
+}
