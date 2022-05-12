@@ -8,7 +8,7 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [balance, setBalance] = useState(0);
-
+//
   useEffect(() => {
     if (localStorage.user !== undefined ) {
       // console.log(localStorage.user === undefined);
