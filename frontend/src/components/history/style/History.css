@@ -1,29 +1,38 @@
 .History-container {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  padding-top: 30px;
+  margin: 2em 0;
 }
 
 .History-body {
+  border: 1px solid var(--backGround-color-400);
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
+  table-layout: fixed;
 }
 
-th,
+.History-body tr {
+  background-color: var(--backGround-color-100);
+  border: 1px solid var(--backGround-color-400);
+  padding: 0.35em;
+}
+
+.History-body th,
 td {
-  border: 1px solid #ffffff;
-  text-align: left;
-  padding: 1px;
-  font-size: 23px;
+  padding: 0.625em;
+  text-align: center;
 }
 
-th {
-  background-color: rgb(117, 201, 250);
+.History-body th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-td {
-  background-color: #ffffff;
+@media screen and (max-width: 600px) {
+  .History-body {
+    border: 0;
+  }
 }
 
 .table-income {
@@ -32,10 +41,4 @@ td {
 
 .table-expense {
   color: red;
-}
-
-.HistoryTable-button {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
 }
