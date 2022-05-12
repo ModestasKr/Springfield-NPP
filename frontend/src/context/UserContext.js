@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-
+import swal from "sweetalert";
 import { loginUser, getUserById } from "../api/libraries/apiLibraries";
 
 const UserContext = createContext();
@@ -34,6 +34,17 @@ const UserProvider = ({ children }) => {
     });
   }
 
+  function logOut() {
+    setUserData({})
+    localStorage.clear();
+      swal({
+        text: "Sėkmingai atsijungta!",
+        icon: "success",
+        button: "Puiku",
+      });
+    console.log(`Atsijungta`);
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -41,6 +52,7 @@ const UserProvider = ({ children }) => {
         doLogin,
         userData,
         updateUserData,
+        logOut,
       }}
     >
       {children}

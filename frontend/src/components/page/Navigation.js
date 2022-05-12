@@ -1,11 +1,14 @@
 // Libraries
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Context
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 // Style
 import "./style/Navigation.css";
 
 function Navigation() {
+  const { logOut, userData } = useGlobalUserContext(UserContext)
+  let redirect = useNavigate();
   return (
     <nav className="Nav-container">
       <ul className="Nav-links">
@@ -23,6 +26,13 @@ function Navigation() {
         </li>
         <li>
           <Link to="/register">Registruotis</Link>
+        </li>
+        <li>
+          <button type="submit" className="logout-btn" onClick={() => {
+            logOut();
+            redirect("/");
+            }}>Atsijungti
+          </button>
         </li>
       </ul>
     </nav>
