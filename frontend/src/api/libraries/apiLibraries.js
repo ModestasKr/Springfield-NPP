@@ -233,3 +233,13 @@ export async function getUserBalanceByMonth(id) {
   const res = await axiosClient.post(`/${id}/balance/current/month`);
   return res;
 }
+
+export async function getAllUserIncomeByMonth(id) {
+  const res = await axiosClient.get(`/${id}/income/month`);
+  return res
+}
+
+export async function getAllUserExpensesByMonth(id) {
+  const res = await axiosClient.get(`/${id}/expenses/month`);
+  return res
+}
