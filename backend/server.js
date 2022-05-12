@@ -4,7 +4,7 @@ dotenv.config();
 const app = require("./app");
 
 mongoose.connect(
-  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.rqxd5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  `mongodb+srv://Homerr:vlk2ZmmqVTs3FXP4@cluster0.rqxd5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   { autoIndex: false }
 );
 
