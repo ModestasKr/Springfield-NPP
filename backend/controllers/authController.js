@@ -68,13 +68,6 @@ exports.loginUser = async (req, res, next) => {
       });
     }
 
-    // const token = await user.jwtGenerateToken();
-
-    // res.status(200).json({
-    //   success: true,
-    //   token
-    // })
-
     generateToken(user, 200, res);
   } catch (err) {
     console.log(err);
