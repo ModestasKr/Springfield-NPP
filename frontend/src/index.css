@@ -17,14 +17,12 @@
   --text-color-300: #eb2f2f;
   --text-color-100: #838383;
   /* Background */
-  --backGround-color-400: #cccccc;
   --backGround-color-300: #c6c8c9;
   --backGround-color-200: #dfe1e2;
   --backGround-color-100: #f8fafc;
   /* Neutral */
   --color-1000: black;
   --Neutral-color-100: white;
-
   /* Typography */
   --mainFont: "Roboto", sans-serif;
 }
