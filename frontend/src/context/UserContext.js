@@ -1,21 +1,33 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 
-import { loginUser, getUserById } from "../api/libraries/apiLibraries";
+import { loginUser, getUserById, getUserBalanceByMonth } from "../api/libraries/apiLibraries";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
-    if (localStorage.user !== undefined) {
-      console.log(localStorage.user === undefined);
-      console.log(localStorage.user == undefined);
-      console.log(typeof JSON.parse(localStorage.user));
+    if (localStorage.user !== undefined ) {
+      // console.log(localStorage.user === undefined);
+      // console.log(localStorage.user == undefined);
+      // console.log(typeof JSON.parse(localStorage.user));
       setUserData(JSON.parse(localStorage.getItem("user")));
-      console.log(userData);
+      console.log("super" +userData);
+      
     }
   }, []);
+
+  useEffect(() => {
+    if (userData !== undefined && userData.hasOwnProperty("email")) {
+      console.log("super" +userData);
+      getUserBalanceByMonth(userData._id).then((res) => {
+      setBalance(res.data.data.balance)
+        
+        })
+    }
+  }, [userData]);
 
   function updateUserData(id) {
     getUserById(id).then((res) => {
@@ -41,6 +53,7 @@ const UserProvider = ({ children }) => {
         doLogin,
         userData,
         updateUserData,
+        balance,
       }}
     >
       {children}
