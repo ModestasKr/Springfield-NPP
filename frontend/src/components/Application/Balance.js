@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./style/Balance.css";
-import { getUserBalanceByMonth } from "../../api/libraries/apiLibraries";
-function Balance({ id }) {
-  console.log(id);
-  const [isLoading, setIsLoading] = useState(false);
-  const [balance, setBalance] = useState();
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
-  function getCurrentBalance() {
-    getUserBalanceByMonth(id).then((res) => {
-      console.log(res);
-      setBalance(res.data.data.balance);
-      setIsLoading(true);
-    });
-  }
+function Balance({ id }) {
+  const { balance } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    if (id !== undefined) getCurrentBalance();
+    if (id !== undefined) ;
   }, [id]);
 
   return (
