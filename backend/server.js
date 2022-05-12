@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
 const app = require("./app");
 
-mongoose.connect(
-  `mongodb+srv://Homerr:vlk2ZmmqVTs3FXP4@cluster0.rqxd5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
-  { autoIndex: false }
-);
+const path = require("path");
+require("dotenv").config({
+  path: path.resolve(__dirname, "./process.env"),
+});
 
-app.listen(4000, () => {
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log(err));
+
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
   console.log("listening for requests on port 4000");
 });
