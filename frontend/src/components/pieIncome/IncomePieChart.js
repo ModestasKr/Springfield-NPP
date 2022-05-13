@@ -20,66 +20,64 @@ ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 
 function IncomePieChart() {
   const { userData } = useGlobalUserContext(UserContext);
-  const [UserIncomeByMonth, setUserIncomeByMonth] = useState()
-  const [chart, setChart] = useState([])
-  
+  const [UserIncomeByMonth, setUserIncomeByMonth] = useState();
+  const [chart, setChart] = useState([]);
+
   function getCurrentIncomeMonth() {
-    console.log(userData);
     getUserIncomeByMonth(userData._id).then((res) => {
       setUserIncomeByMonth(res.data.data.income);
     });
   }
 
-  function getCurrentIncomeCategoryMonth(){
-    getUserIncomeByMonth(userData._id).then((res) =>{
-      setChart(res.data.data.duomenys)
-    })
+  function getCurrentIncomeCategoryMonth() {
+    getUserIncomeByMonth(userData._id).then((res) => {
+      setChart(res.data.data.duomenys);
+    });
   }
   useEffect(() => {
-    console.log(userData !== undefined)
-    console.log(userData)
-    if (userData !== undefined && userData.hasOwnProperty("email")){
-    getCurrentIncomeMonth();
-    getCurrentIncomeCategoryMonth()
+    if (userData !== undefined && userData.hasOwnProperty("email")) {
+      getCurrentIncomeMonth();
+      getCurrentIncomeCategoryMonth();
     }
   }, [userData]);
 
-  var names = chart?.map(item => {
-    if(item.amount !== 0){
-      return item.name
+  var names = chart?.map((item) => {
+    if (item.amount !== 0) {
+      return item.name;
     }
   });
 
   var labels = [];
 
-  for(let i=0;i<chart.length;i++){
+  for (let i = 0; i < chart.length; i++) {
     names.forEach((item) => {
-      if(item !== undefined){
-        labels.indexOf(item) === -1 ? labels.push(item) : console.log("This item already exists");
+      if (item !== undefined) {
+        labels.indexOf(item) === -1
+          ? labels.push(item)
+          : console.log("This item already exists");
         return;
       }
-    })
+    });
   }
 
-  var sums = chart?.map(item => {
-    if(item.amount !== 0){
-      return item.amount
+  var sums = chart?.map((item) => {
+    if (item.amount !== 0) {
+      return item.amount;
     }
   });
 
   var categorySum = [];
 
-  for(let i=0;i<sums.length;i++){
+  for (let i = 0; i < sums.length; i++) {
     sums.forEach((item) => {
-      if(item > 0){
-        categorySum.indexOf(item) === -1 ? categorySum.push(item) : console.log("This item already exists");
+      if (item > 0) {
+        categorySum.indexOf(item) === -1
+          ? categorySum.push(item)
+          : console.log("This item already exists");
         return;
       }
-    })
+    });
   }
-
-console.log(categorySum)
-
   var data = {
     labels: labels,
     datasets: [
@@ -104,7 +102,6 @@ console.log(categorySum)
         ],
         borderWidth: 1,
       },
-
     ],
   };
   var options = {
