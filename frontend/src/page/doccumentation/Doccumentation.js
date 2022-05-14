@@ -1,13 +1,13 @@
 // Libraries
 import React from "react";
-// Style
-import "./style/Home.css";
 import { Link } from "react-router-dom";
+// Style
+import "./style/Doccumentation.css";
 // Images
 import budget from "../../assets/budget.png";
 import table from "../../assets/table.png";
 
-function Home() {
+function Doccumentation() {
   return (
     <div className="Home-container">
       <h1>Kodėl verta?</h1>
@@ -43,4 +43,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Doccumentation;

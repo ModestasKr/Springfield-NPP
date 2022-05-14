@@ -1,13 +1,15 @@
 // Libraries
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  Components
-import Application from "./components/page/Application";
-import Navigation from "./components/page/Navigation";
-import History from "./components//history/History";
-import Home from "./components/page/Home";
+import Application from "./page/application/Application";
+import Navigation from "./components/navigation/Navigation";
+import History from "./page/history/History";
+import Doccumentation from "./page/doccumentation/Doccumentation";
+import Charts from "./page/charts/Charts";
+import Home from "./page/home/Home";
 // User
-import Login from "../src/user/Login";
-import Register from "../src/user/Register";
+import Login from "./page/user/Login";
+import Register from "./page/user/Register";
 // Context
 import { UserProvider } from "./context/UserContext";
 // Style
@@ -23,10 +25,19 @@ function App() {
           </nav>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Doccumentation" element={<Doccumentation />} />
             <Route path="/application" element={<Application />} />
             <Route path="/history" element={<History />} />
-            <Route path="/home/application" element={<Home />} />
-            <Route path="/home/history" element={<Home />} />
+            <Route path="/charts" element={<Charts />} />
+            {/* useNavigate */}
+            <Route
+              path="/Doccumentation/application"
+              element={<Doccumentation />}
+            />
+            <Route
+              path="/Doccumentation/history"
+              element={<Doccumentation />}
+            />
             {/* User */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
