@@ -11,7 +11,6 @@ const EditExpenses = ({
   type,
   date,
   userID,
-  userData,
   updateUserData,
   name,
   setEditContactId,
@@ -27,7 +26,6 @@ const EditExpenses = ({
   function updateExpenseObject(e) {
     e.preventDefault();
     userUpdateExpense[e.target.name] = e.target.value;
-    console.log(userUpdateExpense);
   }
 
   const {

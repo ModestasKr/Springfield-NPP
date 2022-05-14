@@ -52,9 +52,13 @@ function IncomePieChart() {
   for (let i = 0; i < chart.length; i++) {
     names.forEach((item) => {
       if (item !== undefined) {
-        labels.indexOf(item) === -1
-          ? labels.push(item)
-          : console.log("This item already exists");
+        labels.indexOf(item) === -1 ? (
+          labels.push(item)
+        ) : item ? (
+          <span>success!</span>
+        ) : (
+          <span>fail</span>
+        );
         return;
       }
     });
@@ -71,9 +75,13 @@ function IncomePieChart() {
   for (let i = 0; i < sums.length; i++) {
     sums.forEach((item) => {
       if (item > 0) {
-        categorySum.indexOf(item) === -1
-          ? categorySum.push(item)
-          : console.log("This item already exists");
+        categorySum.indexOf(item) === -1 ? (
+          categorySum.push(item)
+        ) : item ? (
+          <span>success!</span>
+        ) : (
+          <span>fail</span>
+        );
         return;
       }
     });
