@@ -35,9 +35,12 @@ const UserProvider = ({ children }) => {
 
   function doLogin(data) {
     loginUser(data).then((res) => {
+      console.log(data);
+      console.log(data.user);
+      console.log(res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       setUserData(res.data.user);
       localStorage.setItem("token", JSON.stringify(res.data.token));
-      localStorage.setItem("user", JSON.stringify(res.data.user));
     });
   }
 
@@ -45,9 +48,19 @@ const UserProvider = ({ children }) => {
     setUserData({});
     localStorage.clear();
     swal({
-      text: "Sėkmingai atsijungta!",
-      icon: "success",
-      button: "Puiku",
+      title: "Ar tu tikras?",
+      text: "Ar tu tikras, kad nori atsijungti?",
+      icon: "warning",
+      button: "Gerai",
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal({
+          text: "Sėkmingai atsijungiatė!",
+          icon: "success",
+          button: "Gerai",
+        });
+      }
     });
   }
 

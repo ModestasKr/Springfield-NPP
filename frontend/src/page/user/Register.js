@@ -37,7 +37,7 @@ function Registration() {
           <img className="Registration-image-img" src={img} alt="springfield" />
         </div>
         <form className="Registration-form" onSubmit={handleSubmit(onSubmit)}>
-          <label>Vardas</label>
+          <label>Vartotojo vardas</label>
           <input
             type="text"
             placeholder="Vardas"
@@ -53,7 +53,7 @@ function Registration() {
               },
               pattern: {
                 value: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
-                message: "blogai suvestas šablonas",
+                message: "Negali būti specialų simbolių",
               },
             })}
           />
@@ -72,7 +72,6 @@ function Registration() {
           />
           <span className="error">{errors.email?.message}</span>
           <span className="error">
-            {" "}
             {errors.email?.type === "emailExists" &&
               "El. paštas jau naudojamas."}
           </span>
@@ -90,6 +89,10 @@ function Registration() {
               maxLength: {
                 value: 20,
                 message: "Daugiausia simbolių galima įvesti 20",
+              },
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9?!@#$%^&*]/,
+                message: "Turi būti bent 1 didžioji raidė ir bent 1 simbolis",
               },
             })}
           />

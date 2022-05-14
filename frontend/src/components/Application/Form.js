@@ -93,7 +93,6 @@ function Form() {
               Gyvenimas ir linksmybės
             </option>
             <option value="Komunikacija,PC">Komunikacija,PC</option>
-            <option value="Finansinės išlaidos">Finansinės išlaidos</option>
             <option value="Investavimas">Investavimas</option>
             <option value="Kitas">Kitas</option>
           </select>
@@ -104,10 +103,9 @@ function Form() {
             placeholder="Parašykite pavadinimą"
             type="text"
             {...register("name", {
-              required: "Įvestyje nesuvesti duomenys",
               maxLength: {
-                value: 40,
-                message: "Daugiausia 40 simbolių",
+                value: 20,
+                message: "Daugiausia 20 simbolių",
               },
             })}
           />

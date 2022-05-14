@@ -13,7 +13,7 @@ export async function getUserById(id) {
   return res;
 }
 
-// GET method visas balansas
+// GET method all balance
 export async function getBalance(id) {
   const res = await axiosClient.get(`/${id}/expenses/balance`);
   return res;
@@ -28,12 +28,26 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
         text: "Klaida ištaisyta",
         icon: "success",
         button: "Gerai",
-        timer: 500,
+        timer: 1500,
       });
     })
     .catch((error) => {
-      swal("Oops", "Klaida!", "error");
+      console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
+
+  swal({
+    title: "Puiku!",
+    text: "Klaida ištaisyta!",
+    icon: "success",
+    button: "Gerai",
+    timer: 1500,
+  });
   return res;
 }
 
@@ -50,7 +64,12 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
   return res;
 }
@@ -61,17 +80,19 @@ export async function createUserIncome(data, id) {
     .patch(`/${id}/income/`, JSON.stringify(data))
     .then((result) => {
       swal({
-        text: "Pavyko pridėti duomenys į istorija",
+        text: "Įrašas išsaugotas!",
+        button: "Gerai",
         icon: "success",
-        button: "Puiku",
+        timer: 1500,
       });
     })
     .catch((error) => {
-      swal(
-        "Nepavyko",
-        "Duomenys blogai suvesti, galimai rašybos klaida!",
-        "error"
-      );
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
   return res;
 }
@@ -82,17 +103,19 @@ export async function createUserExpenses(data, id) {
     .patch(`/${id}/expenses/`, JSON.stringify(data))
     .then((result) => {
       swal({
-        text: "Pavyko pridėti duomenys į istorija",
+        text: "Įrašas išsaugotas!",
+        button: "Gerai",
         icon: "success",
-        button: "Puiku",
+        timer: 1500,
       });
     })
     .catch((error) => {
-      swal(
-        "Nepavyko",
-        "Duomenys blogai suvesti, galimai rašybos klaida!",
-        "error"
-      );
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
   return res;
 }
@@ -103,14 +126,28 @@ export async function deleteUserExpenses(id, subID) {
     .patch(`/${id}/expenses/delete/${subID}`)
     .then((result) => {
       swal({
-        text: "Ištrinta!",
-        icon: "success",
+        title: "Ar tu tikras?",
+        text: "Ar tu tikras, kad nori ištrinti šita įraša?",
+        icon: "warning",
         button: "Gerai",
-        timer: 500,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal({
+            text: "Ištrinta!",
+            icon: "success",
+            button: "Gerai",
+          });
+        }
       });
     })
     .catch((error) => {
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 }
 // Delete incomes
@@ -119,14 +156,28 @@ export async function deleteUserIncome(id, subID) {
     .patch(`/${id}/income/delete/${subID}`)
     .then((result) => {
       swal({
-        text: "Ištrinta!",
-        icon: "success",
+        title: "Ar tu tikras?",
+        text: "Ar tu tikras, kad nori ištrinti šita įraša?",
+        icon: "warning",
         button: "Gerai",
-        timer: 500,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal({
+            text: "Ištrinta!",
+            icon: "success",
+            button: "Gerai",
+          });
+        }
       });
     })
     .catch((error) => {
-      swal("Oops", "Klaida!", "error");
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 }
 
@@ -136,17 +187,19 @@ export async function createUser(data) {
     .post("/register", JSON.stringify(data))
     .then((result) => {
       swal({
-        text: "Pavyko pridėti duomenys į istorija",
+        text: "Registracija sėkmingai, dabar galite prisijungti",
         icon: "success",
         button: "Puiku",
+        timer: 2000,
       });
     })
     .catch((error) => {
-      swal(
-        "Nepavyko",
-        "Duomenys blogai suvesti, galimai rašybos klaida!",
-        "error"
-      );
+      swal({
+        text: "Toks vartotojas jau egzistuoja",
+        icon: "error",
+        button: "Gerai",
+        timer: 5000,
+      });
     });
 }
 
@@ -157,23 +210,26 @@ export async function loginUser(data) {
     .post("/login", JSON.stringify(data))
     .then((result) => {
       response = result;
-
       swal({
         text: "Pavyko prisijungti!",
         icon: "success",
         button: "Puiku",
+        timer: 5000,
       });
     })
     .catch((error) => {
-      swal(
-        "Nepavyko",
-        "Duomenys blogai suvesti, galimai rašybos klaida!",
-        "error"
-      );
+      swal({
+        text: "Neteisingai suvestas vartotojo vardas arba slaptažodis",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
     });
 
   return response;
 }
+
+// Paskui...?????????>>>>>>>>
 
 // // find email
 // export async function getUserEmail(email) {
@@ -183,17 +239,35 @@ export async function loginUser(data) {
 // }
 
 //Logout
-export async function logoutUser(data) {
-  const res = await axiosClient
-    .post("/logout", JSON.stringify(data))
-    .then((result) => {
-      swal({
-        text: "Sėkmingai atsijungta!",
-        icon: "success",
-        button: "Puiku",
-      });
-    });
-}
+// export async function logoutUser(data) {
+//   const res = await axiosClient
+//     .post("/logout", JSON.stringify(data))
+//     .then((result) => {
+//       swal({
+//         title: "Ar tu tikras?",
+//         text: "Ar tu tikras, kad nori atsijungti?",
+//         icon: "warning",
+//         button: "Gerai",
+//         dangerMode: true,
+//       }).then((willDelete) => {
+//         if (willDelete) {
+//           swal({
+//             text: "Sėkmingai atsijungiatė!",
+//             icon: "success",
+//             button: "Gerai",
+//           });
+//         }
+//       });
+//     })
+//     .catch((error) => {
+//       swal({
+//         text: "Klaida!",
+//         icon: "error",
+//         button: "Gerai",
+//         timer: 1500,
+//       });
+//     });
+// }
 
 // Get user expenses by current month
 export async function getUserExpensesByMonth(id) {
