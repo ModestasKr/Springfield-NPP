@@ -20,9 +20,7 @@ function Login() {
   } = useForm();
 
   function onSubmit(data) {
-    // console.log(data);
     loginUser(data);
-
     doLogin(data);
   }
   return (

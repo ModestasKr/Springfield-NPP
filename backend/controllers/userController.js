@@ -39,9 +39,6 @@ exports.getUserById = async (req, res) => {
 
 // Update Income array
 exports.findIncomeDataAndUpdate = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
-  console.log(req.body);
   try {
     const updateIncome = await Users.findOneAndUpdate(
       { _id: req.params.id, "income._id": req.params.subID },
@@ -99,8 +96,6 @@ exports.findExpensesDataAndUpdate = async (req, res) => {
 
 // Add user income
 exports.createUserIncome = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subId);
   try {
     const updated = await Users.findOneAndUpdate(
       { _id: req.params.id },
@@ -109,7 +104,6 @@ exports.createUserIncome = async (req, res) => {
         new: true,
       }
     );
-    console.log(updated);
     res.status(200).json({
       status: "success",
       data: {
@@ -126,8 +120,6 @@ exports.createUserIncome = async (req, res) => {
 
 // Create a new expense (/:id/expenses)
 exports.createUserExpenses = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subId);
   try {
     const updated = await Users.findOneAndUpdate(
       { _id: req.params.id },
@@ -136,7 +128,7 @@ exports.createUserExpenses = async (req, res) => {
         new: true,
       }
     );
-    console.log(updated);
+    // console.log(updated);
     res.status(200).json({
       status: "success",
       data: {
@@ -173,9 +165,6 @@ exports.deleteUserIncome = async (req, res) => {
 
 // ("/:id/expenses/delete/:subID")
 exports.deleteUserExpenses = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
-
   try {
     await Users.findOneAndUpdate(
       { _id: req.params.id },
@@ -195,9 +184,6 @@ exports.deleteUserExpenses = async (req, res) => {
 
 // ("/:id/income/delete/:subID")
 exports.deleteUserIncome = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.params.subID);
-
   try {
     await Users.findOneAndUpdate(
       { _id: req.params.id },
@@ -251,113 +237,99 @@ exports.deleteUserIncome = async (req, res) => {
 
 // Get user expenses by current month
 exports.getUserExpensesByMonth = async (req, res) => {
-  console.log(req.params.id);
   try {
     const users = await Users.find({ _id: req.params.id });
     const { expenses } = users[0];
-    // console.log(income);
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     const filteredYear = expenses.filter(
       (expItem) => expItem.date.getFullYear() === currentYear
     );
 
-   
     const filteredMonth = filteredYear.filter(
       (item) => item.date.getMonth() === currentMonth
     );
-    
+
     const filteredExpensesC = filteredMonth.filter(
-      (expensesC) => expensesC.category);
+      (expensesC) => expensesC.category
+    );
 
     const allExpensesCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
       0
     );
 
-const expense = filteredExpensesC;
-//////////////////////////
+    const expense = filteredExpensesC;
+    //////////////////////////
 
-let mig = 0;
-let apsi = 0;
-let nam = 0;
-let trans = 0;
-let car = 0;
-let fun = 0;
-let pc = 0;
-let finans = 0;
-let stonk = 0;
-let kita = 0;
+    let mig = 0;
+    let apsi = 0;
+    let nam = 0;
+    let trans = 0;
+    let car = 0;
+    let fun = 0;
+    let pc = 0;
+    let finans = 0;
+    let stonk = 0;
+    let kita = 0;
 
-const allCategorySum = {
-  maistas: mig,
-  apsipirkimai: apsi,
-  namams: nam,
-  transportas: trans,
-  masina: car,
-  gyvenimas: fun,
-  pc,
-  finansines: finans,
-  investavimas: stonk,
-  kita,
-}
+    const allCategorySum = {
+      maistas: mig,
+      apsipirkimai: apsi,
+      namams: nam,
+      transportas: trans,
+      masina: car,
+      gyvenimas: fun,
+      pc,
+      finansines: finans,
+      investavimas: stonk,
+      kita,
+    };
 
-expense.forEach(item => {
-  if(item.category == 'Namams'){
-    nam += item.amount
-  } else if(item.category == 'Transportas'){
-    trans += item.amount
-  } else if(item.category == 'Mašina'){
-    car += item.amount
-  } else if(item.category == 'Maistas ir gėrimai'){
-    mig += item.amount
-  } else if(item.category == 'Gyvenimas ir linksmybės'){
-    fun += item.amount
-  } else if(item.category == 'Komunikacija,PC'){
-    pc += item.amount
-  } else if(item.category == 'Finansinės išlaidos'){
-    finans += item.amount
-  } else if(item.category == 'Investavimas'){
-    stonk += item.amount
-  } else if(item.category == 'Kitas'){
-    kita += item.amount
-  } else if(item.category == 'Apsipirkimai'){
-    apsi += item.amount
-  }
-})
+    expense.forEach((item) => {
+      if (item.category == "Namams") {
+        nam += item.amount;
+      } else if (item.category == "Transportas") {
+        trans += item.amount;
+      } else if (item.category == "Mašina") {
+        car += item.amount;
+      } else if (item.category == "Maistas ir gėrimai") {
+        mig += item.amount;
+      } else if (item.category == "Gyvenimas ir linksmybės") {
+        fun += item.amount;
+      } else if (item.category == "Komunikacija,PC") {
+        pc += item.amount;
+      } else if (item.category == "Finansinės išlaidos") {
+        finans += item.amount;
+      } else if (item.category == "Investavimas") {
+        stonk += item.amount;
+      } else if (item.category == "Kitas") {
+        kita += item.amount;
+      } else if (item.category == "Apsipirkimai") {
+        apsi += item.amount;
+      }
+    });
 
-
-//////////////////////////
+    //////////////////////////
     // console.log(allExpensesCurrentMonth);
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
         expenses: allExpensesCurrentMonth,
-        currentExpensesC:  filteredExpensesC,
+        currentExpensesC: filteredExpensesC,
         duomenys: [
-          
-          {name:"maistas",
-           amount:mig},
-           {name:"namams",
-           amount:nam},
-           {name:"transportas",
-           amount:trans},
-           {name:"masina",
-           amount:car},
-           {name:"gyvenimas",
-           amount:fun},
-           {name:"komunikacija,pc",
-           amount:pc},
-           {name:"finansai",
-           amount:finans},
-           {name:"investavimas",
-           amount:stonk},
-           {name:"kita",
-           amount:kita},
-           {name:"apsipirkimai",
-           amount:apsi},
-        ]
+          { name: "maistas", amount: mig },
+          { name: "namams", amount: nam },
+          { name: "transportas", amount: trans },
+          { name: "masina", amount: car },
+          { name: "gyvenimas", amount: fun },
+          { name: "komunikacija,pc", amount: pc },
+          { name: "finansai", amount: finans },
+          { name: "investavimas", amount: stonk },
+          { name: "kita", amount: kita },
+          { name: "apsipirkimai", amount: apsi },
+        ],
       },
     });
   } catch (err) {
@@ -370,12 +342,9 @@ expense.forEach(item => {
 
 // Get user income by current month
 exports.getUserIncomeByMonth = async (req, res) => {
-  console.log(req.params.id, "LOL");
-  
   try {
     const users = await Users.find({ _id: req.params.id });
     const { income } = users[0];
-    // console.log(income);
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
 
@@ -383,13 +352,11 @@ exports.getUserIncomeByMonth = async (req, res) => {
       (incomeItem) => incomeItem.date.getFullYear() === currentYear
     );
 
-   
     const filteredMonth = filteredYear.filter(
       (item) => item.date.getMonth() === currentMonth
     );
 
-    const filteredIncomeC = filteredMonth.filter(
-      (incomeC) => incomeC.amount);
+    const filteredIncomeC = filteredMonth.filter((incomeC) => incomeC.amount);
 
     const allIncomeCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
@@ -421,32 +388,31 @@ exports.getUserIncomeByMonth = async (req, res) => {
       finansines: finans,
       investavimas: stonk,
       kita,
-    }
+    };
 
-
-    incomee.forEach(item => {
-      if(item.category == 'Namams'){
-        nam += item.amount
-      } else if(item.category == 'Transportas'){
-        trans += item.amount
-      } else if(item.category == 'Mašina'){
-        car += item.amount
-      } else if(item.category == 'Maistas ir gėrimai'){
-        mig += item.amount
-      } else if(item.category == 'Gyvenimas ir linksmybės'){
-        fun += item.amount
-      } else if(item.category == 'Komunikacija,PC'){
-        pc += item.amount
-      } else if(item.category == 'Finansinės išlaidos'){
-        finans += item.amount
-      } else if(item.category == 'Investavimas'){
-        stonk += item.amount
-      } else if(item.category == 'Kitas'){
-        kita += item.amount
-      } else if(item.category == 'Apsipirkimai'){
-        apsi += item.amount
+    incomee.forEach((item) => {
+      if (item.category == "Namams") {
+        nam += item.amount;
+      } else if (item.category == "Transportas") {
+        trans += item.amount;
+      } else if (item.category == "Mašina") {
+        car += item.amount;
+      } else if (item.category == "Maistas ir gėrimai") {
+        mig += item.amount;
+      } else if (item.category == "Gyvenimas ir linksmybės") {
+        fun += item.amount;
+      } else if (item.category == "Komunikacija,PC") {
+        pc += item.amount;
+      } else if (item.category == "Finansinės išlaidos") {
+        finans += item.amount;
+      } else if (item.category == "Investavimas") {
+        stonk += item.amount;
+      } else if (item.category == "Kitas") {
+        kita += item.amount;
+      } else if (item.category == "Apsipirkimai") {
+        apsi += item.amount;
       }
-    })
+    });
     // console.log(filteredIncomeC)
     // console.log(allIncomeCurrentMonth);
     res.status(200).json({
@@ -456,27 +422,16 @@ exports.getUserIncomeByMonth = async (req, res) => {
         income: allIncomeCurrentMonth,
         currentIncomeC: filteredMonth,
         duomenys: [
-          
-          {name:"maistas",
-           amount:mig},
-           {name:"namams",
-           amount:nam},
-           {name:"transportas",
-           amount:trans},
-           {name:"masina",
-           amount:car},
-           {name:"gyvenimas",
-           amount:fun},
-           {name:"komunikacija,pc",
-           amount:pc},
-           {name:"finansai",
-           amount:finans},
-           {name:"investavimas",
-           amount:stonk},
-           {name:"kita",
-           amount:kita},
-           {name:"apsipirkimai",
-           amount:apsi},
+          { name: "maistas", amount: mig },
+          { name: "namams", amount: nam },
+          { name: "transportas", amount: trans },
+          { name: "masina", amount: car },
+          { name: "gyvenimas", amount: fun },
+          { name: "komunikacija,pc", amount: pc },
+          { name: "finansai", amount: finans },
+          { name: "investavimas", amount: stonk },
+          { name: "kita", amount: kita },
+          { name: "apsipirkimai", amount: apsi },
         ],
       },
     });
@@ -490,9 +445,8 @@ exports.getUserIncomeByMonth = async (req, res) => {
 
 // Get user income by current month
 exports.getUserBalanceByMonth = async (req, res) => {
-  console.log(req.params.id, "Sveiki");
+  // console.log(req.params.id, "Sveiki");
   try {
-
     const users = await Users.find({ _id: req.params.id });
     const { income } = users[0];
     //Gaunam current month incomes
@@ -522,8 +476,6 @@ exports.getUserBalanceByMonth = async (req, res) => {
       (n, { amount }) => n + amount,
       0
     );
-    
-
 
     var currentMonthBalance = allIncomeCurrentMonth - allExpensesCurrentMonth;
 
@@ -540,18 +492,18 @@ exports.getUserBalanceByMonth = async (req, res) => {
     });
   }
 };
-    
+
 let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth() + 1;
 
-for(let y = 2021; y<=currentYear;y++){
-  if(y !== currentYear){
-    for(let m = 1;m<=12;m++){
-      console.log(y,m)
+for (let y = 2021; y <= currentYear; y++) {
+  if (y !== currentYear) {
+    for (let m = 1; m <= 12; m++) {
+      // console.log(y, m);
     }
   } else {
-      for(let m = 1;m<=currentMonth;m++){
-      console.log(y,m)
+    for (let m = 1; m <= currentMonth; m++) {
+      // console.log(y, m);
     }
   }
 }
@@ -586,7 +538,10 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
           var filteredMonth = filteredYear.filter(
             (item) => item.date.getMonth() + 1 === y
           );
-          var allIncome = filteredMonth.reduce((n, { amount }) => n + amount, 0);
+          var allIncome = filteredMonth.reduce(
+            (n, { amount }) => n + amount,
+            0
+          );
           monthArray.push(allIncome.toFixed(2));
         } else {
           monthArray.push(0);
@@ -624,8 +579,6 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
     const users = await Users.find({ _id: req.params.id });
     const { expenses } = users[0];
 
-    console.log(expenses);
-
     var sortedExpensesByDate = expenses.sort(function (a, b) {
       var c = new Date(a.date);
       var d = new Date(b.date);
@@ -651,7 +604,10 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
           var filteredMonth = filteredYear.filter(
             (item) => item.date.getMonth() + 1 === y
           );
-          var allExpenses = filteredMonth.reduce((n, { amount }) => n + amount, 0);
+          var allExpenses = filteredMonth.reduce(
+            (n, { amount }) => n + amount,
+            0
+          );
           monthArray.push(allExpenses.toFixed(2));
         } else {
           monthArray.push(0);

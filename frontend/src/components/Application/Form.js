@@ -45,7 +45,6 @@ function Form() {
 
     incExp === "income"
       ? createUserIncome(data, user._id).then(() => {
-          console.log(user._id);
           updateUserData(user._id);
         })
       : createUserExpenses(data, user._id).then(() => {

@@ -25,7 +25,6 @@ function Registration() {
   });
 
   function onSubmit(data) {
-    console.log(data);
     createUser(data);
   }
 

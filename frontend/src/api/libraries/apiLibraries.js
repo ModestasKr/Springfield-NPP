@@ -24,7 +24,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
   const res = await axiosClient
     .patch(`/${id}/income/${subID}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
@@ -33,7 +32,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
   return res;
@@ -44,7 +42,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
   const res = await axiosClient
     .patch(`/${id}/expenses/${subID}`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Klaida ištaisyta",
         icon: "success",
@@ -53,7 +50,6 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
   return res;
@@ -61,12 +57,9 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
 
 // ADD user Income
 export async function createUserIncome(data, id) {
-  // console.log(id);
-  // console.log(data);
   const res = await axiosClient
     .patch(`/${id}/income/`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
@@ -74,7 +67,6 @@ export async function createUserIncome(data, id) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal(
         "Nepavyko",
         "Duomenys blogai suvesti, galimai rašybos klaida!",
@@ -86,12 +78,9 @@ export async function createUserIncome(data, id) {
 
 // ADD user Expenes
 export async function createUserExpenses(data, id) {
-  console.log(id);
-  console.log(data);
   const res = await axiosClient
     .patch(`/${id}/expenses/`, JSON.stringify(data))
     .then((result) => {
-      console.log("Success:", result);
       swal({
         text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
@@ -99,7 +88,6 @@ export async function createUserExpenses(data, id) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal(
         "Nepavyko",
         "Duomenys blogai suvesti, galimai rašybos klaida!",
@@ -114,7 +102,6 @@ export async function deleteUserExpenses(id, subID) {
   const response = await axiosClient
     .patch(`/${id}/expenses/delete/${subID}`)
     .then((result) => {
-      // console.log("Success:", result);
       swal({
         text: "Ištrinta!",
         icon: "success",
@@ -123,7 +110,6 @@ export async function deleteUserExpenses(id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
 }
@@ -132,7 +118,6 @@ export async function deleteUserIncome(id, subID) {
   const response = await axiosClient
     .patch(`/${id}/income/delete/${subID}`)
     .then((result) => {
-      // console.log("Success:", result);
       swal({
         text: "Ištrinta!",
         icon: "success",
@@ -141,7 +126,6 @@ export async function deleteUserIncome(id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal("Oops", "Klaida!", "error");
     });
 }
@@ -151,7 +135,6 @@ export async function createUser(data) {
   const res = await axiosClient
     .post("/register", JSON.stringify(data))
     .then((result) => {
-      // console.log("Success:", result);
       swal({
         text: "Pavyko pridėti duomenys į istorija",
         icon: "success",
@@ -159,7 +142,6 @@ export async function createUser(data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal(
         "Nepavyko",
         "Duomenys blogai suvesti, galimai rašybos klaida!",
@@ -175,7 +157,7 @@ export async function loginUser(data) {
     .post("/login", JSON.stringify(data))
     .then((result) => {
       response = result;
-      // console.log("Success:", result);
+
       swal({
         text: "Pavyko prisijungti!",
         icon: "success",
@@ -183,14 +165,13 @@ export async function loginUser(data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal(
         "Nepavyko",
         "Duomenys blogai suvesti, galimai rašybos klaida!",
         "error"
       );
     });
-  // console.log(response);
+
   return response;
 }
 
@@ -206,7 +187,6 @@ export async function logoutUser(data) {
   const res = await axiosClient
     .post("/logout", JSON.stringify(data))
     .then((result) => {
-      // console.log("Success:", result);
       swal({
         text: "Sėkmingai atsijungta!",
         icon: "success",
@@ -223,7 +203,6 @@ export async function getUserExpensesByMonth(id) {
 
 // Get user income by current month
 export async function getUserIncomeByMonth(id) {
-  console.log("belekas" + id)
   const res = await axiosClient.post(`/${id}/income/current/month`);
   return res;
 }
@@ -234,12 +213,14 @@ export async function getUserBalanceByMonth(id) {
   return res;
 }
 
+// Get all years income
 export async function getAllUserIncomeByMonth(id) {
   const res = await axiosClient.get(`/${id}/income/month`);
-  return res
+  return res;
 }
 
+// Get all years income
 export async function getAllUserExpensesByMonth(id) {
   const res = await axiosClient.get(`/${id}/expenses/month`);
-  return res
+  return res;
 }

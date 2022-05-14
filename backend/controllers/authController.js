@@ -23,7 +23,7 @@ exports.createUser = async (req, res) => {
 exports.getUserEmail = async (req, res) => {
   try {
     const user = await Users.exists(req.query);
-    console.log(user);
+
     res.status(200).json({
       status: "success",
       results: user.length,
@@ -80,7 +80,6 @@ exports.loginUser = async (req, res, next) => {
 };
 
 const generateToken = async (user, statusCode, res) => {
-  console.log(user);
   const token = await user.jwtGenerateToken();
 
   const options = {

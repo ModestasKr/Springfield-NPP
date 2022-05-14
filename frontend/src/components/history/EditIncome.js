@@ -12,7 +12,6 @@ const EditIncome = ({
   date,
   userID,
   updateUserData,
-  Render,
   name,
   setEditContactId,
 }) => {
@@ -27,7 +26,6 @@ const EditIncome = ({
   function updateIncomeObject(e) {
     e.preventDefault();
     userUpdateIncome[e.target.name] = e.target.value;
-    console.log(userUpdateIncome);
   }
 
   const {

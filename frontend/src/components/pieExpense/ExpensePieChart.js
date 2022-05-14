@@ -25,13 +25,10 @@ function ExpensePieChart() {
 
   function getCurrentExpensesMonth() {
     getUserExpensesByMonth(userData._id).then((res) => {
-      console.log(userData._id);
       setUserExpensesByMonth(res.data.data.expenses);
     });
   }
   useEffect(() => {
-    console.log(userData !== undefined);
-    console.log(userData);
     if (userData !== undefined && userData.hasOwnProperty("email")) {
       getCurrentExpensesMonth();
       getCurrentExpensesCategoryMonth();
@@ -56,9 +53,13 @@ function ExpensePieChart() {
   for (let i = 0; i < chart.length; i++) {
     names.forEach((item) => {
       if (item !== undefined) {
-        labels.indexOf(item) === -1
-          ? labels.push(item)
-          : console.log("This item already exists");
+        labels.indexOf(item) === -1 ? (
+          labels.push(item)
+        ) : item ? (
+          <span>success!</span>
+        ) : (
+          <span>fail</span>
+        );
         return;
       }
     });
@@ -75,15 +76,18 @@ function ExpensePieChart() {
   for (let i = 0; i < sums.length; i++) {
     sums.forEach((item) => {
       if (item > 0) {
-        categorySum.indexOf(item) === -1
-          ? categorySum.push(item)
-          : console.log("This item already exists");
+        categorySum.indexOf(item) === -1 ? (
+          categorySum.push(item)
+        ) : item ? (
+          <span>success!</span>
+        ) : (
+          <span>fail</span>
+        );
         return;
       }
     });
   }
 
-  console.log(labels);
   var data = {
     labels: labels,
     datasets: [
