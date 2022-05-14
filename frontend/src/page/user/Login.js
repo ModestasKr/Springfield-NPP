@@ -2,13 +2,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 // API components
-import { loginUser } from "../../src/api/libraries/apiLibraries";
+import { loginUser } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Login.css";
 // Images
-import img from "../assets/register.jpg";
+import img from "../../assets/register.jpg";
 // Context
-import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import { useGlobalUserContext, UserContext } from "../../context/UserContext";
 
 function Login() {
   const { doLogin } = useGlobalUserContext(UserContext);

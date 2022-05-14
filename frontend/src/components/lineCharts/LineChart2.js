@@ -15,7 +15,7 @@ import {
 import { Line } from "react-chartjs-2";
 //Context
 import { useGlobalUserContext, UserContext } from "../../context/UserContext";
-
+// API
 import { getAllUserIncomeByMonth } from "../../api/libraries/apiLibraries";
 import { getAllUserExpensesByMonth } from "../../api/libraries/apiLibraries";
 
@@ -29,7 +29,7 @@ ChartJS.register(
   Legend
 );
 
-function Linechart({ id }) {
+function LineChart2() {
   const { userData } = useGlobalUserContext(UserContext);
   const [userIncome, setUserIncome] = useState([]);
   const [userExpenses, setUserExpenses] = useState([]);
@@ -89,4 +89,4 @@ function Linechart({ id }) {
     </div>
   );
 }
-export default Linechart;
+export default LineChart2;

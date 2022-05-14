@@ -38,14 +38,14 @@ function History() {
       }
       return 0;
     }
-    // tikrai cia su deleto userID viskas ok????
+
     function deleteItem(userID, subID, type) {
       if (type === "income") {
-        deleteUserIncome(users._id, subID).then(() => {
+        deleteUserIncome(users._id, subID, userID).then(() => {
           updateUserData(users._id);
         });
       } else {
-        deleteUserExpenses(users._id, subID).then(() => {
+        deleteUserExpenses(users._id, subID, userID).then(() => {
           updateUserData(users._id);
         });
       }
@@ -53,7 +53,7 @@ function History() {
 
     const handleEditClick = (event, subID, type) => {
       event.preventDefault();
-      setEditContactId(subID);
+      setEditContactId(subID, type);
     };
 
     const handleCancelClick = () => {

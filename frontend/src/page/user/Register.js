@@ -2,11 +2,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 // Api Libraries
-import { createUser } from "../../src/api/libraries/apiLibraries";
+import { createUser } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Register.css";
 // Images
-import img from "../assets/register.jpg";
+import img from "../../assets/register.jpg";
 
 function Registration() {
   const {

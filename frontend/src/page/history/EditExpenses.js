@@ -46,7 +46,6 @@ const EditExpenses = ({
       <td>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            className="Edit-input"
             placeholder="Suma"
             type="number"
             name="amount"
@@ -72,7 +71,6 @@ const EditExpenses = ({
       <td>
         <form onSubmit={handleSubmit(onSubmit)}>
           <select
-            className="Edit-input"
             name="category"
             id="category"
             {...register("category", { required: true })}
@@ -111,7 +109,6 @@ const EditExpenses = ({
       <td>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            className="Edit-input"
             type="date"
             name="date"
             id="date-inp"
