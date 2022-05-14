@@ -37,6 +37,6 @@ Tools to help create app:
 ## Testing
 
 Using Postman to test API.
-using Jest.js to test functions.
+
 
 ## Link
