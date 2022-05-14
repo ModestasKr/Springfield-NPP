@@ -32,7 +32,15 @@ const EditExpenses = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValue: {
+      accounting: "",
+      name: "",
+      category: "",
+      amount: "",
+      date: "",
+    },
+  });
 
   function onSubmit() {
     findExpensesDataAndUpdate(userUpdateExpense, userID, subID).then(() =>
@@ -49,23 +57,16 @@ const EditExpenses = ({
             placeholder="Suma"
             type="number"
             name="amount"
-            id="amount"
             step="0.01"
             defaultValue={amount}
             {...register("amount", {
               required: true,
               pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-              // min: 1,
+              minLength: 1,
               maxLength: 10,
             })}
             onChange={(e) => updateExpenseObject(e)}
           />
-          {errors.sum && (
-            <span className="Edit-span">
-              Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-              skaičius.
-            </span>
-          )}
         </form>
       </td>
       <td>

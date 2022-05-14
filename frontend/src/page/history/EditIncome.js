@@ -32,7 +32,15 @@ const EditIncome = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValue: {
+      accounting: "",
+      name: "",
+      category: "",
+      amount: "",
+      date: "",
+    },
+  });
 
   function onSubmit() {
     findIncomeDataAndUpdate(userUpdateIncome, userID, subID).then(() =>
@@ -50,23 +58,16 @@ const EditIncome = ({
             placeholder="Suma"
             type="number"
             name="amount"
-            id="amount"
             step="0.01"
             defaultValue={amount}
             {...register("amount", {
               required: true,
               pattern: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-              // min: 1,
+              minLenght: 1,
               maxLength: 10,
             })}
             onChange={(e) => updateIncomeObject(e)}
           />
-          {errors.sum && (
-            <span className="Edit-span">
-              Būtinas laukas. Ne daugiau 10 simbolių, negali būti neigiamas
-              skaičius.
-            </span>
-          )}
         </form>
       </td>
       <td>
@@ -74,7 +75,6 @@ const EditIncome = ({
           <select
             className="Edit-input"
             name="category"
-            id="category"
             {...register("category", { required: true })}
             onChange={(e) => updateIncomeObject(e)}
           >
@@ -99,10 +99,9 @@ const EditIncome = ({
             type="text"
             placeholder="Pavadinimas"
             className="Edit-input"
-            id="name"
             defaultValue={name}
             {...register("name", {
-              maxLength: 40,
+              maxLength: 20,
             })}
             onChange={(e) => updateIncomeObject(e)}
           />
@@ -114,8 +113,8 @@ const EditIncome = ({
             className="Edit-input"
             type="date"
             name="date"
-            id="date-inp"
-            min="2010-01-01"
+            min="2021-01-01"
+            max="2041-01-01"
             defaultValue={date.slice(0, 10)}
             onChange={(e) => updateIncomeObject(e)}
           />
