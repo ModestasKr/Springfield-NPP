@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./style/Balance.css";
-import { useGlobalUserContext, UserContext } from "../../context/UserContext";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 //
 function Balance({ id }) {
   const { balance } = useGlobalUserContext(UserContext);
 
   useEffect(() => {
-    if (id !== undefined) ;
+    // Make true if it's undefined
+    // console.log(id);
+    if (id !== undefined);
   }, [id]);
 
   return (

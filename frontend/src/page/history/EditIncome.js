@@ -15,6 +15,7 @@ const EditIncome = ({
   name,
   setEditContactId,
 }) => {
+  // Direct property with useState
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     amount: amount,
     type: type,
@@ -23,8 +24,11 @@ const EditIncome = ({
     category: category,
   });
 
+  // Update input data
   function updateIncomeObject(e) {
+    // Give default value using property value default
     e.preventDefault();
+    // Direct value
     userUpdateIncome[e.target.name] = e.target.value;
   }
 
@@ -41,11 +45,13 @@ const EditIncome = ({
       date: "",
     },
   });
-
+  // Update data clicked by handleSubmit
   function onSubmit() {
+    // Direct parameters
     findIncomeDataAndUpdate(userUpdateIncome, userID, subID).then(() =>
       updateUserData(userID)
     );
+    // NULL ????
     setEditContactId(null);
   }
 

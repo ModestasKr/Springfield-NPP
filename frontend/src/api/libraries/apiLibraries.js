@@ -7,7 +7,7 @@ export async function getAllUsersData() {
   const res = await axiosClient.get("/");
   return res;
 }
-
+// GET user by ID
 export async function getUserById(id) {
   const res = await axiosClient.get(`/${id}`);
   return res;
@@ -32,7 +32,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -237,6 +236,8 @@ export async function loginUser(data) {
 //   console.log(res);
 //   return res;
 // }
+
+/////////////////////////////////////
 
 //Logout
 // export async function logoutUser(data) {

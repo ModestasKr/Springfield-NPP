@@ -14,7 +14,7 @@ import { getUserExpensesByMonth } from "../../api/libraries/apiLibraries";
 // Chart
 import { Pie } from "react-chartjs-2";
 // Context
-import { useGlobalUserContext, UserContext } from "../../context/UserContext";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 
 ChartJS.register(CategoryScale, ArcElement, LinearScale, Tooltip, Legend);
 

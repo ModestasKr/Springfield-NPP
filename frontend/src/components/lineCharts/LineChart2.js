@@ -14,7 +14,7 @@ import {
 // Chart
 import { Line } from "react-chartjs-2";
 //Context
-import { useGlobalUserContext, UserContext } from "../../context/UserContext";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 // API
 import { getAllUserIncomeByMonth } from "../../api/libraries/apiLibraries";
 import { getAllUserExpensesByMonth } from "../../api/libraries/apiLibraries";
