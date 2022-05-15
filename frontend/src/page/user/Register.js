@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 // Api Libraries
 import { createUser } from "../../api/libraries/apiLibraries";
 // Style
@@ -9,6 +10,7 @@ import "./style/Register.css";
 import img from "../../assets/register.jpg";
 
 function Registration() {
+  const navigate = useNavigate();
   const {
     watch,
     register,
@@ -24,8 +26,10 @@ function Registration() {
     },
   });
 
+  // POST data using parameter data
   function onSubmit(data) {
     createUser(data);
+    navigate("/login");
   }
 
   let password = watch("password");

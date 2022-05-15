@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 // API components
 import { loginUser } from "../../api/libraries/apiLibraries";
 // Style
@@ -8,10 +9,12 @@ import "./style/Login.css";
 // Images
 import img from "../../assets/register.jpg";
 // Context
-import { useGlobalUserContext, UserContext } from "../../context/UserContext";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 
 function Login() {
+  // We took a global var doLogin
   const { doLogin } = useGlobalUserContext(UserContext);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -19,9 +22,13 @@ function Login() {
     formState: { errors },
   } = useForm();
 
+  // POST data using parameter data
   function onSubmit(data) {
+    // API
     loginUser(data);
+    // Context
     doLogin(data);
+    navigate("/application");
   }
   return (
     <div className="Login-container">

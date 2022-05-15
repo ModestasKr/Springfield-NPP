@@ -12,7 +12,9 @@ const ReadOnlyRow = ({
   userID,
   handleEditClick,
 }) => {
+  // Date without Time zones
   const dateWithoutZeros = date.toString().substr(0, 10);
+  // We direct color
   let colorClass = (str) => {
     if (str === "income") {
       return "table-income";

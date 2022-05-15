@@ -5,10 +5,7 @@ import { useForm } from "react-hook-form";
 import { createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
-import {
-  useGlobalUserContext,
-  UserContext,
-} from "../../context/UserContext.js";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
 // Components
 import Balance from "./Balance";
 // Style
@@ -35,6 +32,7 @@ function Form() {
     },
   });
 
+  // POST data in database
   useEffect(() => {
     setUser(userData);
   }, [userData]);
