@@ -615,7 +615,6 @@ exports.getAllUserExpensesByMonth = async (req, res) => {
       }
 
       var merged = [];
-
       yearArray.map((year) => {
         merged.push({
           yearExp: year.year,
