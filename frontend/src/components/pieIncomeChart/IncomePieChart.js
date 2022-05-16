@@ -50,18 +50,9 @@ function IncomePieChart() {
   var labels = [];
 
   for (let i = 0; i < chart.length; i++) {
-    names.forEach((item) => {
-      if (item !== undefined) {
-        labels.indexOf(item) === -1 ? (
-          labels.push(item)
-        ) : item ? (
-          <span>success!</span>
-        ) : (
-          <span>fail</span>
-        );
-        return;
-      }
-    });
+    if(names[i] !== undefined){
+      labels.push(names[i])
+    }
   }
 
   var sums = chart?.map((item) => {
@@ -73,24 +64,16 @@ function IncomePieChart() {
   var categorySum = [];
 
   for (let i = 0; i < sums.length; i++) {
-    sums.forEach((item) => {
-      if (item > 0) {
-        categorySum.indexOf(item) === -1 ? (
-          categorySum.push(item)
-        ) : item ? (
-          <span>success!</span>
-        ) : (
-          <span>fail</span>
-        );
-        return;
-      }
-    });
+    if(sums[i] !== undefined){
+      categorySum.push(sums[i])
+    }
   }
+
   var data = {
-    labels: labels,
+    labels,
     datasets: [
       {
-        label: `${chart?.length}`,
+        labels,
         data: categorySum,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

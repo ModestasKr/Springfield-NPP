@@ -36,10 +36,10 @@ function LineChart2() {
 
   function getAllIncomes() {
     getAllUserIncomeByMonth(userData._id).then((res) => {
-      setUserIncome(res.data.data.income[0].dataInc);
+      setUserIncome(res.data.data.income[1].dataInc);
     });
     getAllUserExpensesByMonth(userData._id).then((res) => {
-      setUserExpenses(res.data.data.expenses[0].dataExp);
+      setUserExpenses(res.data.data.expenses[1].dataExp);
     });
   }
 

@@ -294,7 +294,7 @@ export async function getAllUserIncomeByMonth(id) {
   return res;
 }
 
-// Get all years income
+// Get all years expense
 export async function getAllUserExpensesByMonth(id) {
   const res = await axiosClient.get(`/${id}/expenses/month`);
   return res;
