@@ -9,11 +9,6 @@ import "./style/LineCharts.css";
 function lineCharts() {
   return (
     <div>
-      <p>2022</p>
-      <div className="line-chart">
-        <LineChart2 />
-      </div>
-      <p>2021</p>
       <div className="line-chart">
         <Linechart />
       </div>

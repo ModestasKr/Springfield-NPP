@@ -36,10 +36,11 @@ function Linechart({ id }) {
 
   function getAllIncomes() {
     getAllUserIncomeByMonth(userData._id).then((res) => {
-      setUserIncome(res.data.data.income[0].dataInc);
+      setUserIncome(res.data.data.income);
+
     });
     getAllUserExpensesByMonth(userData._id).then((res) => {
-      setUserExpenses(res.data.data.expenses[0].dataExp);
+      setUserExpenses(res.data.data.expenses);
     });
   }
 
@@ -49,8 +50,19 @@ function Linechart({ id }) {
     }
   }, [userData]);
 
+const dataAll = [...userIncome, ...userExpenses]
+
+const arr = [];
+
+for(let i = 0;i<userIncome.length;i++){
+  arr.push({...userIncome[i],...userExpenses[i]})
+}
+
+const year = arr.reverse().map((year) => {
+  const yr = year.yearInc
   return (
     <div>
+      <p>{year.yearInc}</p>
       <Line
         datasetIdKey="id"
         data={{
@@ -72,14 +84,14 @@ function Linechart({ id }) {
             {
               id: 1,
               label: "Islaidos",
-              data: userExpenses,
+              data: year.dataExp,
               borderColor: "rgb(255,0, 0)",
               backgroundColor: "rgba(53, 162, 235, 0)",
             },
             {
               id: 2,
               label: "Pajamos",
-              data: userIncome,
+              data: year.dataInc,
               borderColor: "rgb(100, 255, 0)",
               backgroundColor: "rgba(53, 162, 235, 0)",
             },
@@ -88,5 +100,12 @@ function Linechart({ id }) {
       />
     </div>
   );
+})
+  return (
+    <>
+      {year}
+    </>
+  )
+  
 }
 export default Linechart;
