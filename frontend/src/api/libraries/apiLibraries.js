@@ -228,14 +228,13 @@ export async function loginUser(data) {
   return response;
 }
 
-// Paskui...?????????>>>>>>>>
-
-// // find email
-// export async function getUserEmail(email) {
-//   const res = await axiosClient.get(`/email?email=${email}`);
-//   console.log(res);
-//   return res;
-// }
+// find email
+export async function getUserEmail(email) {
+  const res = await axiosClient.get(`/email?email=${email}`);
+  //console.log(res);
+  console.log(res.data.data.users);
+  return res.data.data.users;
+}
 
 /////////////////////////////////////
 

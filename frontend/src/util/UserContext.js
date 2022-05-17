@@ -41,10 +41,6 @@ const UserProvider = ({ children }) => {
   // Login user
   function doLogin(data) {
     loginUser(data).then((res) => {
-      console.log(data);
-      // Error maybe user undifiend
-      console.log(data.user);
-      console.log(res.data.user);
       // set user
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setUserData(res.data.user);
