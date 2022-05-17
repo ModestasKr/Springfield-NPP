@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const adminSchema = new mongoose.Schema({
+const loggingSchema = new mongoose.Schema({
     date_created: {
         type: Date,
         default: Date.now,
@@ -17,6 +17,16 @@ const adminSchema = new mongoose.Schema({
     },
 });
 
-const Admin = new mongoose.model("Admin", adminSchema);
+const Log = new mongoose.model("Log", loggingSchema);
 
-module.exports = Admin;
+// Duomenų siuntimas į DB
+// const addLog = new Log({
+
+//     email: "betkoks@betkoks.japan",
+//     action: "Prideta pajamos",
+//     amount: 420,
+// });
+
+// addLog.save();
+
+module.exports = Log;

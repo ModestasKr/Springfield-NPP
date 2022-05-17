@@ -201,40 +201,6 @@ exports.deleteUserIncome = async (req, res) => {
   }
 };
 
-// Siaip sitos funkcijos nebereik, bet tegul dar pabuna kaip pvz gal dar panaudosim
-
-// exports.getBalance = async (req, res) => {
-//   try {
-//     const users = await Users.find();
-//     let expensesSuma = 0;
-
-//     users[0].expenses.forEach((expense) => {
-//       expensesSuma += expense.amount;
-//     });
-//     let incomeSuma = 0;
-//     users[0].income.forEach((income) => {
-//       incomeSuma += income.amount;
-//     });
-//     let balansas = incomeSuma - expensesSuma;
-
-//     res.status(200).json({
-//       status: "success",
-//       results: users.length,
-//       data: {
-//         expenses: users[0].expenses,
-//         balansas,
-//         income: users[0].income,
-//         balansas,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err,
-//     });
-//   }
-// };
-
 // Get user expenses by current month
 exports.getUserExpensesByMonth = async (req, res) => {
   try {
@@ -260,7 +226,6 @@ exports.getUserExpensesByMonth = async (req, res) => {
     );
 
     const expense = filteredExpensesC;
-    //////////////////////////
 
     let mig = 0;
     let apsi = 0;
@@ -310,8 +275,6 @@ exports.getUserExpensesByMonth = async (req, res) => {
       }
     });
 
-    //////////////////////////
-    // console.log(allExpensesCurrentMonth);
     res.status(200).json({
       status: "success",
       results: users.length,
