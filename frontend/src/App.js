@@ -15,8 +15,8 @@ function App() {
         <Outlet />
       </div>
       {/* <footer className="Footer-container">
-          <Footer />
-        </footer> */}
+        <Footer />
+      </footer> */}
     </div>
   );
 }
