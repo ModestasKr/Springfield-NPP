@@ -53,20 +53,12 @@ const UserProvider = ({ children }) => {
   function logOut() {
     setUserData({});
     localStorage.clear();
+
     swal({
-      title: "Ar tu tikras?",
-      text: "Ar tu tikras, kad nori atsijungti?",
-      icon: "warning",
-      button: "Gerai",
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal({
-          text: "Sėkmingai atsijungiatė!",
-          icon: "success",
-          button: "Gerai",
-        });
-      }
+      text: "Pavyko prisijungti!",
+      icon: "success",
+      button: "Puiku",
+      timer: 5000,
     });
   }
 

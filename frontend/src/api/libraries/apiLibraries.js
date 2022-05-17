@@ -25,13 +25,14 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
     .patch(`/${id}/income/${subID}`, JSON.stringify(data))
     .then((result) => {
       swal({
-        text: "Klaida ištaisyta",
-        icon: "success",
+        text: "Įrašas išsaugotas!",
         button: "Gerai",
+        icon: "success",
         timer: 1500,
       });
     })
     .catch((error) => {
+      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -40,13 +41,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       });
     });
 
-  swal({
-    title: "Puiku!",
-    text: "Klaida ištaisyta!",
-    icon: "success",
-    button: "Gerai",
-    timer: 1500,
-  });
   return res;
 }
 
@@ -125,22 +119,14 @@ export async function deleteUserExpenses(id, subID) {
     .patch(`/${id}/expenses/delete/${subID}`)
     .then((result) => {
       swal({
-        title: "Ar tu tikras?",
-        text: "Ar tu tikras, kad nori ištrinti šita įraša?",
-        icon: "warning",
+        text: "Ištrinta!",
+        icon: "success",
         button: "Gerai",
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete) {
-          swal({
-            text: "Ištrinta!",
-            icon: "success",
-            button: "Gerai",
-          });
-        }
+        timer: 1500,
       });
     })
     .catch((error) => {
+      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -155,22 +141,14 @@ export async function deleteUserIncome(id, subID) {
     .patch(`/${id}/income/delete/${subID}`)
     .then((result) => {
       swal({
-        title: "Ar tu tikras?",
-        text: "Ar tu tikras, kad nori ištrinti šita įraša?",
-        icon: "warning",
+        text: "Ištrinta!",
+        icon: "success",
         button: "Gerai",
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete) {
-          swal({
-            text: "Ištrinta!",
-            icon: "success",
-            button: "Gerai",
-          });
-        }
+        timer: 1500,
       });
     })
     .catch((error) => {
+      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -230,44 +208,12 @@ export async function loginUser(data) {
 
 // find email
 export async function getUserEmail(email) {
-  const res = await axiosClient.get(`/email?email=${email}`);
-  //console.log(res);
+  console.log(email);
+  const res = await axiosClient.post(`/email?email=${email}`);
+  console.log(res);
   console.log(res.data.data.users);
   return res.data.data.users;
 }
-
-/////////////////////////////////////
-
-//Logout
-// export async function logoutUser(data) {
-//   const res = await axiosClient
-//     .post("/logout", JSON.stringify(data))
-//     .then((result) => {
-//       swal({
-//         title: "Ar tu tikras?",
-//         text: "Ar tu tikras, kad nori atsijungti?",
-//         icon: "warning",
-//         button: "Gerai",
-//         dangerMode: true,
-//       }).then((willDelete) => {
-//         if (willDelete) {
-//           swal({
-//             text: "Sėkmingai atsijungiatė!",
-//             icon: "success",
-//             button: "Gerai",
-//           });
-//         }
-//       });
-//     })
-//     .catch((error) => {
-//       swal({
-//         text: "Klaida!",
-//         icon: "error",
-//         button: "Gerai",
-//         timer: 1500,
-//       });
-//     });
-// }
 
 // Get user expenses by current month
 export async function getUserExpensesByMonth(id) {

@@ -20,7 +20,7 @@ function Navigation() {
   return (
     <nav className="Nav-container">
       <ul className="Nav-links">
-        {!localStorage.getItem("user") && (
+        {!user && (
           <li>
             <Link to="/">...</Link>
           </li>
@@ -55,11 +55,11 @@ function Navigation() {
             <Link to="/doccumentation">Dokumentacija</Link>
           </li>
         )}
-
-        <li className={`${isDisabled()}`}>
-          <Link to="/admin">Admin</Link>
-        </li>
-
+        {user && (
+          <li className={`${isDisabled()}`}>
+            <Link to="/admin">Admin</Link>
+          </li>
+        )}
         {user && (
           <li>
             <button

@@ -29,7 +29,9 @@ function Login() {
 
     // Context
     doLogin(data);
-    navigate("/application");
+    setTimeout(() => {
+      navigate("/application");
+    }, "500");
   }
   return (
     <div className="Login-container">

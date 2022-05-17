@@ -9,7 +9,7 @@ const {
 } = require("../controllers/authController");
 
 router.route("/register").post(createUser);
-router.route("/email").get(getUserEmail);
+router.route("/email").post(getUserEmail);
 router.route("/login").post(loginUser);
 router.route("/logout").post(logoutUser);
 

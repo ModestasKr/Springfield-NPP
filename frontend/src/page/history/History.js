@@ -1,5 +1,6 @@
 // Libraries
 import React, { useState, useEffect, Fragment } from "react";
+import swal from "sweetalert";
 // API
 import {
   deleteUserIncome,
@@ -47,7 +48,25 @@ function History() {
 
     // DELETE items
     function deleteItem(userID, subID, type) {
+      swal({
+        title: "Ar tikrai norite ištrinti?",
+        icon: "warning",
+        buttons: ["Atšaukti", "Gerai"],
+      }).then((isConfirm) => {
+        if (isConfirm) {
+          if (type === "income") {
+            deleteUserIncome(users._id, subID, userID).then(() =>
+              updateUserData(users._id)
+            );
+          } else if (type === "expenses") {
+            deleteUserExpenses(users._id, subID, userID).then(() =>
+              updateUserData(users._id)
+            );
+          }
+        }
+      });
       // Incomes
+
       if (type === "income") {
         deleteUserIncome(users._id, subID, userID).then(() => {
           updateUserData(users._id);
@@ -59,6 +78,7 @@ function History() {
         });
       }
       
+
     }
 
     // Edit button

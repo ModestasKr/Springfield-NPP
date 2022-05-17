@@ -41,9 +41,7 @@ root.render(
             <Route element={<App />}>
               <Route path="/application" element={<Application />} />
               <Route path="/doccumentation" element={<Doccumentation />} />
-              <Route
-                element={<PrivateRoutes roleRequired="admin"/>}
-              >
+              <Route element={<PrivateRoutes roleRequired="admin" />}>
                 <Route path="/admin" element={<Dashboard />}></Route>
               </Route>
               <Route path="/history" element={<History />} />
