@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // Api Libraries
-import { createUser } from "../../api/libraries/apiLibraries";
+import { createUser, getUserEmail } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Register.css";
 // Images
@@ -11,6 +11,7 @@ import img from "../../assets/register.jpg";
 
 function Registration() {
   const navigate = useNavigate();
+
   const {
     watch,
     register,
@@ -72,11 +73,18 @@ function Registration() {
                 value: 50,
                 message: "Daugiausia simbolių galima įvesti 50",
               },
+              validate: {
+                checkEmail: async (value) => {
+                  let pass = await getUserEmail(value);
+                  console.log(pass, !pass);
+                  return !pass;
+                },
+              },
             })}
           />
           <span className="error">{errors.email?.message}</span>
           <span className="error">
-            {errors.email?.type === "emailExists" &&
+            {errors.email?.type === "checkEmail" &&
               "El. paštas jau naudojamas."}
           </span>
           <label>Slaptažodis</label>
