@@ -66,16 +66,19 @@ function History() {
         }
       });
       // Incomes
-      // if (type === "income") {
-      //   deleteUserIncome(users._id, subID, userID).then(() => {
-      //     updateUserData(users._id);
-      //   });
-      //   // Expenses
-      // } else {
-      //   deleteUserExpenses(users._id, subID, userID).then(() => {
-      //     updateUserData(users._id);
-      //   });
-      // }
+
+      if (type === "income") {
+        deleteUserIncome(users._id, subID, userID).then(() => {
+          updateUserData(users._id);
+        });
+        // Expenses
+      } else {
+        deleteUserExpenses(users._id, subID, userID).then(() => {
+          updateUserData(users._id);
+        });
+      }
+      
+
     }
 
     // Edit button
