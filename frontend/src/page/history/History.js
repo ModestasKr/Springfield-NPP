@@ -58,6 +58,7 @@ function History() {
           updateUserData(users._id);
         });
       }
+      
     }
 
     // Edit button

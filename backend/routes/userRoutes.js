@@ -18,12 +18,14 @@ const {
 } = require("../controllers/userController");
 
 const {
-  addLog
+  addLog,
+  getLogs,
 } = require("../controllers/adminController");
 
 const router = express.Router();
 
 router.route("/").get(getAllUsersData);
+router.route("/logs").get(getLogs);
 router.route("/:id").get(getUserById);
 router.route("/:id/expenses").patch(createUserExpenses);
 router.route("/:id/income").patch(createUserIncome);

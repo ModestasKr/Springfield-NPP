@@ -1,4 +1,4 @@
-const Logging = require("./../models/adminModel");
+const Log = require("./../models/adminModel");
 
 exports.addLog = async (req, res) => {
     try {
@@ -16,3 +16,23 @@ exports.addLog = async (req, res) => {
       });
     }
   };
+
+
+// GET all logs
+exports.getLogs = async (req, res) => {
+  try {
+    const logs = await Log.find();
+    res.status(200).json({
+      status: "success",
+      results: logs.length,
+      data: {
+        logs: logs,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
