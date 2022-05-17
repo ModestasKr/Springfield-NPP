@@ -70,6 +70,11 @@ const expenseSchema = new mongoose.Schema({
 
 // DB schema
 const usersSchema = new mongoose.Schema({
+  role: {
+    type: String,
+    default: "user",
+    enum: ["user", "admin"],
+  },
   username: {
     type: String,
     required: [true, "Username is required"],

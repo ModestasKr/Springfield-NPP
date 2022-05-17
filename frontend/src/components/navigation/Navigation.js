@@ -7,8 +7,16 @@ import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 import "./style/Navigation.css";
 
 function Navigation() {
-  const { logOut } = useGlobalUserContext(UserContext);
+  const { logOut, userData } = useGlobalUserContext(UserContext);
   let redirect = useNavigate();
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  function isDisabled() {
+    if (userData.role === "user") {
+      return `test`;
+    }
+  }
+
   return (
     <nav className="Nav-container">
       <ul className="Nav-links">
@@ -17,37 +25,42 @@ function Navigation() {
             <Link to="/">...</Link>
           </li>
         )}
-        {!localStorage.getItem("user") && (
+        {!user && (
           <li>
             <Link to="/login">Prisijungti</Link>
           </li>
         )}
-        {!localStorage.getItem("user") && (
+        {!user && (
           <li>
             <Link to="/register">Registruotis</Link>
           </li>
         )}
-        {localStorage.getItem("user") && (
+        {user && (
           <li>
             <Link to="/application">Aplikacija</Link>
           </li>
         )}
-        {localStorage.getItem("user") && (
+        {user && (
           <li>
             <Link to="/history">Istorija</Link>
           </li>
         )}
-        {localStorage.getItem("user") && (
+        {user && (
           <li>
             <Link to="/charts">Diagramos</Link>
           </li>
         )}
-        {localStorage.getItem("user") && (
+        {user && (
           <li>
-            <Link to="/Doccumentation">Dokumentacija</Link>
+            <Link to="/doccumentation">Dokumentacija</Link>
           </li>
         )}
-        {localStorage.getItem("user") && (
+
+        <li className={`${isDisabled()}`}>
+          <Link to="/admin">Admin</Link>
+        </li>
+
+        {user && (
           <li>
             <button
               type="submit"

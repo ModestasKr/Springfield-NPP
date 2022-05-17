@@ -4,7 +4,8 @@
   width: 100%;
 }
 
-.Nav-links, .Nav-links li button {
+.Nav-links,
+.Nav-links li button {
   width: 100%;
   background-color: var(--backGround-color-100);
   display: flex;
@@ -13,17 +14,20 @@
   padding: 1em 0;
 }
 
-.Nav-links li, .Nav-links li button {
+.Nav-links li,
+.Nav-links li button {
   list-style: none;
   padding: 0.5em;
 }
 
-.Nav-links li button, .Nav-links :nth-child(1) {
+.Nav-links li button,
+.Nav-links :nth-child(1) {
   color: var(--color-1000);
   text-decoration: none;
 }
 
-.Nav-links li:hover, .Nav-links li button:hover {
+.Nav-links li:hover,
+.Nav-links li button:hover {
   background-color: var(--Neutral-color-100);
   border-radius: 6px;
 }
@@ -31,5 +35,8 @@
 .logout-btn {
   padding: 0px !important;
   font-size: 16px !important;
-  
+}
+
+.test {
+  display: none;
 }
