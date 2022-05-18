@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 // Component API
-import { createUserIncome } from "../../api/libraries/apiLibraries";
+import { addLog, createUserIncome, } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
@@ -43,9 +43,18 @@ function Form() {
 
     incExp === "income"
       ? createUserIncome(data, user._id).then(() => {
+        console.log(data)
+          addLog({
+            email: user.email,
+            action: `Added ${data.accounting}, ${data.amount} EUR`,
+          })
           updateUserData(user._id);
         })
       : createUserExpenses(data, user._id).then(() => {
+        addLog({
+          email: user.email,
+          action: `Added ${data.accounting}, ${data.amount} EUR`,
+        })
           updateUserData(user._id);
         });
   }
