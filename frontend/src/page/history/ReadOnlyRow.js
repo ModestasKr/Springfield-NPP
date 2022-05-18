@@ -35,7 +35,7 @@ const ReadOnlyRow = ({
         >
           Keisti
         </button>
-        <button type="button" onClick={() => deleteItem(userID, subID, type)}>
+        <button type="button" onClick={() => deleteItem(userID, subID, type, amount)}>
           Ištrinti
         </button>
       </td>
