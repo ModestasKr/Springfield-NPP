@@ -12,7 +12,7 @@ function PrivateRoutes(props) {
     // Side effect
     // async Callback -- how long to wait before it does that
     setTimeout(() => {
-      // When the component first loads
+      // When the component first logit ads
       setLoaded(true);
       // How long to wait before it does that
     }, 50);
