@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import {
   deleteUserIncome,
   deleteUserExpenses,
+  addLog,
 } from "../../api/libraries/apiLibraries";
 // Components
 import ReadOnlyRow from "./ReadOnlyRow.js";
@@ -20,6 +21,7 @@ function History() {
   const [users, setUsers] = useState([]);
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [editContactId, setEditContactId] = useState(null);
+  const [logData, setLogData] = useState(0);
 
   // We have all user data using context
   useEffect(() => {
@@ -46,8 +48,14 @@ function History() {
       return 0;
     }
 
+
     // DELETE items
-    function deleteItem(userID, subID, type) {
+    function deleteItem(userID, subID, type, amount) {
+      const data = {
+        email: users.email,
+        action: `Deleted ${type}`,
+        id: subID
+      };
       swal({
         title: "Ar tikrai norite ištrinti?",
         icon: "warning",
@@ -55,8 +63,9 @@ function History() {
       }).then((isConfirm) => {
         if (isConfirm) {
           if (type === "income") {
-            deleteUserIncome(users._id, subID, userID).then(() =>
+            deleteUserIncome(users._id, subID, userID).then(() => {
               updateUserData(users._id)
+            }
             );
           } else if (type === "expenses") {
             deleteUserExpenses(users._id, subID, userID).then(() =>
@@ -68,12 +77,16 @@ function History() {
       // Incomes
 
       if (type === "income") {
-        deleteUserIncome(users._id, subID, userID).then(() => {
+        deleteUserIncome(users._id, subID, userID,amount).then(() => {
+          setLogData(data);
           updateUserData(users._id);
+          console.log(logData)
+          addLog(logData)
+          
         });
         // Expenses
       } else {
-        deleteUserExpenses(users._id, subID, userID).then(() => {
+        deleteUserExpenses(users._id, subID, userID,amount).then(() => {
           updateUserData(users._id);
         });
       }

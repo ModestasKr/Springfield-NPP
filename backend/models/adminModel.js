@@ -12,8 +12,8 @@ const loggingSchema = new mongoose.Schema({
     action: {
         type: String,
     },
-    amount: {
-        type: Number,
+    id: {
+        type: String,
     },
 });
 

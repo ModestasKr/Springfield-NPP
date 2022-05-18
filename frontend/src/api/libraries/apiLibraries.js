@@ -241,3 +241,9 @@ export async function getAllUserExpensesByMonth(id) {
   const res = await axiosClient.get(`/${id}/expenses/month`);
   return res;
 }
+
+// Create log
+export async function addLog() {
+  const res = await axiosClient.post('/add/log');
+  return res;
+}
