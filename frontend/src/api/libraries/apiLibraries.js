@@ -208,10 +208,7 @@ export async function loginUser(data) {
 
 // find email
 export async function getUserEmail(email) {
-  console.log(email);
   const res = await axiosClient.post(`/email?email=${email}`);
-  console.log(res);
-  console.log(res.data.data.users);
   return res.data.data.users;
 }
 
