@@ -12,7 +12,7 @@ const loggingSchema = new mongoose.Schema({
     action: {
         type: String,
     },
-    id: {
+    subID: {
         type: String,
     },
 });

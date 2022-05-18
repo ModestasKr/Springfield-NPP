@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { findExpensesDataAndUpdate } from "../../api/libraries/apiLibraries";
+import { findExpensesDataAndUpdate, addLog } from "../../api/libraries/apiLibraries";
 import { useForm } from "react-hook-form";
 import "./style/Button.css";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
+
 
 const EditExpenses = ({
   handleCancelClick,
@@ -11,10 +13,11 @@ const EditExpenses = ({
   type,
   date,
   userID,
-  updateUserData,
   name,
   setEditContactId,
 }) => {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+
   const [userUpdateExpense, setUserUpdateExpense] = useState({
     amount: amount,
     type: type,
@@ -22,6 +25,11 @@ const EditExpenses = ({
     category: category,
     name: name,
   });
+  const data = {
+    email: userData.email,
+    action: `Edited expenses`,
+    subID: subID,
+  }
 
   function updateExpenseObject(e) {
     e.preventDefault();
@@ -43,9 +51,10 @@ const EditExpenses = ({
   });
 
   function onSubmit() {
-    findExpensesDataAndUpdate(userUpdateExpense, userID, subID).then(() =>
+    findExpensesDataAndUpdate(userUpdateExpense, userID, subID, data).then(() => {
+      addLog(data)
       updateUserData(userID)
-    );
+    });
     setEditContactId(null);
   }
 

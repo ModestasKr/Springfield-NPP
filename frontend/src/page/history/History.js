@@ -27,7 +27,6 @@ function History() {
   useEffect(() => {
     setUsers(userData);
   }, [userData]);
-
   // Specified property as its own property
   if (users !== undefined && users.hasOwnProperty("email")) {
     // Seprate income and expenses items
@@ -54,7 +53,7 @@ function History() {
       const data = {
         email: users.email,
         action: `Deleted ${type}`,
-        id: subID
+        subID: subID,
       };
       swal({
         title: "Ar tikrai norite ištrinti?",
@@ -80,14 +79,14 @@ function History() {
         deleteUserIncome(users._id, subID, userID,amount).then(() => {
           setLogData(data);
           updateUserData(users._id);
-          console.log(logData)
           addLog(logData)
-          
         });
         // Expenses
       } else {
         deleteUserExpenses(users._id, subID, userID,amount).then(() => {
+          setLogData(data);
           updateUserData(users._id);
+          addLog(logData)
         });
       }
       

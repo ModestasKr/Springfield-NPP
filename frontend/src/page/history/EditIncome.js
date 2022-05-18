@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { findIncomeDataAndUpdate } from "../../api/libraries/apiLibraries";
+import { findIncomeDataAndUpdate, addLog } from "../../api/libraries/apiLibraries";
 import { useForm } from "react-hook-form";
 import "./style/Button.css";
+// import { setActionOptionsFor } from "sweetalert/typings/modules/state";
+import { useGlobalUserContext, UserContext } from "../../util/UserContext";
+
 
 const EditIncome = ({
   handleCancelClick,
@@ -11,10 +14,11 @@ const EditIncome = ({
   type,
   date,
   userID,
-  updateUserData,
   name,
   setEditContactId,
 }) => {
+  const { userData, updateUserData } = useGlobalUserContext(UserContext);
+
   // Direct property with useState
   const [userUpdateIncome, setUserUpdateIncome] = useState({
     amount: amount,
@@ -23,7 +27,13 @@ const EditIncome = ({
     date: date,
     category: category,
   });
-
+const [logData, setLogData] = useState(0);
+const data = {
+  email: userData.email,
+  action: `Edited income`,
+  subID: subID,
+}
+console.log(logData)
   // Update input data
   function updateIncomeObject(e) {
     // Give default value using property value default
@@ -48,9 +58,10 @@ const EditIncome = ({
   // Update data clicked by handleSubmit
   function onSubmit() {
     // Direct parameters
-    findIncomeDataAndUpdate(userUpdateIncome, userID, subID).then(() =>
-      updateUserData(userID)
-    );
+    findIncomeDataAndUpdate(userUpdateIncome, userID, subID, data).then(() => {
+      updateUserData(userID);
+      addLog(data)
+    });
     // NULL ????
     setEditContactId(null);
   }
