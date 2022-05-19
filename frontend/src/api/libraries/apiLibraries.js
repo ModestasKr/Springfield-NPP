@@ -248,3 +248,9 @@ export async function addLog(data) {
     .post(`/add/log`, JSON.stringify(data));
   return res;
 }
+
+// Get logs
+export async function getLogs() {
+  const res = await axiosClient.get("/logs");
+  return res;
+}

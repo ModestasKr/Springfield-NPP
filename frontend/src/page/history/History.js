@@ -27,6 +27,7 @@ function History() {
   useEffect(() => {
     setUsers(userData);
   }, [userData]);
+  
   // Specified property as its own property
   if (users !== undefined && users.hasOwnProperty("email")) {
     // Seprate income and expenses items

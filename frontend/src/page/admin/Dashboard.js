@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Users from "./Dashboard/User";
+import Logs from "./Dashboard/Logs";
 
 function Dashboard() {
   const [display, setDisplay] = useState("users");
@@ -13,6 +14,7 @@ function Dashboard() {
         <button onClick={() => setDisplay("logs")}>Žurnalas</button>
       </div>
       {display == "users" && <Users />}
+      {display == "logs" && <Logs />}
     </>
   );
 }
