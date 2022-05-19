@@ -6,7 +6,7 @@ import {
   getUserEmail,
 } from "../../../api/libraries/apiLibraries";
 
-export default function Users() {
+export default function RegisterUser() {
   const {
     register,
     handleSubmit,
