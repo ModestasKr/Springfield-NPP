@@ -20,14 +20,14 @@ const EditIncome = ({
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
 
   // Direct property with useState
-  const [userUpdateIncome, setUserUpdateIncome] = useState({
+  const [userUpdateIncome] = useState({
     amount: amount,
     type: type,
     name: name,
     date: date,
     category: category,
   });
-const [logData, setLogData] = useState(0);
+const [logData] = useState(0);
 const data = {
   email: userData.email,
   action: `Edited income`,

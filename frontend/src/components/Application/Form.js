@@ -46,14 +46,16 @@ function Form() {
         console.log(data)
           addLog({
             email: user.email,
-            action: `Added ${data.accounting}, ${data.amount} EUR`,
+            action: `Added ${data.accounting}`,
+            amount: data.amount,
           })
           updateUserData(user._id);
         })
       : createUserExpenses(data, user._id).then(() => {
         addLog({
           email: user.email,
-          action: `Added ${data.accounting}, ${data.amount} EUR`,
+          action: `Added ${data.accounting}`,
+          amount: data.amount,
         })
           updateUserData(user._id);
         });
