@@ -1,14 +1,17 @@
 import React, { useState, useEffect, Fragment } from "react";
 import swal from "sweetalert";
 import "../../history/style/History.css";
-// Context
-import { useGlobalUserContext, UserContext } from "../../../util/UserContext";
 import ReadOnlyUser from "./ReadOnlyUser";
+import ReactPaginate from "react-paginate";
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [userCounter, setUserCounter] = useState();
+    //pagination
+    const [pageNumber, setPageNumber] = useState(0);
+    const usersPerPage = 5;
+    const pagesVisited = pageNumber * usersPerPage;
     
     const url = "http://localhost:4000/api/v1/users";
 
@@ -33,7 +36,7 @@ function Users() {
   
   
     // Maping parameter
-    const usersData = users.map((item) => {
+    const usersData = users.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
       return (
             <ReadOnlyUser
               key = {item._id}
@@ -43,6 +46,13 @@ function Users() {
             />
           )
     });
+
+     //pagination, change page
+     var pageCount = Math.ceil(users.length / usersPerPage)
+     var changePage = ({selected}) => {
+         setPageNumber(selected)
+     };
+ 
     
   return (
     <>
@@ -60,6 +70,18 @@ function Users() {
           <tbody>{usersData}</tbody>
         </table>
       </div>
+      <div className="pagination">
+          <ReactPaginate 
+           nextLabel={"Pirmyn"}
+           pageCount={pageCount}
+           onPageChange={changePage}
+           containerClassName={"paginationButtons"}
+           nextLinkClassName={"previuosButtons"}
+           disabledClassName={"paginationDisabled"}
+           previousLabel="Atgal"
+           activeClassName={"paginationActive"}
+          />
+        </div>
     </>
   );
 }
