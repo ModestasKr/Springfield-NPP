@@ -26,10 +26,9 @@ function History() {
   const [logData, setLogData] = useState(0);
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 10;
-  const pagesVisited = pageNumber * usersPerPage;
-  // var displayUsers;
-  // var pageCount;
+  const dataPerPage = 10;
+  const pagesVisited = pageNumber * dataPerPage;
+  
  
   // We have all user data using context
   useEffect(() => {
@@ -115,7 +114,7 @@ function History() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
    
-    var displayUsers = incomeExpensesSortedByDate.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
+    var displayData = incomeExpensesSortedByDate.slice(pagesVisited, pagesVisited + dataPerPage).map((item) => {
       return (
         <Fragment key={item._id}>
           {editContactId === item._id && item.type === "expenses" ? (
@@ -163,7 +162,7 @@ function History() {
     });
 
     //pagination, change page
-    var pageCount = Math.ceil(incomeExpensesSortedByDate.length / usersPerPage)
+    var pageCount = Math.ceil(incomeExpensesSortedByDate.length / dataPerPage)
     var changePage = ({selected}) => {
         setPageNumber(selected)
     };
@@ -183,19 +182,19 @@ function History() {
             </tr>
           </thead>
           <tbody>
-            {displayUsers}
+            {displayData}
           </tbody>
         </table>
       </div>
       <div className="pagination">
           <ReactPaginate 
-          previuosLabel={"Atgal"}
           nextLabel={"Pirmyn"}
           pageCount={pageCount}
           onPageChange={changePage}
           containerClassName={"paginationButtons"}
           nextLinkClassName={"previuosButtons"}
           disabledClassName={"paginationDisabled"}
+          previousLabel="Atgal"
           activeClassName={"paginationActive"}
           />
         </div>
