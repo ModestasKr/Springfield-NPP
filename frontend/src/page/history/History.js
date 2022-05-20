@@ -13,8 +13,10 @@ import EditExpenses from "./EditExpenses.js";
 import EditIncome from "./EditIncome.js";
 // Style
 import "./style/History.css";
+import "./style/Button.css";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext";
+import ReactPaginate from "react-paginate";
 
 function History() {
   // useState
@@ -22,7 +24,13 @@ function History() {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [editContactId, setEditContactId] = useState(null);
   const [logData, setLogData] = useState(0);
-
+  //pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+  // var displayUsers;
+  // var pageCount;
+ 
   // We have all user data using context
   useEffect(() => {
     setUsers(userData);
@@ -90,8 +98,6 @@ function History() {
           addLog(logData)
         });
       }
-      
-
     }
 
     // Edit button
@@ -108,8 +114,8 @@ function History() {
     };
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
-    // Maping parameter
-    var userIncomeExpenses = incomeExpensesSortedByDate.map((item) => {
+   
+    var displayUsers = incomeExpensesSortedByDate.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
       return (
         <Fragment key={item._id}>
           {editContactId === item._id && item.type === "expenses" ? (
@@ -155,6 +161,13 @@ function History() {
         </Fragment>
       );
     });
+
+    //pagination, change page
+    var pageCount = Math.ceil(incomeExpensesSortedByDate.length / usersPerPage)
+    var changePage = ({selected}) => {
+        setPageNumber(selected)
+    };
+
   }
   return (
     <>
@@ -169,9 +182,23 @@ function History() {
               <th>Pasirinkimas</th>
             </tr>
           </thead>
-          <tbody>{userIncomeExpenses}</tbody>
+          <tbody>
+            {displayUsers}
+          </tbody>
         </table>
       </div>
+      <div className="pagination">
+          <ReactPaginate 
+          previuosLabel={"Atgal"}
+          nextLabel={"Pirmyn"}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationButtons"}
+          nextLinkClassName={"previuosButtons"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+          />
+        </div>
     </>
   );
 }
