@@ -1,9 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
 import LogCard from "./LogCard";
+import ReactPaginate from "react-paginate";
 
 function Logs() {
     const [logs, setLogs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    //pagination
+    const [pageNumber, setPageNumber] = useState(0);
+    const logsPerPage = 25;
+    const pagesVisited = pageNumber * logsPerPage;
     
     
     const url = "http://localhost:4000/api/v1/users/logs";
@@ -39,8 +44,8 @@ function Logs() {
     }
 
     var logsByDate = logs.sort(sortByDate)
-
-    const logRow = logsByDate.map((log) => {
+    
+    const logRow = logsByDate.slice(pagesVisited, pagesVisited + logsPerPage).map((log) => {
         return (
             <LogCard
             key={log._id}
@@ -51,6 +56,12 @@ function Logs() {
             />
         );
     });
+
+     //pagination, change page
+    var pageCount = Math.ceil(logsByDate.length / logsPerPage)
+    var changePage = ({selected}) => {
+        setPageNumber(selected)
+    };
 
   return (
     <>
@@ -67,6 +78,18 @@ function Logs() {
           <tbody>{logRow}</tbody>
         </table>
       </div>
+      <div className="pagination">
+          <ReactPaginate 
+           nextLabel={"Pirmyn"}
+           pageCount={pageCount}
+           onPageChange={changePage}
+           containerClassName={"paginationButtons"}
+           nextLinkClassName={"previuosButtons"}
+           disabledClassName={"paginationDisabled"}
+           previousLabel="Atgal"
+           activeClassName={"paginationActive"}
+          />
+        </div>
     </>
   )
 }
