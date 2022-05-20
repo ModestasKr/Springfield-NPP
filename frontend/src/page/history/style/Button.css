@@ -13,3 +13,34 @@
 .ReadOnlyRow-button button {
   padding: 0.5em 1.5em;
 }
+
+/* pagination buttons */
+
+.paginationButtons {
+  width: 80%;
+  height: 60px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButtons a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationButtons a:hover {
+  color: white;
+  background-color: #2b2eff;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #2b2eff;
+}
+
+

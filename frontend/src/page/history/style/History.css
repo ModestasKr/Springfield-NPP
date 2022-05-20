@@ -1,7 +1,9 @@
 .History-container {
   display: flex;
   justify-content: center;
-  margin: 2em 0;
+  margin: 20px auto;
+  width:90%;
+  justify-content: center;
 }
 
 .History-body {
@@ -9,17 +11,20 @@
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
+  
 }
+
 
 .History-body tr {
   background-color: var(--backGround-color-100);
   border: 1px solid var(--backGround-color-400);
   padding: 0.35em;
+  
 }
 
 .History-body th,
 td {
-  padding: 0.625em;
+  padding: 0.525em;
   text-align: center;
 }
 
@@ -42,3 +47,5 @@ td {
 .table-expense {
   color: red;
 }
+
+
