@@ -287,12 +287,9 @@ export async function addLog(data) {
   const res = await axiosClient.post(`/add/log`, JSON.stringify(data));
   return res;
 }
-<<<<<<< HEAD
-=======
 
 // Get logs
 export async function getLogs() {
   const res = await axiosClient.get("/logs");
   return res;
 }
->>>>>>> e091a2810803a5accc45b4392fef88403d9c3d2f
