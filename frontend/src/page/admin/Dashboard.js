@@ -6,13 +6,11 @@ function Dashboard() {
   return (
     <>
       <div>
-        <button onClick={() => setDisplay("users")}>
-          Vartotojo priregistravimas
-        </button>
-        <button onClick={() => setDisplay("category")}>Kategorijos</button>
         <button onClick={() => setDisplay("logs")}>Žurnalas</button>
+        <button onClick={() => setDisplay("category")}>Kategorijos</button>
+        <button onClick={() => setDisplay("users")}>Vartotojas</button>
       </div>
-      {display == "users" && <Users />}
+      {display === "users" && <Users />}
     </>
   );
 }

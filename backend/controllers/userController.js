@@ -37,6 +37,40 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+// Update User by Id
+exports.updateUserById = async (req, res) => {
+  console.log(req.body);
+  console.log(req.body.id);
+  try {
+    await Users.findByIdAndUpdate(req.body.id, req.body);
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+// get user BY email
+exports.getUsersByEmail = async (req, res) => {
+  try {
+    const user = await Users.find({ email: req.body.email });
+
+    res.status(200).json({
+      status: "success",
+      results: user.length,
+      data: {
+        users: user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
 // Update Income array
 exports.findIncomeDataAndUpdate = async (req, res) => {
   try {
@@ -134,6 +168,22 @@ exports.createUserExpenses = async (req, res) => {
       data: {
         expenses: updated,
       },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.deleteUserById = async (req, res) => {
+  try {
+    await Users.findByIdAndDelete(req.params.id);
+
+    res.status(204).json({
+      status: "success",
+      data: null,
     });
   } catch (err) {
     res.status(404).json({
