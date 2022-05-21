@@ -22,11 +22,6 @@ function Navigation() {
       <ul className="Nav-links">
         {!user && (
           <li>
-            <Link to="/">...</Link>
-          </li>
-        )}
-        {!user && (
-          <li>
             <Link to="/login">Prisijungti</Link>
           </li>
         )}

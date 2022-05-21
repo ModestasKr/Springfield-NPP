@@ -8,14 +8,13 @@ function Dashboard() {
   return (
     <>
       <div>
-         <button onClick={() => setDisplay("users")}>Vartotojai</button>
-        <button onClick={() => setDisplay("registerUser")}>
-          Vartotojo priregistravimas
-        </button>
+        <button onClick={() => setDisplay("users")}>Vartotojai</button>
+        <button onClick={() => setDisplay("registerUser")}>Vartotojas</button>
         <button onClick={() => setDisplay("category")}>Kategorijos</button>
-        
+
         <button onClick={() => setDisplay("logs")}>Žurnalas</button>
       </div>
+
       {display == "users" && <Users />}
       {display == "logs" && <Logs />}
       {display == "registerUser" && <RegisterUser />}

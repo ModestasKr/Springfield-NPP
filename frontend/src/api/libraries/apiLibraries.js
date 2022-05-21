@@ -1,3 +1,4 @@
+//  All erros need to put in front
 // Libraries
 import axiosClient from "../apiUsers";
 import swal from "sweetalert";
@@ -16,6 +17,38 @@ export async function getUserById(id) {
 // GET method all balance
 export async function getBalance(id) {
   const res = await axiosClient.get(`/${id}/expenses/balance`);
+  return res;
+}
+
+// find user By email
+export async function getUsersByEmail(email) {
+  console.log(email);
+  const res = await axiosClient.post(`/userByEmail`, JSON.stringify(email));
+  return res;
+}
+
+// update user by id
+export async function updateUserById(data) {
+  const res = await axiosClient
+    .post(`/updateUser`, JSON.stringify(data))
+    .then((result) => {
+      swal({
+        text: "Įrašas išsaugotas!",
+        button: "Gerai",
+        icon: "success",
+        timer: 1500,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 1500,
+      });
+    });
+
   return res;
 }
 
@@ -113,6 +146,13 @@ export async function createUserExpenses(data, id) {
   return res;
 }
 
+// delete USer by Id
+export async function deleteUserById(id) {
+  const res = await axiosClient
+    .delete(`/deleteUser/${id}`)
+    .then((result) => {});
+  return res;
+}
 // Delete expenses
 export async function deleteUserExpenses(id, subID) {
   const response = await axiosClient
@@ -244,8 +284,7 @@ export async function getAllUserExpensesByMonth(id) {
 
 // Create log
 export async function addLog(data) {
-  const res = await axiosClient
-    .post(`/add/log`, JSON.stringify(data));
+  const res = await axiosClient.post(`/add/log`, JSON.stringify(data));
   return res;
 }
 
