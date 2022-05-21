@@ -1,0 +1,89 @@
+import React, { useState, useEffect, Fragment } from "react";
+import swal from "sweetalert";
+import "../../history/style/History.css";
+import ReadOnlyUser from "./ReadOnlyUser";
+import ReactPaginate from "react-paginate";
+
+function Users() {
+    const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [userCounter, setUserCounter] = useState();
+    //pagination
+    const [pageNumber, setPageNumber] = useState(0);
+    const usersPerPage = 5;
+    const pagesVisited = pageNumber * usersPerPage;
+    
+    const url = "http://localhost:4000/api/v1/users";
+
+    const getUsers = async () => {
+        await fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+            setUserCounter(result.data.users.length);
+            setUsers(result.data.users);
+            setIsLoading(false);
+        })
+        .catch((error) => console.log(error));
+    };
+  
+    useEffect(() => {
+      getUsers();
+    }, []);
+  
+    if (isLoading){
+        return <div>Loading...</div>
+    }
+  
+  
+    // Maping parameter
+    const usersData = users.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
+      return (
+            <ReadOnlyUser
+              key = {item._id}
+              username={item.username}
+              userID={item._id}
+              email={item.email}
+            />
+          )
+    });
+
+     //pagination, change page
+     var pageCount = Math.ceil(users.length / usersPerPage)
+     var changePage = ({selected}) => {
+         setPageNumber(selected)
+     };
+ 
+    
+  return (
+    <>
+
+    <h3>Vartotojų skaičius: {userCounter} </h3>
+      <div className="History-container">
+        <table className="History-body">
+          <thead className="History-thead">
+            <tr>
+              <th>Username</th>
+              <th>email</th>
+              <th>id</th>
+            </tr>
+          </thead>
+          <tbody>{usersData}</tbody>
+        </table>
+      </div>
+      <div className="pagination">
+          <ReactPaginate 
+           nextLabel={"Pirmyn"}
+           pageCount={pageCount}
+           onPageChange={changePage}
+           containerClassName={"paginationButtons"}
+           nextLinkClassName={"previuosButtons"}
+           disabledClassName={"paginationDisabled"}
+           previousLabel="Atgal"
+           activeClassName={"paginationActive"}
+          />
+        </div>
+    </>
+  );
+}
+
+export default Users;

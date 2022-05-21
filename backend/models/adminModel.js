@@ -15,6 +15,9 @@ const loggingSchema = new mongoose.Schema({
     subID: {
         type: String,
     },
+     amount: {
+        type: Number,
+    },
 });
 
 const Log = new mongoose.model("Log", loggingSchema);

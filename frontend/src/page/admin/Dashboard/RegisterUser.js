@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import UserSerach from "./user/UserSearch";
 import { createUser, getUserEmail } from "../../../api/libraries/apiLibraries";
 
-export default function Users() {
+export default function RegisterUser() {
   const {
     register,
     handleSubmit,
