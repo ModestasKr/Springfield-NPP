@@ -35,7 +35,7 @@ Tools to help create app:
 - Rest API
 
 ## Getting Started
-
+ ```
 # clone the project
 git clone https://github.com/bromberis/atomai.git
 
@@ -58,7 +58,7 @@ npm start
 
 # application will open on your browser at
 http://localhost:3000
-
+```
 ## Testing
 
 Using Postman to test API.
