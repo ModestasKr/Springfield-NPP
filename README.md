@@ -81,4 +81,4 @@ http://localhost:3000
 
 ## Licence
 
-Copyright ©️ 2022, Atomai
+Copyright ©️ 2022, Springfield-NPP
