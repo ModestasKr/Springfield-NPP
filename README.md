@@ -8,7 +8,7 @@
 
 ## General info
 
-Starting a final project to create a budget app on dekstop.
+We currently working on a project which involves developing a budgeting app with a team from the Vocational school.
 
 ## Technologies
 
@@ -33,6 +33,31 @@ Tools to help create app:
 - Powershell
 - Mongoose
 - Rest API
+
+## Getting Started
+
+# clone the project
+git clone https://github.com/bromberis/atomai.git
+
+# open Visual Studio code
+code .
+
+# in the terminal enter the backend directory
+cd ../ATOMAI/back
+
+# backend install dependencies and run in development mode
+npm install
+npm start
+
+# in the terminal enter the frontend directory
+cd ../ATOMAI/front
+
+# frontend install dependencies and run in development mode
+npm install
+npm start
+
+# application will open on your browser at
+http://localhost:3000
 
 ## Testing
 
