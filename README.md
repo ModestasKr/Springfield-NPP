@@ -34,23 +34,29 @@ Tools to help create app:
 - Mongoose
 - Rest API
 
+## Testing
+
+Using Postman to test API.
+
 ## Getting Started
+
+Using npm to install:
  ```
 # clone the project
-git clone https://github.com/bromberis/atomai.git
+git clone git@github.com:ModestasKr/Springfield-NPP.git
 
 # open Visual Studio code
 code .
 
 # in the terminal enter the backend directory
-cd ../ATOMAI/back
+cd ./backend
 
 # backend install dependencies and run in development mode
 npm install
 npm start
 
 # in the terminal enter the frontend directory
-cd ../ATOMAI/front
+cd ./frontend
 
 # frontend install dependencies and run in development mode
 npm install
@@ -59,9 +65,5 @@ npm start
 # application will open on your browser at
 http://localhost:3000
 ```
-## Testing
-
-Using Postman to test API.
-
 
 ## Link
