@@ -4,7 +4,10 @@
 - [Technologies](#technologies)
 - [Tools](#tools)
 - [Testing](#testing)
+- [Getting Started](#getting-started)
+- [Team](#team)
 - [Link](#link)
+- [Licence](#licence)
 
 ## General info
 
@@ -65,5 +68,17 @@ npm start
 # application will open on your browser at
 http://localhost:3000
 ```
+## Team
+
+- Paulius: https://github.com/KietasRiestutelis
+- Henrikas: https://github.com/HenrikasKr
+- Modestas: https://github.com/ModestasKr
+- Rokas: https://github.com/Rokiis1
+- QA/Tomas: 
+- SM/Justina: https://github.com/JustinaBalse
 
 ## Link
+
+## Licence
+
+Copyright ©️ 2022, Atomai
