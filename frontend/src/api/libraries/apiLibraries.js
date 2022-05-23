@@ -293,3 +293,17 @@ export async function getLogs() {
   const res = await axiosClient.get("/logs");
   return res;
 }
+
+// Create category
+export async function addCategory(data) {
+  const res = await axiosClient.post(`/add/category`, JSON.stringify(data));
+  return res;
+}
+
+// Get category
+export async function getCategory() {
+  const res = await axiosClient.get("/category");
+  return res;
+}
+
+console.log(getCategory)
