@@ -61,20 +61,19 @@ function Linechart({ id }) {
     const yr = year.yearInc;
     return (
       <div>
-        <p>{year.yearInc}</p>
+        <p>{yr}</p>
         <Line
-          datasetIdKey="id"
           data={{
             labels: [
               "Sausis",
               "Vasaris",
               "Kovas",
               "Balandis",
-              "Geguze",
-              "Birzelis",
+              "Gegužė ",
+              "Birželis",
               "Liepa",
-              "Rugpjutis",
-              "Rugsejis",
+              "Rugpjūtis",
+              "Rugsėjis",
               "Spalis",
               "Lapkritis",
               "Gruodis",
