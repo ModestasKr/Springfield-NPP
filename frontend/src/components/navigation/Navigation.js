@@ -47,7 +47,7 @@ function Navigation() {
         )}
         {!user && (
           <li>
-            <Link to="/doccumentation">Dokumentacija</Link>
+            <Link to="/">Dokumentacija</Link>
           </li>
         )}
         {user && (

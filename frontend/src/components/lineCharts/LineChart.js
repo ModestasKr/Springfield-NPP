@@ -61,7 +61,7 @@ function Linechart({ id }) {
     const yr = year.yearInc;
     return (
       <div>
-        <p>{yr}</p>
+        <p className="Linechart-p">{yr}</p>
         <Line
           data={{
             labels: [
@@ -83,15 +83,15 @@ function Linechart({ id }) {
                 id: 1,
                 label: "Išlaidos",
                 data: year.dataExp,
-                borderColor: "rgb(255,0, 0)",
-                backgroundColor: "rgba(53, 162, 235, 0)",
+                borderColor: "rgb(255,127,127)",
+                backgroundColor: "rgba(255,127,127)",
               },
               {
                 id: 2,
                 label: "Pajamos",
                 data: year.dataInc,
-                borderColor: "rgb(100, 255, 0)",
-                backgroundColor: "rgba(53, 162, 235, 0)",
+                borderColor: "rgb(127,191,127)",
+                backgroundColor: "rgba(127,191,127)",
               },
             ],
           }}

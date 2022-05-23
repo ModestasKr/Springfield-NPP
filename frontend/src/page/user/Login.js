@@ -39,7 +39,7 @@ function Login() {
         <div>
           <img src={img} alt="springfield" />
         </div>
-        <label for="name" className="form-label">
+        <label className="form-label">
           <span className="content-name">Elektroninis paštas</span>
         </label>
         <input
@@ -55,7 +55,7 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-        <label for="name" className="form-label">
+        <label className="form-label">
           <span className="content-name">Slaptažodis</span>
         </label>
         <input

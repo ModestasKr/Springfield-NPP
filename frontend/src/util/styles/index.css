@@ -82,6 +82,10 @@ select[name] {
   transition: 0.5s;
 }
 
+select {
+  color: var(--backGround-color-400);
+}
+
 input[type]:focus,
 select[name]:focus {
   border-bottom: 3px solid #2d3d54;
@@ -113,7 +117,3 @@ html:focus-within {
   display: flex;
   justify-content: center;
 }
-
-/* .paginationActive button {
-  background-color: #ffffff;
-} */
