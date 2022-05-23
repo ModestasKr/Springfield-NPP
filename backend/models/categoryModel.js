@@ -10,11 +10,11 @@ const categorySchema = new mongoose.Schema({
 const Category = new mongoose.model("Category", categorySchema);
 
 // Duomenų siuntimas į DB
-const addCategory = new Category({
+// const addCategory = new Category({
 
-    category: "Kita",
-});
+//     category: "Kita",
+// });
 
-addCategory.save();
+// addCategory.save();
 
 module.exports = Category;
