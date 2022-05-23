@@ -7,7 +7,7 @@ function Logs() {
   const [isLoading, setIsLoading] = useState(true);
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const logsPerPage = 25;
+  const logsPerPage =25;
   const pagesVisited = pageNumber * logsPerPage;
 
   const url = "http://localhost:4000/api/v1/users/logs";

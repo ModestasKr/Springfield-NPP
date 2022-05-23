@@ -10,8 +10,10 @@ function Users() {
     const [userCounter, setUserCounter] = useState();
     //pagination
     const [pageNumber, setPageNumber] = useState(0);
-    const usersPerPage = 5;
+    const usersPerPage = 15;
     const pagesVisited = pageNumber * usersPerPage;
+    // search input
+    const [searchTerm, setSearchTerm] = useState ("");
     
     const url = "http://localhost:4000/api/v1/users";
 
@@ -36,7 +38,15 @@ function Users() {
   
   
     // Maping parameter
-    const usersData = users.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
+    const usersData = users.filter((item)=> {
+      if (searchTerm == "") {
+        return item 
+      } else if (item.username.toLowerCase().includes(searchTerm.toLowerCase())){
+          return item
+      } else if (item.email.toLowerCase().includes(searchTerm.toLowerCase())){
+        return item
+      }
+    }).slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
       return (
             <ReadOnlyUser
               key = {item._id}
@@ -58,6 +68,15 @@ function Users() {
     <>
 
     <h3>Vartotojų skaičius: {userCounter} </h3>
+      <div className="search-box">
+        <input type="text" 
+           className="search-input"
+           placeholder="Paieška" 
+           onChange={event => {
+           setSearchTerm(event.target.value)
+           }}
+          />
+      </div>
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">
