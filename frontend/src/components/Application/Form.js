@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 // Component API
-import { addLog, createUserIncome, } from "../../api/libraries/apiLibraries";
+import { addLog, createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
@@ -43,20 +43,20 @@ function Form() {
 
     incExp === "income"
       ? createUserIncome(data, user._id).then(() => {
-        console.log(data)
+          console.log(data);
           addLog({
             email: user.email,
             action: `Added ${data.accounting}`,
             amount: data.amount,
-          })
+          });
           updateUserData(user._id);
         })
       : createUserExpenses(data, user._id).then(() => {
-        addLog({
-          email: user.email,
-          action: `Added ${data.accounting}`,
-          amount: data.amount,
-        })
+          addLog({
+            email: user.email,
+            action: `Added ${data.accounting}`,
+            amount: data.amount,
+          });
           updateUserData(user._id);
         });
   }
@@ -70,6 +70,7 @@ function Form() {
         <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Apskaita</label>
           <select
+            // name="accounting"
             onClick={(e) => {
               SetIncExp(e.target[e.target.selectedIndex].value);
             }}

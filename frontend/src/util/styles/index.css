@@ -66,12 +66,25 @@ select {
 }
 
 label {
-  color: var(--text-color-100);
+  color: var(--color-1000);
   font-size: 0.9rem;
 }
 
 ::placeholder {
-  color: var(--color-1000);
+  color: var(--backGround-color-400);
+}
+
+input[type],
+select[name] {
+  box-sizing: border-box;
+  border-bottom: 3px solid #4e72a4;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+input[type]:focus,
+select[name]:focus {
+  border-bottom: 3px solid #2d3d54;
 }
 
 input:focus,

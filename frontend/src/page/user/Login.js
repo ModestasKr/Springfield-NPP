@@ -39,11 +39,13 @@ function Login() {
         <div>
           <img src={img} alt="springfield" />
         </div>
-        <label>Elektroninis paštas</label>
+        <label for="name" className="form-label">
+          <span className="content-name">Elektroninis paštas</span>
+        </label>
         <input
           type="email"
-          id="email"
-          placeholder="El. paštas"
+          name="email"
+          placeholder="Įveskite El. paštas"
           {...register("email", {
             required: "Laukelis privalomas",
             maxLength: {
@@ -53,11 +55,13 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-        <label>Slaptažodis</label>
+        <label for="name" className="form-label">
+          <span className="content-name">Slaptažodis</span>
+        </label>
         <input
           type="password"
           name="password"
-          placeholder="Slaptažodis"
+          placeholder="Įveskite slaptažodį"
           {...register("password", {
             required: "Laukelis privalomas",
             minLength: {
