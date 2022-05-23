@@ -1,0 +1,10 @@
+.Dashboard-body {
+  margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Dashboard-body button {
+  padding: 2em 2em;
+}

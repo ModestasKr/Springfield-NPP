@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 import { createUser, getUserEmail } from "../../../api/libraries/apiLibraries";
+import "./style/RegisterUser.css";
 
 export default function RegisterUser() {
   const {
@@ -37,9 +38,9 @@ export default function RegisterUser() {
   }
 
   return (
-    <div className="container">
-      <div className="body">
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <div className="RegisterUser-container">
+      <div className="RegisterUser-body">
+        <form className="RegisterUser-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Vartotojo vardas</label>
           <input
             type="text"
@@ -125,10 +126,10 @@ export default function RegisterUser() {
           />
           <span className="error">{errors.repeatPassword?.message}</span>
 
-          <button className="-form-btn" type="submit">
+          <button className="RegisterUser-form-btn" type="submit">
             Registracija
           </button>
-          <button className="-form-btn" type="reset">
+          <button className="RegisterUser-form-btn" type="reset">
             Anuliuoti
           </button>
         </form>

@@ -55,7 +55,7 @@ const UserProvider = ({ children }) => {
     localStorage.clear();
 
     swal({
-      text: "Pavyko prisijungti!",
+      text: "Pavyko atsijungti!",
       icon: "success",
       button: "Puiku",
       timer: 5000,
