@@ -107,3 +107,13 @@ img {
 html:focus-within {
   scroll-behavior: smooth;
 }
+
+.pagination {
+  padding: 1em 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* .paginationActive button {
+  background-color: #ffffff;
+} */

@@ -45,7 +45,7 @@ function Navigation() {
             <Link to="/charts">Diagramos</Link>
           </li>
         )}
-        {user && (
+        {!user && (
           <li>
             <Link to="/doccumentation">Dokumentacija</Link>
           </li>
@@ -55,6 +55,7 @@ function Navigation() {
             <Link to="/admin">Admin</Link>
           </li>
         )}
+
         {user && (
           <li>
             <button
