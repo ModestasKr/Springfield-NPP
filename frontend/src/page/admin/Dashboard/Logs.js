@@ -9,6 +9,8 @@ function Logs() {
   const [pageNumber, setPageNumber] = useState(0);
   const logsPerPage =25;
   const pagesVisited = pageNumber * logsPerPage;
+   // search input
+   const [searchTerm, setSearchTerm] = useState ("");
 
   const url = "http://localhost:4000/api/v1/users/logs";
 
@@ -44,8 +46,16 @@ function Logs() {
 
   var logsByDate = logs.sort(sortByDate);
 
-  const logRow = logsByDate
-    .slice(pagesVisited, pagesVisited + logsPerPage)
+  const logRow = logsByDate.filter((log)=> {
+    if (searchTerm == "") {
+      return log 
+    } else if (log.email.toLowerCase().includes(searchTerm.toLowerCase())){
+    return log
+  }
+  else if (log.action.toLowerCase().includes(searchTerm.toLowerCase())){
+    return log
+  }
+  }).slice(pagesVisited, pagesVisited + logsPerPage)
     .map((log) => {
       return (
         <LogCard
@@ -66,6 +76,15 @@ function Logs() {
 
   return (
     <>
+    <div className="search-box">
+        <input type="text" 
+           className="search-input"
+           placeholder="Paieška" 
+           onChange={event => {
+           setSearchTerm(event.target.value)
+           }}
+          />
+      </div>
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">

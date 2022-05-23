@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import UserSerach from "./user/UserSearch";
 import swal from "sweetalert";
 import { createUser, getUserEmail } from "../../../api/libraries/apiLibraries";
 
@@ -133,9 +132,6 @@ export default function RegisterUser() {
             Anuliuoti
           </button>
         </form>
-      </div>
-      <div>
-        <UserSerach />
       </div>
     </div>
   );

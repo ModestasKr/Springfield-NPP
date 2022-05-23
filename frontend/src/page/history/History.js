@@ -28,6 +28,8 @@ function History() {
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 10;
   const pagesVisited = pageNumber * dataPerPage;
+   // search input
+   const [searchTerm, setSearchTerm] = useState ("");
 
   // We have all user data using context
   useEffect(() => {
@@ -111,7 +113,16 @@ function History() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
-    var displayData = incomeExpensesSortedByDate
+    var displayData = incomeExpensesSortedByDate.filter((log)=> {
+      if (searchTerm == "") {
+        return log 
+      } else if (log.category.toLowerCase().includes(searchTerm.toLowerCase())){
+      return log
+    }
+    else if (log.name.toLowerCase().includes(searchTerm.toLowerCase())){
+      return log
+    }
+    })
       .slice(pagesVisited, pagesVisited + dataPerPage)
       .map((item) => {
         return (
@@ -168,6 +179,15 @@ function History() {
   }
   return (
     <>
+    <div className="search-box">
+        <input type="text" 
+           className="search-input"
+           placeholder="Paieška" 
+           onChange={event => {
+           setSearchTerm(event.target.value)
+           }}
+          />
+      </div>
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">
