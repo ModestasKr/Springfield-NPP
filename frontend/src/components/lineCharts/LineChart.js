@@ -59,10 +59,12 @@ function Linechart({ id }) {
 
   const year = arr.reverse().map((year) => {
     const yr = year.yearInc;
+    const key = year._id;
     return (
       <div>
         <p className="Linechart-p">{yr}</p>
         <Line
+          id={year._id}
           data={{
             labels: [
               "Sausis",
@@ -99,6 +101,6 @@ function Linechart({ id }) {
       </div>
     );
   });
-  return <>{year}</>;
+  return <>{year} </>;
 }
 export default Linechart;

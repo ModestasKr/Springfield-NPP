@@ -1,0 +1,33 @@
+.RegisterUser-container {
+  margin: 2em;
+  display: flex;
+  justify-content: center;
+}
+
+.RegisterUser-body {
+  padding: 2em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.35);
+  border: 1px solid black;
+  border-radius: 7px;
+  background-color: var(--backGround-color-100);
+}
+
+.RegisterUser-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.RegisterUser-form-btn {
+  padding: 0.5em 5em;
+}
+
+.RegisterUser-form > * {
+  width: 15rem;
+}
