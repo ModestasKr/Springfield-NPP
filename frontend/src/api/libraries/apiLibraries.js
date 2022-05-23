@@ -305,5 +305,3 @@ export async function getCategory() {
   const res = await axiosClient.get("/category");
   return res;
 }
-
-console.log(getCategory)

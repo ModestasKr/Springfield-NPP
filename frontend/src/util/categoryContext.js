@@ -15,5 +15,26 @@ const CategoriesProvider = ({ children }) => {
       }
     }, [userData]);
 
+    function refreshCategoriesData(id) {
+        getAllExpCategories().then((res) => {
+          setExpensesCategories(res.data.data.category);
+        });
+    }
     
-}
+    return (
+        <CategoriesContext.Provider
+          value={{
+            expensesCategories,
+            refreshCategoriesData,
+          }}
+        >
+          {children}
+        </CategoriesContext.Provider>
+    );
+};
+
+export const useGlobalCategoriesContext = () => {
+    return useContext(CategoriesContext);
+};
+  
+export { CategoriesContext, CategoriesProvider };
