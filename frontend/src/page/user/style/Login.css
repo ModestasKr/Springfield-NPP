@@ -15,7 +15,9 @@
   border-radius: 7px;
   background-color: var(--backGround-color-100);
 }
-
+.form-label {
+  margin-bottom: auto;
+}
 .Login-form-btn {
   padding: 0.5em 0;
 }
