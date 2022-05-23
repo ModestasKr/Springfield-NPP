@@ -8,7 +8,7 @@ import "./style/LineCharts.css";
 
 function lineCharts() {
   return (
-    <div>
+    <div className="lineCharts-container">
       <div className="line-chart">
         <Linechart />
       </div>

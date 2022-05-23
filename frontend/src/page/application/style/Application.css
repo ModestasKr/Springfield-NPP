@@ -28,14 +28,6 @@
   }
 }
 
-.line-chart {
-  margin: auto;
-  width: 700px;
-  height: 350px;
-  border: 1px solid black;
-}
-
-p{
+.Linechart-p {
   text-align: center;
-  margin: 0;
 }

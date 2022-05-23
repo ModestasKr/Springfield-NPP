@@ -1,4 +1,20 @@
+.lineCharts-container {
+  display: block;
+  max-width: 100%;
+  padding: 3em 1em;
+}
+
 .line-chart {
+  margin: 2em 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media screen and (max-width: 60rem) {
+  .line-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
