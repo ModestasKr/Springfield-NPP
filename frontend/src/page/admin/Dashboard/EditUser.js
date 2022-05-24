@@ -47,10 +47,9 @@ const EditUser = ({
   function onSubmit(data) {
     data.id = userID
     updateUserById(data).then(() => {
-    
     });
     setEditContactId(null);
-    getUsers();
+    getUsers();getUsers();
      
     
   }
