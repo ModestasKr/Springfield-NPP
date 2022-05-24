@@ -13,6 +13,7 @@ const EditUser = ({
     userID,
     setEditContactId,
     users,
+    getUsers,
     
 }) => {
   const {userData, updateUserData } = useGlobalUserContext(UserContext);
@@ -44,13 +45,12 @@ const EditUser = ({
   });
 
   function onSubmit(data) {
-    console.log(data)
-    console.log(userID)
     data.id = userID
     updateUserById(data).then(() => {
-      console.log(data)
+    
     });
     setEditContactId(null);
+    getUsers();
      
     
   }

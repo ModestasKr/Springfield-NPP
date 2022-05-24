@@ -104,6 +104,7 @@ function Users() {
                 handleCancelClick={handleCancelClick}
                 setEditContactId={setEditContactId}
                 users={users}
+                getUsers={getUsers}
                 />
            ) : (
               <ReadOnlyUser
