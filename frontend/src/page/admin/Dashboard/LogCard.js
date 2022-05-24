@@ -2,7 +2,7 @@ import React from "react";
 
 const LogCard = ({email,action,amount,date}) => {
   
-
+  
 
   return (
     <tr className="ReadOnlyRow-row">

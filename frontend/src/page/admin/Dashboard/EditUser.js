@@ -45,11 +45,9 @@ const EditUser = ({
   });
 
   function onSubmit(data) {
-    console.log(data)
-    console.log(userID)
     data.id = userID
     updateUserById(data).then(() => {
-      console.log(data)
+    
     });
     setEditContactId(null);
     getUsers();
