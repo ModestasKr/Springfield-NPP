@@ -2,11 +2,15 @@
 import React, { useState, useEffect, Fragment } from "react";
 import swal from "sweetalert";
 import ReactPaginate from "react-paginate";
+import { CSVLink } from "react-csv";
+
 // API
 import {
   deleteUserIncome,
   deleteUserExpenses,
   addLog,
+  getAllUserExpensesByMonth,
+  getAllUserIncomeByMonth,
 } from "../../api/libraries/apiLibraries";
 // Components
 import ReadOnlyRow from "./ReadOnlyRow.js";
@@ -24,6 +28,8 @@ function History() {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const [editContactId, setEditContactId] = useState(null);
   const [logData, setLogData] = useState(0);
+  const [userIncome, setUserIncome] = useState([]);
+  const [userExpenses, setUserExpenses] = useState([]);
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 10;
@@ -34,7 +40,37 @@ function History() {
   // We have all user data using context
   useEffect(() => {
     setUsers(userData);
+    getAllIncomes();
   }, [userData]);
+
+  function getAllIncomes() {
+    getAllUserIncomeByMonth(userData._id).then((res) => {
+      setUserIncome(res.data.data.income);
+    });
+    getAllUserExpensesByMonth(userData._id).then((res) => {
+      setUserExpenses(res.data.data.expenses);
+    });
+  }
+
+  const arr = [];
+
+  for (let i = 0; i < userIncome.length; i++) {
+    arr.push({ ...userIncome[i], ...userExpenses[i] });
+  }
+
+  const csvHeader = [
+    {label: 'Tipas', key: 'type'},
+    {label: 'Suma', key: 'amount'},
+    {label: 'Kategorija', key: 'category'},
+    {label: 'Data', key: 'date'},
+    {label: 'Įrašas sukurtas', key: 'date_created'},
+    {label: 'Įrašas atnaujintas', key: 'date_updated'},
+  ]
+  const csvReport = {
+    filename: 'Islaidos.csv',
+    headers: csvHeader,
+    data: userData.expenses ,
+  }
 
   // Specified property as its own property
   if (users !== undefined && users.hasOwnProperty("email")) {
@@ -188,6 +224,9 @@ function History() {
            }}
           />
       </div>
+      <button>
+        <CSVLink {...csvReport}>Atsisiūsti išlaidų CSV</CSVLink>
+      </button>
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">

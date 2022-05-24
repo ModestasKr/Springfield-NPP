@@ -4,6 +4,7 @@ import {
   loginUser,
   getUserById,
   getUserBalanceByMonth,
+  getLogs,
 } from "../api/libraries/apiLibraries";
 
 const UserContext = createContext();
@@ -13,12 +14,14 @@ const UserProvider = ({ children }) => {
   // useState
   const [userData, setUserData] = useState({});
   const [balance, setBalance] = useState(0);
+  const [allLogs, setLogs] = useState([]);
 
   useEffect(() => {
     if (localStorage.user !== undefined) {
       // console.log(localStorage.getItem("user"));
       // GET all user data
       setUserData(JSON.parse(localStorage.getItem("user")));
+      getAllLogs();
     }
   }, []);
 
@@ -38,6 +41,14 @@ const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(res.data.data.users));
     });
   }
+
+  // Get logs
+  function getAllLogs() {
+    getLogs().then((res) => {
+      setLogs(res.data.logs);
+    })
+  }
+
   // Login user
   function doLogin(data) {
     loginUser(data).then((res) => {
@@ -71,6 +82,8 @@ const UserProvider = ({ children }) => {
         updateUserData,
         logOut,
         balance,
+        getAllLogs,
+        allLogs
       }}
     >
       {children}
