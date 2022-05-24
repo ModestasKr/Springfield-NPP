@@ -41,7 +41,7 @@
 }
 
 button {
-  border-radius: 7px;
+  border-radius: 5px;
   transition: 0.3s;
   cursor: pointer;
   background-color: var(--backGround-color-200);

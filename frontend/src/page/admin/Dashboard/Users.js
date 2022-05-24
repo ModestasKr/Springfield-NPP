@@ -70,7 +70,6 @@ function Users() {
 
   return (
     <>
-      <h3 className="Users-counter">Vartotojų skaičius: {userCounter} </h3>
       <div className="search-box">
         <input
           type="text"
@@ -81,13 +80,14 @@ function Users() {
           }}
         />
       </div>
+      {/* <p className="Users-counter">Vartotojų skaičius: {userCounter} </p> */}
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">
             <tr>
-              <th>Username</th>
-              <th>email</th>
-              <th>id</th>
+              <th>ID (Viso: {userCounter})</th>
+              <th>Vartotojo vardas</th>
+              <th>EL. paštas</th>
             </tr>
           </thead>
           <tbody>{usersData}</tbody>
