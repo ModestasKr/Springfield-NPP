@@ -20,6 +20,7 @@ function Logs() {
       .then((result) => {
         // console.log(result.data.logs);
         setLogs(result.data.logs);
+       
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
