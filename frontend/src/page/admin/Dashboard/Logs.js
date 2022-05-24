@@ -1,52 +1,33 @@
 import React, { useState, useEffect, Fragment } from "react";
 import LogCard from "./LogCard";
 import ReactPaginate from "react-paginate";
+import { getLogs } from "../../../api/libraries/apiLibraries";
 
 function Logs() {
-  const [logs, setLogs] = useState([]);
+  let [logs, setLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const logsPerPage =25;
+  const logsPerPage = 25;
   const pagesVisited = pageNumber * logsPerPage;
    // search input
    const [searchTerm, setSearchTerm] = useState ("");
 
-  const url = "http://localhost:4000/api/v1/users/logs";
-
-  const getLogs = async () => {
-    await fetch(url)
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log(result.data.logs);
-        setLogs(result.data.logs);
-        setIsLoading(false);
-      })
-      .catch((error) => console.log(error));
-  };
 
   useEffect(() => {
-    getLogs();
+    getLogs().then ((res) => {
+      setLogs(res.data.data.logs);
+    })
   }, []);
+  
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+let arr = [];
 
-  // datos rusiavimas
-  function sortByDate(a, b) {
-    if (a.date_created < b.date_created) {
-      return 1;
-    }
-    if (a.date_created > b.date_created) {
-      return -1;
-    }
-    return 0;
-  }
+for(let i = 0; i < logs.length; i++) {
+  arr.unshift(logs[i]);
+}
 
-  var logsByDate = logs.sort(sortByDate);
-
-  const logRow = logsByDate.filter((log)=> {
+  const logRow = arr.filter((log)=> {
     if (searchTerm == "") {
       return log 
     } else if (log.email.toLowerCase().includes(searchTerm.toLowerCase())){
@@ -57,6 +38,7 @@ function Logs() {
   }
   }).slice(pagesVisited, pagesVisited + logsPerPage)
     .map((log) => {
+      
       return (
         <LogCard
           key={log._id}
@@ -69,7 +51,7 @@ function Logs() {
     });
 
   //pagination, change page
-  var pageCount = Math.ceil(logsByDate.length / logsPerPage);
+  var pageCount = Math.ceil(arr.length / logsPerPage);
   var changePage = ({ selected }) => {
     setPageNumber(selected);
   };
