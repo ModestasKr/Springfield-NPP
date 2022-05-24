@@ -4,11 +4,14 @@ import "../../history/style/History.css";
 import ReadOnlyUser from "./ReadOnlyUser";
 import ReactPaginate from "react-paginate";
 import "./style/Users.css";
+import EditUser from "./EditUser";
+import { deleteUserById } from "../../../api/libraries/apiLibraries";
 
 function Users() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userCounter, setUserCounter] = useState();
+  const [editContactId, setEditContactId] = useState(null);
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 15;
@@ -33,32 +36,87 @@ function Users() {
     getUsers();
   }, []);
 
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+    // Cancel button
+    const handleCancelClick = () => {
+      // direct null
+      setEditContactId(null);
+    };
+
+    // Edit button
+    const handleEditClick = (event, userID) => {
+      // default action that belongs to the event will not occur
+      event.preventDefault();
+      // By ID
+      setEditContactId(userID);
+    };
+
+    //delete user
+    function deleteUser(userID) {
+      swal({
+        title: "Ar tikrai norite ištrinti šį vartotoją?",
+        icon: "warning",
+        buttons: ["Atšaukti", "Gerai"],
+      }).then((isConfirm) => {
+        if (isConfirm) {
+          console.log(isConfirm);
+          deleteUserById(userID);
+          // reset();
+          getUsers();
+        }
+        swal({
+          text: "Ištrinta!",
+          icon: "success",
+          button: "Gerai",
+          timer: 1500,
+        });
+      });
+    }
+      console.log(users)
   // Maping parameter
   const usersData = users
-    .filter((item) => {
+
+    .filter((items) => {
+     
       if (searchTerm == "") {
-        return item;
+        return items;
       } else if (
-        item.username.toLowerCase().includes(searchTerm.toLowerCase())
+        items.username.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
-        return item;
-      } else if (item.email.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return item;
+        return items;
+      } else if (items.email.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return items;
       }
     })
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map((item) => {
       return (
-        <ReadOnlyUser
-          key={item._id}
-          username={item.username}
-          userID={item._id}
-          email={item.email}
-        />
+          <Fragment key={item._id}>
+           {editContactId === item._id ? (
+              <EditUser
+                username={item.username}
+                userID={item._id}
+                email={item.email}
+                handleCancelClick={handleCancelClick}
+                setEditContactId={setEditContactId}
+                users={users}
+                getUsers={getUsers}
+                />
+           ) : (
+              <ReadOnlyUser
+                username={item.username}
+                userID={item._id}
+                email={item.email}
+                deleteUser={deleteUser}
+                handleEditClick={handleEditClick}
+                users={users}
+                />
+           )}
+        </Fragment>
       );
     });
 
