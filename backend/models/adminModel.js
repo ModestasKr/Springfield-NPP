@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const loggingSchema = new mongoose.Schema({
     date_created: {
         type: Date,
-        default: Date.now,
         unmodifiable: true,
       },
     email: {

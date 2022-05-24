@@ -8,3 +8,8 @@
   justify-content: center;
   margin: 0.5em;
 }
+
+.IncomePieChart-container p {
+  color: #465e7a;
+  font-weight: bold;
+}

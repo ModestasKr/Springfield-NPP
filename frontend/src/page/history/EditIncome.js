@@ -30,8 +30,9 @@ const EditIncome = ({
 const [logData] = useState(0);
 const data = {
   email: userData.email,
-  action: `Edited income`,
+  action: `Pakeistos pajamos`,
   subID: subID,
+  date_created: new Date(),
 }
 console.log(logData)
   // Update input data

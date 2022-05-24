@@ -46,16 +46,18 @@ function Form() {
           console.log(data);
           addLog({
             email: user.email,
-            action: `Added ${data.accounting}`,
+            action: `Pridėta pajamos`,
             amount: data.amount,
+            date_created: new Date(),
           });
           updateUserData(user._id);
         })
       : createUserExpenses(data, user._id).then(() => {
           addLog({
             email: user.email,
-            action: `Added ${data.accounting}`,
+            action: `Pridėta išlaidos`,
             amount: data.amount,
+            date_created: new Date(),
           });
           updateUserData(user._id);
         });
@@ -68,9 +70,7 @@ function Form() {
       </div>
       <div className="Form-body">
         <form className="Form-body-form" onSubmit={handleSubmit(onSubmit)}>
-          <label>Apskaita</label>
           <select
-            // name="accounting"
             onClick={(e) => {
               SetIncExp(e.target[e.target.selectedIndex].value);
             }}
@@ -79,20 +79,19 @@ function Form() {
             })}
           >
             <option value="" select="true">
-              Pasirinkti
+              Apskaita
             </option>
             <option value="income">Pajamos</option>
             <option value="expense">Išlaidos</option>
           </select>
           <span className="error">{errors.accounting?.message}</span>
-          <label>Kategorijos</label>
           <select
             {...register("category", {
               required: "Įvestyje neparinkti duomenys",
             })}
           >
             <option value="" select="true">
-              Pasirinkti
+              Kategorija
             </option>
             <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
             <option value="Apsipirkimai">Apsipirkimai</option>
@@ -108,21 +107,8 @@ function Form() {
           </select>
           <p className="error">{errors.category?.message}</p>
 
-          <label>Pavadinimas</label>
           <input
-            placeholder="Parašykite pavadinimą"
-            type="text"
-            {...register("name", {
-              maxLength: {
-                value: 20,
-                message: "Daugiausia 20 simbolių",
-              },
-            })}
-          />
-          <p className="error">{errors.name?.message}</p>
-          <label>Suma</label>
-          <input
-            placeholder="Parašykite suma"
+            placeholder="Suma"
             type="number"
             step="0.01"
             {...register("amount", {
@@ -143,7 +129,7 @@ function Form() {
           />
           <p className="error">{errors.amount?.message}</p>
 
-          <label>Data</label>
+          {/* <label>Data</label> */}
           <input
             type="date"
             min="2021-01-01"
@@ -151,6 +137,20 @@ function Form() {
             defaultValue={new Date().toISOString().substr(0, 10)}
             {...register("date")}
           />
+          <p className="error">{errors.date?.message}</p>
+
+          <input
+            placeholder="Pavadinimas"
+            type="text"
+            {...register("name", {
+              maxLength: {
+                value: 20,
+                message: "Daugiausia 20 simbolių",
+              },
+            })}
+          />
+          <p className="error">{errors.name?.message}</p>
+
           <button className="Form-btn" type="submit">
             Pridėti
           </button>

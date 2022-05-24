@@ -27,8 +27,9 @@ const EditExpenses = ({
   });
   const data = {
     email: userData.email,
-    action: `Edited expenses`,
+    action: `Pakeistos išlaidos`,
     subID: subID,
+    date_created: new Date(),
   }
 
   function updateExpenseObject(e) {

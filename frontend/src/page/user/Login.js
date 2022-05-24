@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // API components
-import { loginUser } from "../../api/libraries/apiLibraries";
+import { loginUser, addLog } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Login.css";
 // Images
@@ -29,6 +29,11 @@ function Login() {
 
     // Context
     doLogin(data);
+    addLog({
+      email: data.email,
+      date_created: new Date(),
+      action: 'Prisijungta',
+    })
     setTimeout(() => {
       navigate("/application");
     }, "500");

@@ -1,12 +1,10 @@
 .Form-body {
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
+  max-width: 70%;
   padding: 1em;
+  margin: 0 auto;
 }
 
 .Form-body-form {
-  max-width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -14,5 +12,4 @@
 
 .Form-btn {
   padding: 0.5em 6em;
-  align-self: center;
 }
