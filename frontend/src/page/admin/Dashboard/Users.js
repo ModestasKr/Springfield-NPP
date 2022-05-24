@@ -21,7 +21,7 @@ function Users() {
 
   const url = "http://localhost:4000/api/v1/users";
 
-  const getUsers = async () => {
+  var getUsers = async () => {
     await fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -76,7 +76,7 @@ function Users() {
         });
       });
     }
-      console.log(users)
+      
   // Maping parameter
   const usersData = users
 
