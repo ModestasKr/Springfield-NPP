@@ -32,7 +32,8 @@ function Registration() {
     createUser(data);
     addLog({
       email: data.email,
-      action: 'Registracija'
+      action: 'Registracija',
+      date_created: new Date(),
     })
     navigate("/login");
   }
