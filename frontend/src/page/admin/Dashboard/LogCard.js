@@ -1,7 +1,8 @@
 import React from "react";
 
 const LogCard = ({email,action,amount,date}) => {
-  // Date without Time zones
+  
+
 
   return (
     <tr className="ReadOnlyRow-row">
