@@ -1,3 +1,8 @@
+:root {
+  --nav-backGround-color-100: #465e7a;
+  --nav-text-color: #fefefe;
+}
+
 .Nav-container {
   box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.15);
   height: auto;
@@ -7,7 +12,7 @@
 .Nav-links,
 .Nav-links li button {
   width: 100%;
-  background-color: var(--backGround-color-100);
+  background-color: var(--nav-backGround-color-100);
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -22,13 +27,13 @@
 
 .Nav-links li button,
 .Nav-links :nth-child(1) {
-  color: var(--color-1000);
+  color: var(--nav-text-color);
   text-decoration: none;
 }
 
 .Nav-links li:hover,
 .Nav-links li button:hover {
-  background-color: var(--Neutral-color-100);
+  /* background-color: var(--Neutral-color-100); */
   border-radius: 6px;
 }
 

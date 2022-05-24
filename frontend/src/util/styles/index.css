@@ -20,9 +20,12 @@
   --backGround-color-300: #c6c8c9;
   --backGround-color-200: #dfe1e2;
   --backGround-color-100: #f8fafc;
+  /* --backGround-color-100: #232323; */
   /* Neutral */
   --color-1000: black;
   --Neutral-color-100: white;
+
+  --nav-text-color: #fefefe;
 
   /* Typography */
   --mainFont: "Roboto", sans-serif;
@@ -31,9 +34,9 @@
 .Form-container,
 .IncomePieChart-container,
 .ExpensePieChart-container {
-  border: 1px solid black;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.45);
+  border: 1px solid #afafaf;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--backGround-color-100);
 }
 
@@ -57,7 +60,8 @@ select {
 input,
 select {
   padding: 0.5em 1em;
-  border-radius: 7px;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .error {
@@ -71,19 +75,23 @@ label {
 }
 
 ::placeholder {
-  color: var(--backGround-color-400);
+  color: #465e7a;
 }
 
 input[type],
 select[name] {
   box-sizing: border-box;
-  border-bottom: 3px solid #4e72a4;
+  border-bottom: 3px solid #465e7a;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
+input[type="date"] {
+  color: #465e7a;
+}
+
 select {
-  color: var(--backGround-color-400);
+  color: #465e7a;
 }
 
 input[type]:focus,
