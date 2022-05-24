@@ -1,5 +1,5 @@
 .History-container {
-  padding: 1em 1em;
+  padding: 0.5em 0.5em;
   display: flex;
   justify-content: center;
   margin: 20px auto;
@@ -8,15 +8,15 @@
 }
 
 .History-body {
-  border: 1px solid var(--backGround-color-400);
+  /* border: 1px solid var(--backGround-color-400); */
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
 }
 
 .History-body tr {
-  background-color: var(--backGround-color-100);
-  border: 1px solid var(--backGround-color-400);
+  /* background-color: var(--backGround-color-100); */
+  border: 1px solid #cccccc;
   padding: 0.35em;
 }
 
@@ -39,9 +39,9 @@ td {
 }
 
 .table-income {
-  color: rgb(49, 226, 43);
+  color: #006600;
 }
 
 .table-expense {
-  color: red;
+  color: #cc0000;
 }

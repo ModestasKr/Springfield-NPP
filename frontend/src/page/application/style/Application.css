@@ -12,7 +12,7 @@
   }
 }
 
-@media screen and (max-width: 55rem) {
+@media screen and (max-width: 45rem) {
   .Application-container {
     display: flex;
     flex-direction: column;
@@ -20,13 +20,13 @@
   }
 }
 
-@media screen and (max-width: 65rem) {
+/* @media screen and (max-width: 65rem) {
   .Application-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-}
+} */
 
 .Linechart-p {
   text-align: center;

@@ -38,9 +38,9 @@ function Registration() {
   return (
     <div className="Registration-container">
       <div className="Registration-body">
-        <div className="Registration-images">
+        <picture className="Registration-images">
           <img className="Registration-image-img" src={img} alt="springfield" />
-        </div>
+        </picture>
         <form className="Registration-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Vartotojo vardas</label>
           <input

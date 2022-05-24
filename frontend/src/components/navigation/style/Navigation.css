@@ -4,9 +4,19 @@
 }
 
 .Nav-container {
-  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
   height: auto;
   width: 100%;
+}
+
+@media screen and (max-width: 35rem) {
+  .Nav-links,
+  .Nav-links li button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 .Nav-links,
