@@ -3,5 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  /* gap: 5px; */
+}
+
+.Balance-container p {
+  color: #465e7a;
+  font-weight: bold;
+  padding: 0.5em 0;
 }

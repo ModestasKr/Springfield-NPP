@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // Api Libraries
-import { createUser, getUserEmail } from "../../api/libraries/apiLibraries";
+import { createUser, getUserEmail, addLog } from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Register.css";
 // Images
@@ -30,6 +30,10 @@ function Registration() {
   // POST data using parameter data
   function onSubmit(data) {
     createUser(data);
+    addLog({
+      email: data.email,
+      action: 'Registracija'
+    })
     navigate("/login");
   }
 
@@ -38,9 +42,9 @@ function Registration() {
   return (
     <div className="Registration-container">
       <div className="Registration-body">
-        <div className="Registration-images">
+        <picture className="Registration-images">
           <img className="Registration-image-img" src={img} alt="springfield" />
-        </div>
+        </picture>
         <form className="Registration-form" onSubmit={handleSubmit(onSubmit)}>
           <label>Vartotojo vardas</label>
           <input

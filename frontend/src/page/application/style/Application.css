@@ -1,8 +1,8 @@
 .Application-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 20px;
-  padding: 3em 1em;
+  grid-column-gap: 10px;
+  padding: 1.5em 1em;
 }
 @media screen and (max-width: 25rem) {
   .Application-container {
@@ -12,7 +12,7 @@
   }
 }
 
-@media screen and (max-width: 55rem) {
+@media screen and (max-width: 45rem) {
   .Application-container {
     display: flex;
     flex-direction: column;
@@ -20,13 +20,13 @@
   }
 }
 
-@media screen and (max-width: 65rem) {
+/* @media screen and (max-width: 65rem) {
   .Application-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-}
+} */
 
 .Linechart-p {
   text-align: center;

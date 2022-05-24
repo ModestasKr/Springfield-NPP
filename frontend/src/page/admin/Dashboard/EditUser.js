@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { updateUserById } from "../../../api/libraries/apiLibraries";
+import { getUsersByEmail, updateUserById } from "../../../api/libraries/apiLibraries";
 import { useGlobalUserContext, UserContext } from "../../../util/UserContext";
 
 
@@ -13,6 +13,7 @@ const EditUser = ({
     userID,
     setEditContactId,
     users,
+    getUsers,
     
 }) => {
   const {userData, updateUserData } = useGlobalUserContext(UserContext);
@@ -51,6 +52,7 @@ const EditUser = ({
       console.log(data)
     });
     setEditContactId(null);
+    getUsers();
      
     
   }

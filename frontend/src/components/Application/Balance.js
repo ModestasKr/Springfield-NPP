@@ -14,8 +14,7 @@ function Balance({ id }) {
   return (
     <div className="Balance-container">
       <h3>Naujas įrašas</h3>
-      <p>Balansas:</p>
-      <p>{id && balance} EUR</p>
+      <p>Balansas: {id && balance} EUR</p>
     </div>
   );
 }

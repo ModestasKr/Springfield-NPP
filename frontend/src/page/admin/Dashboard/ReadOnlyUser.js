@@ -8,15 +8,16 @@ const ReadOnlyUser = ({
   username,
   handleEditClick,
 }) => {
+
   // Date without Time zones
- 
+
   // We direct color
-  
+
   return (
     <tr className="ReadOnlyRow-row">
+      <td>{userID}</td>
       <td>{username}</td>
       <td>{email}</td>
-      <td>{userID}</td>
       <td className="ReadOnlyRow-button">
         <button
           type="button"

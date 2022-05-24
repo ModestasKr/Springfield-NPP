@@ -48,7 +48,7 @@
 /* search imput */
 
 .search-box {
-  margin: 2em 1em;
+  margin: 0.5em 1em;
   display: flex;
   justify-content: center;
   align-items: center;
