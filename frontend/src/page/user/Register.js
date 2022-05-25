@@ -3,7 +3,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // Api Libraries
-import { createUser, getUserEmail, addLog } from "../../api/libraries/apiLibraries";
+import {
+  createUser,
+  getUserEmail,
+  addLog,
+} from "../../api/libraries/apiLibraries";
 // Style
 import "./style/Register.css";
 // Images
@@ -32,9 +36,9 @@ function Registration() {
     createUser(data);
     addLog({
       email: data.email,
-      action: 'Registracija',
+      action: "Registracija",
       date_created: new Date(),
-    })
+    });
     navigate("/login");
   }
 
@@ -47,10 +51,9 @@ function Registration() {
           <img className="Registration-image-img" src={img} alt="springfield" />
         </picture>
         <form className="Registration-form" onSubmit={handleSubmit(onSubmit)}>
-          <label>Vartotojo vardas</label>
           <input
             type="text"
-            placeholder="Vardas"
+            placeholder="Vartotojo vardas"
             {...register("username", {
               required: "Laukelis privalomas",
               maxLength: {
@@ -68,10 +71,10 @@ function Registration() {
             })}
           />
           <span className="error">{errors.username?.message}</span>
-          <label>Elektroninis paštas</label>
+
           <input
             type="email"
-            placeholder="El. paštas"
+            placeholder="Elektroninis paštas"
             {...register("email", {
               required: "Laukelis privalomas",
               maxLength: {
@@ -92,7 +95,7 @@ function Registration() {
             {errors.email?.type === "checkEmail" &&
               "El. paštas jau naudojamas."}
           </span>
-          <label>Slaptažodis</label>
+
           <input
             type="password"
             name="password"
@@ -114,10 +117,9 @@ function Registration() {
             })}
           />
           <span className="error">{errors.password?.message}</span>
-          <label>Pakartotinas slaptažodis</label>
           <input
             type="password"
-            placeholder="Pakartokite slaptažodį"
+            placeholder="Pakartotinas slaptažodis"
             {...register("repeatPassword", {
               required: "Laukelis privalomas",
               minLength: {

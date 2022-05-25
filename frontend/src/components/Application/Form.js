@@ -106,14 +106,12 @@ function Form() {
               Kategorija
             </option>
             <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
-            <option value="Apsipirkimai">Apsipirkimai</option>
-            <option value="Namams">Namams</option>
+            <option value="Apsipirkimai">Pirkiniai</option>
+            <option value="Namams">Buitis</option>
             <option value="Transportas">Transportas</option>
-            <option value="Mašina">Mašina</option>
-            <option value="Gyvenimas ir linksmybės">
-              Gyvenimas ir linksmybės
-            </option>
-            <option value="Komunikacija,PC">Komunikacija,PC</option>
+            <option value="Gyvenimas ir linksmybės">Pramogos</option>
+            <option value="Komunikacija,PC">Mokesčiai</option>
+            <option value="Investavimas">Sveikata</option>
             <option value="Investavimas">Investavimas</option>
             <option value="Kitas">Kitas</option> */}
           </select>

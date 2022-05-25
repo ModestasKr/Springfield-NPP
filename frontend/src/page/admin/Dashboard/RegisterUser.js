@@ -41,10 +41,9 @@ export default function RegisterUser() {
     <div className="RegisterUser-container">
       <div className="RegisterUser-body">
         <form className="RegisterUser-form" onSubmit={handleSubmit(onSubmit)}>
-          <label>Vartotojo vardas</label>
           <input
             type="text"
-            placeholder="Vardas"
+            placeholder="Vartotojo vardas"
             {...register("username", {
               required: "Laukelis privalomas",
               maxLength: {
@@ -62,10 +61,10 @@ export default function RegisterUser() {
             })}
           />
           <span className="error">{errors.username?.message}</span>
-          <label>Elektroninis paštas</label>
+
           <input
             type="email"
-            placeholder="El. paštas"
+            placeholder="Elektroninis paštas"
             {...register("email", {
               required: "Laukelis privalomas",
               maxLength: {
@@ -86,7 +85,6 @@ export default function RegisterUser() {
             {errors.email?.type === "checkEmail" &&
               "El. paštas jau naudojamas."}
           </span>
-          <label>Slaptažodis</label>
           <input
             type="password"
             name="password"
@@ -108,7 +106,6 @@ export default function RegisterUser() {
             })}
           />
           <span className="error">{errors.password?.message}</span>
-          <label>Pakartotinas slaptažodis</label>
           <input
             type="password"
             placeholder="Pakartokite slaptažodį"
