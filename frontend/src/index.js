@@ -7,6 +7,7 @@ import Application from "./page/application/Application";
 import History from "./page/history/History";
 import Doccumentation from "./page/doccumentation/Doccumentation";
 import Charts from "./page/charts/Charts";
+import { CategoriesProvider } from "./util/categoryContext";
 
 // User
 import Login from "./page/user/Login";
@@ -28,6 +29,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
+      <CategoriesProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
@@ -46,13 +48,14 @@ root.render(
               </Route>
               <Route path="/history" element={<History />} />
               <Route path="/charts" element={<Charts />} />
+              </Route>
             </Route>
-          </Route>
           {/* useNavigate */}
           <Route path="//application" element={<Doccumentation />} />
           <Route path="//history" element={<Doccumentation />} />
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
 );

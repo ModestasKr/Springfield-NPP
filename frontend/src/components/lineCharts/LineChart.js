@@ -64,6 +64,7 @@ function Linechart({ id }) {
       <div>
         <p className="Linechart-p">{yr}</p>
         <Line
+          key={year._id}
           id={year._id}
           data={{
             labels: [

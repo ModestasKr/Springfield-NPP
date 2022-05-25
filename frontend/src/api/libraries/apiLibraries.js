@@ -302,3 +302,35 @@ export async function getCategory() {
   const res = await axiosClient.get("/category");
   return res;
 }
+
+
+
+export async function deleteCategory(id) {
+  const res = await axiosClient.get(`/category/delete/${id}`)
+  return res;
+}
+
+export async function updateCategory(id, data) {
+  const res = await axiosClient.patch(`/category/update/${id}`, JSON.stringify(data))
+    .then((result) => {
+      console.log("Success:", result);
+      swal({
+        text: "Atnaujinta!",
+        icon: "success",
+        button: "Gerai",
+        timer: 2000,
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      swal({
+        text: "Klaida!",
+        icon: "error",
+        button: "Gerai",
+        timer: 2000,
+      });
+    });
+
+  return res;
+}
+
