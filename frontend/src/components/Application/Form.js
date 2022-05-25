@@ -1,12 +1,13 @@
 // Libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useForm } from "react-hook-form";
 // Component API
 import { addLog, createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
-import { useGlobalCategoriesContext } from "../../util/categoryContext.js";
+import { useGlobalCategoriesContext, CategoriesContext } from "../../util/categoryContext.js";
+import CategoryCard from "../../page/admin/Dashboard/category/CategoryCard";
 // Components
 import Balance from "./Balance";
 // Style
@@ -18,7 +19,8 @@ function Form() {
   const [income, setIncome] = useState({});
   const [incExp, SetIncExp] = useState("income");
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
-  const { CategoriesContext } = useGlobalCategoriesContext();
+  const { expensesCategories } = useGlobalCategoriesContext();
+  
   // react-hook-form
   const {
     register,
@@ -65,6 +67,13 @@ function Form() {
         });
   }
 
+  var category = expensesCategories.map((item) => {
+              
+    return  (
+       <option key={item._id}>  {item.category} </option>
+    );
+  });
+
   return (
     <div className="Form-container">
       <div>
@@ -92,15 +101,7 @@ function Form() {
               required: "Įvestyje neparinkti duomenys",
             })}
           >
-            {CategoriesContext.map((data) => { 
-              // console.log(data.id)
-                      const { id, category } = data;
-                      return ( 
-                        <option key={id} value={category}>
-                          {category}
-                        </option>
-                        );
-                      })}
+            {category}
             {/* <option value="" select="true">
               Kategorija
             </option>
