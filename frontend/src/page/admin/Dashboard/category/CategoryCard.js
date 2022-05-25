@@ -60,8 +60,7 @@ function CategoryCard(props) {
               }).then((isConfirm) => {
                 if (isConfirm) {
                     deleteCategory(id).then(() => {
-                        getCategory();
-                    
+                        refreshCategoriesData(id);
                   });
                 } 
               })
