@@ -3,7 +3,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import swal from "sweetalert";
 import ReactPaginate from "react-paginate";
 import { CSVLink } from "react-csv";
-
 // API
 import {
   deleteUserIncome,
@@ -34,8 +33,8 @@ function History() {
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 10;
   const pagesVisited = pageNumber * dataPerPage;
-   // search input
-   const [searchTerm, setSearchTerm] = useState ("");
+  // search input
+  const [searchTerm, setSearchTerm] = useState("");
 
   // We have all user data using context
   useEffect(() => {
@@ -59,18 +58,18 @@ function History() {
   }
 
   const csvHeader = [
-    {label: 'Tipas', key: 'type'},
-    {label: 'Suma', key: 'amount'},
-    {label: 'Kategorija', key: 'category'},
-    {label: 'Data', key: 'date'},
-    {label: 'Įrašas sukurtas', key: 'date_created'},
-    {label: 'Įrašas atnaujintas', key: 'date_updated'},
-  ]
+    { label: "Tipas", key: "type" },
+    { label: "Suma", key: "amount" },
+    { label: "Kategorija", key: "category" },
+    { label: "Data", key: "date" },
+    { label: "Įrašas sukurtas", key: "date_created" },
+    { label: "Įrašas atnaujintas", key: "date_updated" },
+  ];
   const csvReport = {
-    filename: 'Islaidos.csv',
+    filename: "Islaidos.csv",
     headers: csvHeader,
-    data: userData.expenses ,
-  }
+    data: userData.expenses,
+  };
 
   // Specified property as its own property
   if (users !== undefined && users.hasOwnProperty("email")) {
@@ -149,16 +148,18 @@ function History() {
 
     const incomeExpensesSortedByDate = incomeExpenses.sort(sortByDate);
 
-    var displayData = incomeExpensesSortedByDate.filter((log)=> {
-      if (searchTerm == "") {
-        return log 
-      } else if (log.category.toLowerCase().includes(searchTerm.toLowerCase())){
-      return log
-    }
-    else if (log.name.toLowerCase().includes(searchTerm.toLowerCase())){
-      return log
-    }
-    })
+    var displayData = incomeExpensesSortedByDate
+      .filter((log) => {
+        if (searchTerm == "") {
+          return log;
+        } else if (
+          log.category.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          return log;
+        } else if (log.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return log;
+        }
+      })
       .slice(pagesVisited, pagesVisited + dataPerPage)
       .map((item) => {
         return (
@@ -215,18 +216,24 @@ function History() {
   }
   return (
     <>
-    <div className="search-box">
-        <input type="text" 
-           className="search-input"
-           placeholder="Paieška" 
-           onChange={event => {
-           setSearchTerm(event.target.value)
-           }}
-          />
+      <div className="search-box">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Paieška"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
       </div>
-      <button>
-        <CSVLink {...csvReport}>Atsisiūsti išlaidų CSV</CSVLink>
-      </button>
+      <div className="Csv-body">
+        <button className="Csv">
+          <CSVLink className="Csv-text" {...csvReport}>
+            Atsisiūsti išlaidų CSV
+          </CSVLink>
+        </button>
+      </div>
+
       <div className="History-container">
         <table className="History-body">
           <thead className="History-thead">

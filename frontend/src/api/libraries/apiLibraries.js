@@ -40,7 +40,6 @@ export async function updateUserById(data) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -65,7 +64,6 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",
@@ -166,7 +164,6 @@ export async function deleteUserExpenses(id, subID) {
       });
     })
     .catch((error) => {
-      console.error("Error:", error);
       swal({
         text: "Klaida!",
         icon: "error",

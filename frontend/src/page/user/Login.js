@@ -32,8 +32,8 @@ function Login() {
     addLog({
       email: data.email,
       date_created: new Date(),
-      action: 'Prisijungta',
-    })
+      action: "Prisijungta",
+    });
     setTimeout(() => {
       navigate("/application");
     }, "500");
@@ -44,13 +44,10 @@ function Login() {
         <div>
           <img src={img} alt="springfield" />
         </div>
-        <label className="form-label">
-          <span className="content-name">Elektroninis paštas</span>
-        </label>
         <input
           type="email"
           name="email"
-          placeholder="Įveskite El. paštas"
+          placeholder="Elektroninis paštas"
           {...register("email", {
             required: "Laukelis privalomas",
             maxLength: {
@@ -60,13 +57,11 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-        <label className="form-label">
-          <span className="content-name">Slaptažodis</span>
-        </label>
+
         <input
           type="password"
           name="password"
-          placeholder="Įveskite slaptažodį"
+          placeholder="Slaptažodis"
           {...register("password", {
             required: "Laukelis privalomas",
             minLength: {

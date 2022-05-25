@@ -16,6 +16,11 @@ function Navigation() {
       return `test`;
     }
   }
+  function isDisabledAdmin() {
+    if (userData.role === "admin") {
+      return `test`;
+    }
+  }
 
   return (
     <nav className="Nav-container">
@@ -31,22 +36,22 @@ function Navigation() {
           </li>
         )}
         {user && (
-          <li>
+          <li className={`${isDisabledAdmin()}`}>
             <Link to="/application">Aplikacija</Link>
           </li>
         )}
         {user && (
-          <li>
+          <li className={`${isDisabledAdmin()}`}>
             <Link to="/history">Istorija</Link>
           </li>
         )}
         {user && (
-          <li>
+          <li className={`${isDisabledAdmin()}`}>
             <Link to="/charts">Diagramos</Link>
           </li>
         )}
         {!user && (
-          <li>
+          <li className={`${isDisabledAdmin()}`}>
             <Link to="/">Dokumentacija</Link>
           </li>
         )}
