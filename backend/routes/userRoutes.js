@@ -44,7 +44,7 @@ router.route("/:id/income/month").get(getAllUserIncomeByMonth);
 router.route("/:id/expenses/month").get(getAllUserExpensesByMonth);
 router.route("/:id/income/delete/:subID").patch(deleteUserIncome);
 router.route("/:id/expenses/delete/:subID").patch(deleteUserExpenses);
-router.route("/:id/expenses/current/month").get(getUserExpensesByMonth);
+router.route("/:id/expenses/current/month").post(getUserExpensesByMonth);
 router.route("/:id/income/current/month").post(getUserIncomeByMonth);
 router.route("/:id/balance/current/month").post(getUserBalanceByMonth);
 

@@ -41,40 +41,13 @@ function IncomePieChart() {
     }
   }, [userData]);
 
-  var names = chart?.map((item) => {
-    if (item.amount !== 0) {
-      return item.name;
-    }
-  });
-
-  var labels = [];
-
-  for (let i = 0; i < chart.length; i++) {
-    if(names[i] !== undefined){
-      labels.push(names[i])
-    }
-  }
-
-  var sums = chart?.map((item) => {
-    if (item.amount !== 0) {
-      return item.amount;
-    }
-  });
-
-  var categorySum = [];
-
-  for (let i = 0; i < sums.length; i++) {
-    if(sums[i] !== undefined){
-      categorySum.push(sums[i])
-    }
-  }
 
   var data = {
-    labels,
+    labels: chart[1],
     datasets: [
       {
-        labels,
-        data: categorySum,
+        label: chart[1],
+        data: chart[0],
         backgroundColor: [
           "rgba(230, 25, 75, 0.2)",
           "rgba(245, 130, 48, 0.2)",
