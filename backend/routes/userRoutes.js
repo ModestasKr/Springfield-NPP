@@ -21,7 +21,7 @@ const {
 
 const { addLog, getLogs } = require("../controllers/adminController");
 
-const { addCategory, getCategory } = require("../controllers/categoryController");
+const { addCategory, getCategory, deleteCategory, updateCategory } = require("../controllers/categoryController");
 
 const router = express.Router();
 
@@ -30,12 +30,14 @@ router.route("/logs").get(getLogs);
 router.route("/add/log").post(addLog);
 router.route("/category").get(getCategory);
 router.route("/add/category").post(addCategory);
+router.route("/category/update/:id").patch(updateCategory);
 router.route("/updateUser").post(updateUserById);
 router.route("/userByEmail").post(getUsersByEmail);
 router.route("/deleteUser/:id").delete(deleteUserById);
 router.route("/:id").get(getUserById);
 router.route("/:id/expenses").patch(createUserExpenses);
 router.route("/:id/income").patch(createUserIncome);
+router.route("/category/delete/:id").get(deleteCategory);
 router.route("/:id/income/:subID").patch(findIncomeDataAndUpdate);
 router.route("/:id/expenses/:subID").patch(findExpensesDataAndUpdate);
 router.route("/:id/income/month").get(getAllUserIncomeByMonth);

@@ -6,6 +6,7 @@ import { addLog, createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
+import { useGlobalCategoriesContext } from "../../util/categoryContext.js";
 // Components
 import Balance from "./Balance";
 // Style
@@ -17,6 +18,7 @@ function Form() {
   const [income, setIncome] = useState({});
   const [incExp, SetIncExp] = useState("income");
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
+  const { CategoriesContext } = useGlobalCategoriesContext();
   // react-hook-form
   const {
     register,
@@ -85,12 +87,21 @@ function Form() {
             <option value="expense">Išlaidos</option>
           </select>
           <span className="error">{errors.accounting?.message}</span>
-          <select
-            {...register("category", {
+          <select id="category" name="category"
+            {...register("category",  {
               required: "Įvestyje neparinkti duomenys",
             })}
           >
-            <option value="" select="true">
+            {CategoriesContext.map((data) => { 
+              // console.log(data.id)
+                      const { id, category } = data;
+                      return ( 
+                        <option key={id} value={category}>
+                          {category}
+                        </option>
+                        );
+                      })}
+            {/* <option value="" select="true">
               Kategorija
             </option>
             <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
@@ -103,7 +114,7 @@ function Form() {
             </option>
             <option value="Komunikacija,PC">Komunikacija,PC</option>
             <option value="Investavimas">Investavimas</option>
-            <option value="Kitas">Kitas</option>
+            <option value="Kitas">Kitas</option> */}
           </select>
           <p className="error">{errors.category?.message}</p>
 
