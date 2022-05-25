@@ -92,7 +92,7 @@ function Form() {
               required: "Įvestyje neparinkti duomenys",
             })}
           >
-            {CategoriesContext.map((data) => { 
+            {/* {CategoriesContext.map((data) => { 
               // console.log(data.id)
                       const { id, category } = data;
                       return ( 
@@ -100,8 +100,8 @@ function Form() {
                           {category}
                         </option>
                         );
-                      })}
-            {/* <option value="" select="true">
+                      })} */}
+            <option value="" select="true">
               Kategorija
             </option>
             <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
@@ -114,7 +114,7 @@ function Form() {
             </option>
             <option value="Komunikacija,PC">Komunikacija,PC</option>
             <option value="Investavimas">Investavimas</option>
-            <option value="Kitas">Kitas</option> */}
+            <option value="Kitas">Kitas</option>
           </select>
           <p className="error">{errors.category?.message}</p>
 
