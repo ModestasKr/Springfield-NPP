@@ -275,73 +275,42 @@ exports.getUserExpensesByMonth = async (req, res) => {
       0
     );
 
-    const expense = filteredExpensesC;
 
-    let mig = 0;
-    let apsi = 0;
-    let nam = 0;
-    let trans = 0;
-    let car = 0;
-    let fun = 0;
-    let pc = 0;
-    let finans = 0;
-    let stonk = 0;
-    let kita = 0;
+    function compare_category( a, b )
+  {
+  if ( a.category.toLowerCase() < b.category.toLowerCase()){
+    return -1;
+  }
+  if ( a.category.toLowerCase() > b.category.toLowerCase()){
+    return 1;
+  }
+  return 0;
+}
+    // Išrušiuoja kategorijas pagal abėcėlę
+    filteredExpensesC.sort(compare_category)
 
-    const allCategorySum = {
-      maistas: mig,
-      apsipirkimai: apsi,
-      namams: nam,
-      transportas: trans,
-      masina: car,
-      gyvenimas: fun,
-      pc,
-      finansines: finans,
-      investavimas: stonk,
-      kita,
-    };
+    var expenseCategories = [];
+    var expenseSums = [];
 
-    expense.forEach((item) => {
-      if (item.category == "Namams") {
-        nam += item.amount;
-      } else if (item.category == "Transportas") {
-        trans += item.amount;
-      } else if (item.category == "Mašina") {
-        car += item.amount;
-      } else if (item.category == "Maistas ir gėrimai") {
-        mig += item.amount;
-      } else if (item.category == "Gyvenimas ir linksmybės") {
-        fun += item.amount;
-      } else if (item.category == "Komunikacija,PC") {
-        pc += item.amount;
-      } else if (item.category == "Finansinės išlaidos") {
-        finans += item.amount;
-      } else if (item.category == "Investavimas") {
-        stonk += item.amount;
-      } else if (item.category == "Kitas") {
-        kita += item.amount;
-      } else if (item.category == "Apsipirkimai") {
-        apsi += item.amount;
+    //Išrūšiuotam masyve patikrina pasikartojančias kategorijas ir sudeda jų sumas
+    for(let i = 0; i<filteredExpensesC.length; i++){
+      if(filteredExpensesC[i].category===expenseCategories[expenseCategories.length-1]){
+        expenseSums[expenseSums.length-1] += filteredExpensesC[i].amount
+      } else {
+        expenseSums.push(filteredExpensesC[i].amount)
+        expenseCategories.push(filteredExpensesC[i].category)
       }
-    });
+    }
 
     res.status(200).json({
       status: "success",
       results: users.length,
       data: {
         expenses: allExpensesCurrentMonth,
-        currentExpensesC: filteredExpensesC,
+        currentExpensesC: filteredExpensesC, 
         duomenys: [
-          { name: "Maistas", amount: mig },
-          { name: "Namams", amount: nam },
-          { name: "Transportas", amount: trans },
-          { name: "Mašina", amount: car },
-          { name: "Gyvenimas", amount: fun },
-          { name: "Komunikacija,pc", amount: pc },
-          { name: "Finansai", amount: finans },
-          { name: "Investavimas", amount: stonk },
-          { name: "kita", amount: kita },
-          { name: "Apsipirkimai", amount: apsi },
+          expenseSums,
+          expenseCategories,
         ],
       },
     });
@@ -369,65 +338,39 @@ exports.getUserIncomeByMonth = async (req, res) => {
       (item) => item.date.getMonth() === currentMonth
     );
 
-    const filteredIncomeC = filteredMonth.filter((incomeC) => incomeC.amount);
+    const filteredIncomeC = filteredMonth.filter((incomeC) => incomeC.category);
 
     const allIncomeCurrentMonth = filteredMonth.reduce(
       (n, { amount }) => n + amount,
       0
     );
 
-    const incomee = filteredIncomeC;
-    /////////////
-
-    let mig = 0;
-    let apsi = 0;
-    let nam = 0;
-    let trans = 0;
-    let car = 0;
-    let fun = 0;
-    let pc = 0;
-    let finans = 0;
-    let stonk = 0;
-    let kita = 0;
-
-    const allCategorySum = {
-      maistas: mig,
-      apsipirkimai: apsi,
-      namams: nam,
-      transportas: trans,
-      masina: car,
-      gyvenimas: fun,
-      pc,
-      finansines: finans,
-      investavimas: stonk,
-      kita,
-    };
-
-    incomee.forEach((item) => {
-      if (item.category == "Namams") {
-        nam += item.amount;
-      } else if (item.category == "Transportas") {
-        trans += item.amount;
-      } else if (item.category == "Mašina") {
-        car += item.amount;
-      } else if (item.category == "Maistas ir gėrimai") {
-        mig += item.amount;
-      } else if (item.category == "Gyvenimas ir linksmybės") {
-        fun += item.amount;
-      } else if (item.category == "Komunikacija,PC") {
-        pc += item.amount;
-      } else if (item.category == "Finansinės išlaidos") {
-        finans += item.amount;
-      } else if (item.category == "Investavimas") {
-        stonk += item.amount;
-      } else if (item.category == "Kitas") {
-        kita += item.amount;
-      } else if (item.category == "Apsipirkimai") {
-        apsi += item.amount;
+    function compare_category( a, b )
+    {
+    if ( a.category.toLowerCase() < b.category.toLowerCase()){
+      return -1;
+    }
+    if ( a.category.toLowerCase() > b.category.toLowerCase()){
+      return 1;
+    }
+    return 0;
+  }
+      // Išrušiuoja kategorijas pagal abėcėlę
+      filteredIncomeC.sort(compare_category)
+  
+      var incomeCategories = [];
+      var incomeSums = [];
+  
+      //Išrūšiuotam masyve patikrina pasikartojančias kategorijas ir sudeda jų sumas
+      for(let i = 0; i<filteredIncomeC.length; i++){
+        if(filteredIncomeC[i].category===incomeCategories[incomeCategories.length-1]){
+          incomeSums[incomeSums.length-1] += filteredIncomeC[i].amount
+        } else {
+          incomeSums.push(filteredIncomeC[i].amount)
+          incomeCategories.push(filteredIncomeC[i].category)
+        }
       }
-    });
-    // console.log(filteredIncomeC)
-    // console.log(allIncomeCurrentMonth);
+    
     res.status(200).json({
       status: "success",
       results: users.length,
@@ -435,16 +378,8 @@ exports.getUserIncomeByMonth = async (req, res) => {
         income: allIncomeCurrentMonth,
         currentIncomeC: filteredMonth,
         duomenys: [
-          { name: "Maistas", amount: mig },
-          { name: "Namams", amount: nam },
-          { name: "Transportas", amount: trans },
-          { name: "Mašina", amount: car },
-          { name: "Gyvenimas", amount: fun },
-          { name: "Komunikacija,pc", amount: pc },
-          { name: "Finansai", amount: finans },
-          { name: "Investavimas", amount: stonk },
-          { name: "Kita", amount: kita },
-          { name: "Apsipirkimai", amount: apsi },
+          incomeSums,
+          incomeCategories,
         ],
       },
     });

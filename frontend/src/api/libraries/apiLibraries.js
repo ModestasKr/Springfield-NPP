@@ -254,7 +254,7 @@ export async function getUserEmail(email) {
 
 // Get user expenses by current month
 export async function getUserExpensesByMonth(id) {
-  const res = await axiosClient.get(`/${id}/expenses/current/month`);
+  const res = await axiosClient.post(`/${id}/expenses/current/month`);
   return res;
 }
 
