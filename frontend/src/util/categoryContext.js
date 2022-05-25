@@ -1,7 +1,9 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 
-import { getCategory } from "../../api/library/CategoriesAPI";
-import { useGlobalUserContext, UserContext } from "../context/UserContext";
+import { getCategory } from "../api/libraries/apiLibraries";
+import { useGlobalUserContext, UserContext } from "../util/UserContext";
+
+const CategoriesContext = createContext();
 
 const CategoriesProvider = ({ children }) => {
     const [expensesCategories, setExpensesCategories] = useState([]);
@@ -16,8 +18,9 @@ const CategoriesProvider = ({ children }) => {
     }, [userData]);
 
     function refreshCategoriesData(id) {
-        getAllExpCategories().then((res) => {
+        getCategory(id).then((res) => {
           setExpensesCategories(res.data.data.category);
+          console.log(res)
         });
     }
     
@@ -26,6 +29,7 @@ const CategoriesProvider = ({ children }) => {
           value={{
             expensesCategories,
             refreshCategoriesData,
+            getCategory,
           }}
         >
           {children}

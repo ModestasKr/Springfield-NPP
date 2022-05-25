@@ -3,6 +3,7 @@ import RegisterUser from "./Dashboard/RegisterUser";
 import Logs from "./Dashboard/Logs";
 import Users from "./Dashboard/Users";
 import "./style/Dashboard.css";
+import Category from "./Dashboard/category/Category";
 
 function Dashboard() {
   const [display, setDisplay] = useState("users");
@@ -17,6 +18,7 @@ function Dashboard() {
 
       {display == "users" && <Users />}
       {display == "logs" && <Logs />}
+      {display == "category" && <Category />}
       {display == "registerUser" && <RegisterUser />}
     </div>
   );
