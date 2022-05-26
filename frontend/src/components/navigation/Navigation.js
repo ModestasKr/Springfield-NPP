@@ -20,6 +20,9 @@ function Navigation() {
   return (
     <nav className="Nav-container">
       <ul className="Nav-links">
+        <li id="username">
+        {userData.username}
+        </li>
         {!user && (
           <li>
             <Link to="/login">Prisijungti</Link>
