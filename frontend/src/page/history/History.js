@@ -106,7 +106,7 @@ function History() {
         date_created: new Date(),
         subID: subID,
       };
-     
+      
       // Incomes
 
       if (type === "income") {

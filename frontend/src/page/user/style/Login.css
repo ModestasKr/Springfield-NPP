@@ -26,7 +26,6 @@
   width: 15rem;
 }
 
-
 .registerShowPassword {
   position: relative;
   display: flex;
@@ -44,3 +43,4 @@
   width: 100%;
   justify-content: center;
 }
+
