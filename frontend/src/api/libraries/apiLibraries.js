@@ -297,7 +297,7 @@ export async function addCategory(data) {
   .then((result) => {
     console.log("Success:", result);
     swal({
-      text: "Pridėta!",
+      text: "Pridėti!",
       icon: "success",
       button: "Gerai",
       timer: 2000,
