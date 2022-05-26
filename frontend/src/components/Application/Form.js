@@ -6,7 +6,10 @@ import { addLog, createUserIncome } from "../../api/libraries/apiLibraries";
 import { createUserExpenses } from "../../api/libraries/apiLibraries";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext.js";
-import { useGlobalCategoriesContext, CategoriesContext } from "../../util/categoryContext.js";
+import {
+  useGlobalCategoriesContext,
+  CategoriesContext,
+} from "../../util/categoryContext.js";
 import CategoryCard from "../../page/admin/Dashboard/category/CategoryCard";
 // Components
 import Balance from "./Balance";
@@ -20,8 +23,6 @@ function Form() {
   const [incExp, SetIncExp] = useState("income");
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const { expensesCategories } = useGlobalCategoriesContext();
-  
-
 
   // react-hook-form
   const {
@@ -69,13 +70,8 @@ function Form() {
   }
 
   var category = expensesCategories.map((item) => {
-              
-    return  (
-       <option key={item._id}>  {item.category} </option>
-    );
+    return <option key={item._id}> {item.category} </option>;
   });
-
-
 
   return (
     <div className="Form-container">
@@ -113,12 +109,13 @@ function Form() {
           <input
             placeholder="Suma"
             type="number"
-            step="0.01"
+            // step="0.01"
             {...register("amount", {
               required: "Galimi tik teigiami skaičiai",
               pattern: {
                 value: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-                message: "Galimi tik teigiami skaičiai ir du skaičiai po kablelio",
+                message:
+                  "Galimi tik teigiami skaičiai ir du skaičiai po kablelio",
               },
               minLength: {
                 value: 1,
