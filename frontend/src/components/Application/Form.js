@@ -134,7 +134,7 @@ function Form() {
           <input
             type="date"
             min="2021-01-01"
-            max="2041-01-01"
+            max={new Date()}
             defaultValue={new Date().toISOString().substr(0, 10)}
             {...register("date")}
           />

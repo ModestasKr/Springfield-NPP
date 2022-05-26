@@ -132,7 +132,7 @@ console.log(logData)
             type="date"
             name="date"
             min="2021-01-01"
-            max="2041-01-01"
+            max={new Date().toLocaleDateString('lt-LT')}
             defaultValue={date.slice(0, 10)}
             onChange={(e) => updateIncomeObject(e)}
           />

@@ -124,6 +124,7 @@ const EditExpenses = ({
             name="date"
             id="date-inp"
             min="2010-01-01"
+            max={new Date().toLocaleDateString('lt-LT')}
             defaultValue={date.slice(0, 10)}
             onChange={(e) => updateExpenseObject(e)}
           />
