@@ -81,9 +81,15 @@ const EditUser = ({
             defaultValue={email}
             {...register("email", {
               maxLength: 40,
+              pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
             })}
             onChange={(e) => updateUser(e)}
           />
+          {errors.email && (
+            <div className="error">
+              klaidingai įvestas el. paštas
+            </div>
+          )}
         </form>
       </td>
       <td>
