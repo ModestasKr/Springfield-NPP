@@ -112,7 +112,7 @@ function Registration() {
               },
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9?!@#$%^&*]/,
-                message: "Turi būti bent 1 didžioji raidė ir bent 1 simbolis",
+                message: "Turi būti bent 1 didžioji raidė",
               },
             })}
           />

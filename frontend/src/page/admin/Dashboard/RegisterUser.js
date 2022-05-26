@@ -54,7 +54,7 @@ export default function RegisterUser() {
                 message: "Mažiausia simbolių galima įvesti 2",
               },
               pattern: {
-                value: /^[A-z][A-z0-9-_]{2,12}$/i,
+                value: /^[A-z][A-z0-9-_]{2,12$/i,
                 message: "Negali būti specialų simbolių",
               },
             })}
@@ -100,7 +100,7 @@ export default function RegisterUser() {
               },
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9?!@#$%^&*]/,
-                message: "Turi būti bent 1 didžioji raidė ir bent 1 simbolis",
+                message: "Turi būti bent 1 didžioji raidė",
               },
             })}
           />
