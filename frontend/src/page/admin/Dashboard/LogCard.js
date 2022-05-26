@@ -1,6 +1,6 @@
 import React from "react";
 
-const LogCard = ({email,action,amount,date}) => {
+const LogCard = ({email,action,amount,date_created}) => {
   
   
 
@@ -9,7 +9,7 @@ const LogCard = ({email,action,amount,date}) => {
       <td>{email}</td>
       <td>{action}</td>
       <td>{amount}</td>
-      <td>{date}</td>
+      <td>{date_created}</td>
 
     </tr>
   );

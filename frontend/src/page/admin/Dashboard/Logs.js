@@ -45,7 +45,7 @@ for(let i = 0; i < logs.length; i++) {
           email={log.email}
           action={log.action}
           amount={log.amount}
-          date={log.date_created}
+          date_created={log.date_created}
         />
       );
     });
