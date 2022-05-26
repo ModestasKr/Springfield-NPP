@@ -55,7 +55,7 @@ export default function RegisterUser() {
                 message: "Mažiausia simbolių galima įvesti 2",
               },
               pattern: {
-                value: /^[[^A-Za-ząčęėįšųūžĄČĘĖĮŠŲŪŽ0-9_ .+-]*$/i,
+                value: /^[A-z][A-z0-9-_]{2,12}$/i,
                 message: "Negali būti specialų simbolių",
               },
             })}

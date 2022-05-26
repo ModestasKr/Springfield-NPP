@@ -95,7 +95,8 @@ function History() {
     function deleteItem(userID, subID, type, amount) {
       const data = {
         email: users.email,
-        action: `Deleted ${type}`,
+        action: `Ištrinta ${type}`,
+        date_created: new Date(),
         subID: subID,
       };
       swal({

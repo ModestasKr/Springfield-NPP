@@ -21,6 +21,8 @@ function Form() {
   const { userData, updateUserData } = useGlobalUserContext(UserContext);
   const { expensesCategories } = useGlobalCategoriesContext();
   
+
+
   // react-hook-form
   const {
     register,
@@ -74,6 +76,8 @@ function Form() {
     );
   });
 
+
+
   return (
     <div className="Form-container">
       <div>
@@ -102,18 +106,6 @@ function Form() {
             })}
           >
             {category}
-            {/* <option value="" select="true">
-              Kategorija
-            </option>
-            <option value="Maistas ir gėrimai">Maistas ir gėrimai</option>
-            <option value="Apsipirkimai">Pirkiniai</option>
-            <option value="Namams">Buitis</option>
-            <option value="Transportas">Transportas</option>
-            <option value="Gyvenimas ir linksmybės">Pramogos</option>
-            <option value="Komunikacija,PC">Mokesčiai</option>
-            <option value="Investavimas">Sveikata</option>
-            <option value="Investavimas">Investavimas</option>
-            <option value="Kitas">Kitas</option> */}
           </select>
           <p className="error">{errors.category?.message}</p>
 
