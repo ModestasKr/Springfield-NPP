@@ -113,7 +113,7 @@ function Form() {
             type="number"
             step="0.01"
             {...register("amount", {
-              required: "Įvestyje nesuvesti duomenys",
+              required: "Galimi tik teigiami skaičiai",
               pattern: {
                 value: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
                 message: "Tokios sumos nėra",
