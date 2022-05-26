@@ -42,6 +42,10 @@ function ExpensePieChart() {
     });
   }
 
+  var a = null;
+  if(UserExpensesByMonth !== undefined) {
+    a = UserExpensesByMonth.toFixed(2)
+  }
 
   var data = {
     labels: chart[1],
@@ -91,7 +95,7 @@ function ExpensePieChart() {
     <div className="IncomePieChart-container">
       {/* Text color is green */}
       <h3>Išlaidos</h3>
-      <p>{UserExpensesByMonth} EUR</p>
+      <p>{a} EUR</p>
       <div className="ExpensePieChart-chart">
         <Pie data={data} height={400} options={options} />
       </div>

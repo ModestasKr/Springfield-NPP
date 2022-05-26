@@ -4,7 +4,9 @@ import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 //
 function Balance({ id }) {
   const { balance } = useGlobalUserContext(UserContext);
+
   const b = balance.toFixed(2)
+
 
   useEffect(() => {
     // Make true if it's undefined

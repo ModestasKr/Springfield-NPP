@@ -109,7 +109,7 @@ function Form() {
           <input
             placeholder="Suma"
             type="number"
-            // step="0.01"
+            step=".01"
             {...register("amount", {
               required: "Galimi tik teigiami skaičiai",
               pattern: {
