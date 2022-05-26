@@ -1,5 +1,5 @@
 // Libraries
-import React, {useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // API components
@@ -10,15 +10,11 @@ import "./style/Login.css";
 import img from "../../assets/register.jpg";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
   // We took a global var doLogin
   const { doLogin } = useGlobalUserContext(UserContext);
   const navigate = useNavigate();
-  let [isToggled, setIsToggled] = useState(false);
-  let [showPassword, setShowPass] = useState("password");
 
   const {
     register,
@@ -42,17 +38,6 @@ function Login() {
       navigate("/application");
     }, "500");
   }
-
-  function toggle(){
-    if(showPassword === "password"){
-      setIsToggled(true);
-      setShowPass("text");
-    }else{
-      setIsToggled(false);
-      setShowPass("password");
-    }
-  } 
-
   return (
     <div className="Login-container">
       <form className="Login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -72,9 +57,9 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-          <div className="registerPasswordField">
+
         <input
-          type={showPassword}
+          type="password"
           name="password"
           placeholder="Slaptažodis"
           {...register("password", {
@@ -89,10 +74,6 @@ function Login() {
             },
           })}
         />
-                  <div className='registerShowPassword'>
-          <FontAwesomeIcon className='eyeCon' onClick={()=>{toggle()}} icon={isToggled ? faEye : faEyeSlash} />
-          </div>
-        </div>
         <span className="error">{errors.password?.message}</span>
         <button className="Login-form-btn" type="submit">
           Prisijungti

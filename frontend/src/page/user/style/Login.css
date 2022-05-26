@@ -25,21 +25,3 @@
 .Login-form > * {
   width: 15rem;
 }
-
-.registerShowPassword {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  color: #dee5e5;
-  align-items: center;
-  width: 0%;
-  right: 9%;
-}
-.eyeCon {
-  color: #465e7a;
-}
-.registerPasswordField {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
