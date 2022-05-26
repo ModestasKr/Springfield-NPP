@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 // Style
 import "./style/Navigation.css";
+import { FaUserAlt } from 'react-icons/fa';
 
 function Navigation() {
   const { logOut, userData } = useGlobalUserContext(UserContext);
@@ -26,7 +27,7 @@ function Navigation() {
     <nav className="Nav-container">
       <ul className="Nav-links">
         <li id="username">
-        {userData.username}
+        <FaUserAlt/>     {userData.username}
         </li>
         {!user && (
           <li>
