@@ -54,18 +54,24 @@ function Linechart({ id }) {
     }
   }, [userData]);
 
+  const dataAll = [...userIncome, ...userExpenses];
   const arr = [];
 
   for (let i = 0; i < userIncome.length; i++) {
-    arr.push({ ...userIncome[i], ...userExpenses[i] });
+
+    arr.push({ ...userIncome[i] });
   }
+  for (let i = 0; i < userExpenses.length; i++) {
+    arr.push({...userExpenses[i] });
+  }
+  
 
   const year = arr.reverse().map((year) => {
     const yr = year.yearInc;
     const key = year._id;
     return (
       <div>
-        <p className="Linechart-p">{yr}</p>
+        <p className="Linechart-p"> {yr}</p>
         <Line
           key={year._id}
           id={year._id}
