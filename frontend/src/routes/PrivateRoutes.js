@@ -24,7 +24,7 @@ function PrivateRoutes(props) {
       return userData.role === props.roleRequired ? (
         <Outlet />
       ) : (
-        <Navigate to="/application" />
+        <Navigate to="/" />
       );
     } else if (userData.hasOwnProperty("role")) {
       return userData.role ? <Outlet /> : <Navigate to="/" />;
