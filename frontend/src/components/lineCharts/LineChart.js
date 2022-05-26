@@ -38,6 +38,7 @@ function Linechart({ id }) {
     if (userData.income.length > 0){
     getAllUserIncomeByMonth(userData._id).then((res) => {
       setUserIncome(res.data.data.income);
+      console.log(res.data.data.income)
     });
   }
     if (userData.expenses.length > 0){
@@ -52,8 +53,6 @@ function Linechart({ id }) {
       getAllIncomes();
     }
   }, [userData]);
-
-  const dataAll = [...userIncome, ...userExpenses];
 
   const arr = [];
 
