@@ -68,6 +68,7 @@ function Users() {
           deleteUserById(userID);
           // reset();
           getUsers();
+          getUsers();
         }
       });
     }
