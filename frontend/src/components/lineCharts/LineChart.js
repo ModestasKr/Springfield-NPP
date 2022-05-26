@@ -35,12 +35,16 @@ function Linechart({ id }) {
   const [userExpenses, setUserExpenses] = useState([]);
 
   function getAllIncomes() {
+    if (userData.income.length > 0){
     getAllUserIncomeByMonth(userData._id).then((res) => {
       setUserIncome(res.data.data.income);
     });
+  }
+    if (userData.expenses.length > 0){
     getAllUserExpensesByMonth(userData._id).then((res) => {
       setUserExpenses(res.data.data.expenses);
     });
+  }
   }
 
   useEffect(() => {

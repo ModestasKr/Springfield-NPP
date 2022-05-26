@@ -36,19 +36,26 @@ function History() {
   // search input
   const [searchTerm, setSearchTerm] = useState("");
 
+ 
   // We have all user data using context
   useEffect(() => {
+   
     setUsers(userData);
     getAllIncomes();
+    
   }, [userData]);
 
   function getAllIncomes() {
+    if (userData.income.length > 0){
     getAllUserIncomeByMonth(userData._id).then((res) => {
       setUserIncome(res.data.data.income);
     });
+  }
+    if (userData.expenses.length > 0){
     getAllUserExpensesByMonth(userData._id).then((res) => {
       setUserExpenses(res.data.data.expenses);
     });
+  }
   }
 
   const arr = [];

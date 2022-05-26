@@ -481,6 +481,9 @@ exports.getAllUserIncomeByMonth = async (req, res) => {
       yearArray.push({ year: i });
       var monthArray = [];
 
+        
+
+
       for (var y = 1; y <= 12; y++) {
         if (filteredYear.filter((item) => item.date.getMonth() + 1 === y)) {
           var filteredMonth = filteredYear.filter(

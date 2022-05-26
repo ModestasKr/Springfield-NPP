@@ -63,17 +63,11 @@ function Users() {
         buttons: ["Atšaukti", "Gerai"],
       }).then((isConfirm) => {
         if (isConfirm) {
-          console.log(isConfirm);
+      
           deleteUserById(userID);
           // reset();
           getUsers();
         }
-        swal({
-          text: "Ištrinta!",
-          icon: "success",
-          button: "Gerai",
-          timer: 1500,
-        });
       });
     }
       
