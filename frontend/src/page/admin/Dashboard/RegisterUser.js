@@ -6,6 +6,7 @@ import "./style/RegisterUser.css";
 
 export default function RegisterUser() {
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -13,6 +14,8 @@ export default function RegisterUser() {
   const [users, setUsers] = useState({});
 
   useEffect(() => {}, [users]);
+
+  let password = watch("password");
 
   function onSubmit(data) {
     createUser(data)
@@ -118,10 +121,14 @@ export default function RegisterUser() {
                 value: 20,
                 message: "Daugiausia simbolių galima įvesti 20",
               },
+              validate: { passwordMatch: (value) => value === password },
             })}
           />
           <span className="error">{errors.repeatPassword?.message}</span>
-
+          <span className="error">
+            {errors.repeatPassword?.type === "passwordMatch" &&
+              "Slaptažodziai turi sutapti"}
+          </span>
           <button className="RegisterUser-form-btn" type="submit">
             Registracija
           </button>
