@@ -47,7 +47,6 @@ function Form() {
 
     incExp === "income"
       ? createUserIncome(data, user._id).then(() => {
-          console.log(data);
           addLog({
             email: user.email,
             action: `Pridėta pajamos`,
