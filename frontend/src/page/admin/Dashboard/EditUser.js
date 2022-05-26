@@ -56,9 +56,11 @@ const EditUser = ({
 
   return (
     <tr>
+      <td>{userID}</td>
       <td>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
+            className="editUser-input"
             placeholder="username"
             type="username"
             name="username"
@@ -76,6 +78,7 @@ const EditUser = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
+            className="editUser-input"
             placeholder="email"
             id="email"
             defaultValue={email}
@@ -92,9 +95,7 @@ const EditUser = ({
           )}
         </form>
       </td>
-      <td>
-       
-      </td>
+      
       <td className="EditExpenses-button">
         <form onSubmit={handleSubmit(onSubmit)}>
           <button type="submit">Pakeisti</button>

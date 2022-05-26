@@ -84,7 +84,7 @@ function Registration() {
               validate: {
                 checkEmail: async (value) => {
                   let pass = await getUserEmail(value);
-                  console.log(pass, !pass);
+                  // console.log(pass, !pass);
                   return !pass;
                 },
               },

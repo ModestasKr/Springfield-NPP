@@ -21,6 +21,7 @@ function Users() {
 
   const url = "http://localhost:4000/api/v1/users";
 
+
   var getUsers = async () => {
     await fetch(url)
       .then((response) => response.json())
