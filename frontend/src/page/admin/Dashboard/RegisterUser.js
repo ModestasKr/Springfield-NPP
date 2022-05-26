@@ -15,7 +15,6 @@ export default function RegisterUser() {
   useEffect(() => {}, [users]);
 
   function onSubmit(data) {
-    console.log(data);
     createUser(data)
       .then((result) => {
         console.log("Success:", result);

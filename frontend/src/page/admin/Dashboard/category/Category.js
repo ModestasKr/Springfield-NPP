@@ -12,7 +12,7 @@ function Category() {
   const [display, setDisplay] = useState("expenses");
 
   const categoriesData = expensesCategories.map((item) => {
-      console.log(item)
+     
     return (
       <CategoryCard key={item._id} id={item._id} category={item.category} />
 
