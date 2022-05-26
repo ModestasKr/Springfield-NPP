@@ -39,7 +39,7 @@ function Login() {
       action: "Prisijungta",
     });
     setTimeout(() => {
-      navigate("/application");
+      navigate("/");
     }, "500");
   }
 
@@ -72,7 +72,7 @@ function Login() {
           })}
         />
         <span className="error">{errors.email?.message}</span>
-          <div className="registerPasswordField">
+        <div className="registerPasswordField">
         <input
           type={showPassword}
           name="password"
