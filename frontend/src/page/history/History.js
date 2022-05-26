@@ -237,7 +237,7 @@ function History() {
       <div className="Csv-body">
         <button className="Csv">
           <CSVLink className="Csv-text" {...csvReport}>
-            Atsisiūsti išlaidų CSV
+            Atsisiųsti išlaidų CSV
           </CSVLink>
         </button>
       </div>

@@ -69,7 +69,7 @@ function Category() {
                     </div>
                   )}
                     <form onSubmit={handleSubmit(onSubmit)}>
-                    <button className=" custom-button-submit " type="submit">
+                    <button className=" custom-button-submit" id="nauja-kategorija" type="submit">
                       Pridėti naują kategoriją
                     </button>
                   </form>

@@ -1,26 +1,10 @@
-// import React from 'react'
-
-// function CategoryCard({category, id}) {
-//   return (
-//     <tr className="ReadOnlyRow-row">
-//       <td>{category}</td>
-//       <td>
-//           <button>Keisti</button>
-//           <button>Trinti</button>
-//       </td>
-//     </tr>
-   
-//   )
-// }
-
-// export default CategoryCard
-
 import React, { useState } from "react";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import swal from "sweetalert";
 import UpdateCategory from "./UpdateCategory";
 import { deleteCategory, getCategory } from "../../../../api/libraries/apiLibraries";
 import { useGlobalCategoriesContext } from "../../../../util/categoryContext";
+import "../style/Category.css"
 
 function CategoryCard(props) {
   const { refreshCategoriesData } = useGlobalCategoriesContext();
@@ -44,6 +28,7 @@ function CategoryCard(props) {
       <td className="custom-table-td-admin">
         {" "}
           <button
+          id="redaguoti-btn"
             className="btn m-1 custom-button-edit"
             onClick={() => setIsEditing(!isEditing)}
           >
