@@ -1,5 +1,6 @@
 import React from "react";
 import "./style/Button.css";
+import swal from "sweetalert";
 
 const ReadOnlyRow = ({
   subID,
@@ -35,7 +36,33 @@ const ReadOnlyRow = ({
         >
           Keisti
         </button>
-        <button type="button" onClick={() => deleteItem(userID, subID, type)}>
+        <button type="button" onClick={() =>
+                swal({
+                  title: "Ar tikrai norite ištrinti?",
+                  icon: "warning",
+                  buttons: ["Atšaukti", "Gerai"],
+                }).then((isConfirm) => {
+                  if (isConfirm) {
+                      deleteItem(userID, subID, type)
+                        .then(() => {
+                          swal({
+                            text: "Ištrinta!",
+                            icon: "success",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                        })
+                        .catch((error) => {
+                          swal({
+                            text: "Klaida!",
+                            icon: "error",
+                            button: "Gerai",
+                            timer: 2000,
+                          });
+                        });
+                  }
+                })
+              }>
           Ištrinti
         </button>
       </td>
