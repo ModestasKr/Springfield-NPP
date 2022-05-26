@@ -111,11 +111,11 @@ function Form() {
           <input
             placeholder="Suma"
             type="number"
-            step="0.01"
+            step=".01"
             {...register("amount", {
               required: "Įvestyje nesuvesti duomenys",
               pattern: {
-                value: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
+                value: /^\d*(\.\d{0,2})?$/,
                 message: "Tokios sumos nėra",
               },
               minLength: {

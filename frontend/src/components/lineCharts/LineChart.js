@@ -38,7 +38,6 @@ function Linechart({ id }) {
     if (userData.income.length > 0){
     getAllUserIncomeByMonth(userData._id).then((res) => {
       setUserIncome(res.data.data.income);
-      console.log(res.data.data.income)
     });
   }
     if (userData.expenses.length > 0){
@@ -57,13 +56,53 @@ function Linechart({ id }) {
   const dataAll = [...userIncome, ...userExpenses];
   const arr = [];
 
-  for (let i = 0; i < userIncome.length; i++) {
+  if(userIncome.length > userExpenses.length || userIncome.length == userExpenses.length) {
+    for (let i = 0; i < userIncome.length; i++) {
+      arr.push({ ...userIncome[i], ...userExpenses[i]});
+    } 
+  } else if (userIncome.length > 0 && userExpenses.length == 0) {
+      for (let i = 0; i < userIncome.length; i++) {
+        arr.push({ ...userIncome[i]});
+      }
+  } else if(userIncome.length == 0 && userExpenses.length > 0){
+    for(let i = 0;i < userExpenses.length;i++){
+      var arrInc = 
+      {
+        yearInc: userExpenses[i].yearExp,
+        dataInc: ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'],
+      }
+      arr.push({...userIncome[i], ...userExpenses[i]})
+    }
+  }
+  else {
+      for (let i = 0; i < userExpenses.length; i++) { 
+        if(userIncome[i] == undefined) {
+          var array1Inc = 
+            {yearInc: userExpenses[i].yearExp,
+            dataInc: userIncome[i-1].dataInc}
+          var array1Exp = 
+            {
+              yearExp: userExpenses[i].yearExp,
+              dataExp: userExpenses[1].dataExp
+            }
+          arr.push({ ...array1Exp, ...array1Inc});
+          
+        } else {
+          var array2Inc = 
+            {yearInc: userExpenses[i].yearExp,
+            dataInc: ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00']}
 
-    arr.push({ ...userIncome[i], ...userExpenses[i] });
+          arr.push({...array2Inc, ...userExpenses[i]})
+          console.log(userIncome[i])
+          console.log(userExpenses[i].dataExp)
+        }
+        console.log(arr)
+      }
   }
 
   const year = arr.reverse().map((year) => {
     const yr = year.yearInc;
+    
     const key = year._id;
     return (
       <div>

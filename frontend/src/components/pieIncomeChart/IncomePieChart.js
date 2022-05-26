@@ -38,9 +38,14 @@ function IncomePieChart() {
     if (userData !== undefined && userData.hasOwnProperty("email")) {
       getCurrentIncomeMonth();
       getCurrentIncomeCategoryMonth();
+      
     }
   }, [userData]);
 
+  var a = null;
+  if(UserIncomeByMonth !== undefined) {
+    a = UserIncomeByMonth.toFixed(2)
+  }
 
   var data = {
     labels: chart[1],
@@ -94,7 +99,7 @@ function IncomePieChart() {
     <div className="IncomePieChart-container">
       {/* Text color is green */}
       <h3>Pajamos</h3>
-      <p>{UserIncomeByMonth} EUR</p>
+      <p>{a} EUR</p>
       <div className="IncomePieChart-chart">
         <Pie data={data} height={400} options={options} />
       </div>
