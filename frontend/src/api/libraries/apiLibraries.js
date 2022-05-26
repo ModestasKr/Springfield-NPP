@@ -153,46 +153,13 @@ export async function deleteUserById(id) {
 }
 // Delete expenses
 export async function deleteUserExpenses(id, subID) {
-  const response = await axiosClient
-    .patch(`/${id}/expenses/delete/${subID}`)
-    .then((result) => {
-      swal({
-        text: "Ištrinta!",
-        icon: "success",
-        button: "Gerai",
-        timer: 1500,
-      });
-    })
-    .catch((error) => {
-      swal({
-        text: "Klaida!",
-        icon: "error",
-        button: "Gerai",
-        timer: 1500,
-      });
-    });
+  const res = await axiosClient.patch(`/${id}/expenses/delete/${subID}`)
+  return res;
 }
 // Delete incomes
 export async function deleteUserIncome(id, subID) {
-  const response = await axiosClient
-    .patch(`/${id}/income/delete/${subID}`)
-    .then((result) => {
-      swal({
-        text: "Ištrinta!",
-        icon: "success",
-        button: "Gerai",
-        timer: 1500,
-      });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      swal({
-        text: "Klaida!",
-        icon: "error",
-        button: "Gerai",
-        timer: 1500,
-      });
-    });
+  const res = await axiosClient.patch(`/${id}/income/delete/${subID}`)
+    return res;
 }
 
 // Register
