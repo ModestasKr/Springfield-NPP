@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 // Context
 import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 // Style
@@ -70,10 +71,18 @@ function Navigation() {
             <button
               type="submit"
               className="logout-btn"
-              onClick={() => {
-                logOut();
-                redirect("/");
-              }}
+              onClick={() =>
+                swal({
+                  title: "Ar tikrai norite atsijungti?",
+                  icon: "warning",
+                  buttons: ["Atšaukti", "Gerai"],
+                }).then((isConfirm) => {
+                  if (isConfirm) {
+                    logOut()
+                    redirect("/")
+                  }
+                })
+              }
             >
               Atsijungti
             </button>
