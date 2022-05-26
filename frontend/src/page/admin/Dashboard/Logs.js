@@ -71,9 +71,9 @@ for(let i = 0; i < logs.length; i++) {
         <table className="History-body">
           <thead className="History-thead">
             <tr>
-              <th>email</th>
-              <th>action</th>
-              <th>amount</th>
+              <th>El. paštas</th>
+              <th>Veiksmas</th>
+              <th>Suma</th>
               <th>Data</th>
             </tr>
           </thead>
