@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // Api Libraries
@@ -13,8 +13,12 @@ import "./style/Register.css";
 // Images
 import img from "../../assets/register.jpg";
 
+
 function Registration() {
   const navigate = useNavigate();
+
+  let [isToggled, setIsToggled] = useState(false);
+  let [showPassword, setShowPass] = useState("password");
 
   const {
     watch,
@@ -118,7 +122,8 @@ function Registration() {
           />
           <span className="error">{errors.password?.message}</span>
           <input
-            type="password"
+          
+            type={showPassword}
             placeholder="Pakartotinas slaptažodis"
             {...register("repeatPassword", {
               required: "Laukelis privalomas",
