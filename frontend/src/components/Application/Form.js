@@ -99,8 +99,10 @@ function Form() {
             <option value="expense">Išlaidos</option>
           </select>
           <span className="error">{errors.accounting?.message}</span>
-          <select id="category" name="category"
-            {...register("category",  {
+          <select
+            id="category"
+            name="category"
+            {...register("category", {
               required: "Įvestyje neparinkti duomenys",
             })}
           >
@@ -116,7 +118,7 @@ function Form() {
               required: "Galimi tik teigiami skaičiai",
               pattern: {
                 value: /^(\d){0,8}(\.){0,1}(\d){0,2}$/,
-                message: "Tokios sumos nėra",
+                message: "Galimi tik teigiami skaičiai ir du skaičiai po kablelio",
               },
               minLength: {
                 value: 1,
