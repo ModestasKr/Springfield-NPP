@@ -6,6 +6,7 @@ import "./style/RegisterUser.css";
 
 export default function RegisterUser() {
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -13,6 +14,8 @@ export default function RegisterUser() {
   const [users, setUsers] = useState({});
 
   useEffect(() => {}, [users]);
+
+  let password = watch("password");
 
   function onSubmit(data) {
     createUser(data)
@@ -54,7 +57,7 @@ export default function RegisterUser() {
                 message: "Mažiausia simbolių galima įvesti 2",
               },
               pattern: {
-                value: /^[A-z][A-z0-9-_]{2,12}$/i,
+                value: /^[A-Za-z0-9_-]*$/i,
                 message: "Negali būti specialų simbolių",
               },
             })}
@@ -100,7 +103,7 @@ export default function RegisterUser() {
               },
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9?!@#$%^&*]/,
-                message: "Turi būti bent 1 didžioji raidė ir bent 1 simbolis",
+                message: "Turi būti bent 1 didžioji raidė",
               },
             })}
           />
@@ -118,10 +121,14 @@ export default function RegisterUser() {
                 value: 20,
                 message: "Daugiausia simbolių galima įvesti 20",
               },
+              validate: { passwordMatch: (value) => value === password },
             })}
           />
           <span className="error">{errors.repeatPassword?.message}</span>
-
+          <span className="error">
+            {errors.repeatPassword?.type === "passwordMatch" &&
+              "Slaptažodziai turi sutapti"}
+          </span>
           <button className="RegisterUser-form-btn" type="submit">
             Registracija
           </button>

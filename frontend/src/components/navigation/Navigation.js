@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { useGlobalUserContext, UserContext } from "../../util/UserContext";
 // Style
 import "./style/Navigation.css";
-import { FaUserAlt } from 'react-icons/fa';
+import { FaUserAlt } from "react-icons/fa";
 
 function Navigation() {
   const { logOut, userData } = useGlobalUserContext(UserContext);
@@ -28,7 +28,7 @@ function Navigation() {
     <nav className="Nav-container">
       <ul className="Nav-links">
         <li id="username">
-        <FaUserAlt/>     {userData.username}
+          <FaUserAlt /> {userData.username}
         </li>
         {!user && (
           <li>
@@ -78,8 +78,8 @@ function Navigation() {
                   buttons: ["Atšaukti", "Gerai"],
                 }).then((isConfirm) => {
                   if (isConfirm) {
-                    logOut()
-                    redirect("/")
+                    logOut();
+                    redirect("/");
                   }
                 })
               }
