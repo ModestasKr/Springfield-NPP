@@ -1,60 +1,9 @@
-// import React, { useState, useEffect } from "react";
-// import { getCategory } from "../../../../api/libraries/apiLibraries";
-// import CategoryCard from "./CategoryCard";
-// import { useForm } from "react-hook-form";
-// import swal from "sweetalert";
-
-// function Category() {
-//     const [category, setCategory] = useState([]);
-//     const [isLoading, setIsLoading] = useState(true);
-    
-  
-//     useEffect(() => {
-//       getCategory().then ((res) => {
-//         setCategory(res.data.data.category);
-//         console.log(res.data.data.category)
-//       })
-//     }, []);
-
-//     const categoryRow = category.map((item) => {
-//           return (
-//             <CategoryCard
-//               key={item._id}
-//               category={item.category}
-//               id={item._id}
-//             />
-//           );
-//     });
-
-//   return (
-//       <>
-//       <div className="History-container">
-//         <table className="History-body">
-//           <thead className="History-thead">
-//               <tr>
-//                   <th><input></input></th>
-
-//                   <th><button>Pridėti naują kategoriją</button></th>
-//               </tr>
-//             <tr>
-//               <th>kategorija</th>
-//               <th>Veiksmas</th>
-//             </tr>
-//           </thead>
-//           <tbody>{categoryRow}</tbody>
-//         </table>
-//       </div>
-//       </>
-//   )
-// }
-
-// export default Category
-
 import React, { useState } from "react";
 import { useGlobalCategoriesContext } from "../../../../util/categoryContext";
 import { addCategory } from "../../../../api/libraries/apiLibraries";
 import { useForm } from "react-hook-form";
 import CategoryCard from "./CategoryCard";
+import "../style/Category.css"
 
 function Category() {
   const { expensesCategories } = useGlobalCategoriesContext();
@@ -90,35 +39,9 @@ function Category() {
   }
 
   return (
-    <div className="container">
-      {" "}
-      {/* <div className="row pt-4 row-button d-flex justify-content-end"> */}
-      {/* <div className="col-7 col-custom  ">
-          <button
-            onClick={() => setDisplay("income")}
-            className="income-btn-admin"
-          >
-            Pajamos
-          </button>
-          <button
-            onClick={() => setDisplay("expenses")}
-            className="expenses-btn-admin"
-          >
-            Išlaidos
-          </button>
-        </div>
-      </div>
-      {display == "income" && <p>Pajamos</p>} */}
-      {/* {display === "expenses" && ( */}
-      <div className="row justify-content-center mt-5">
-        {" "}
-        <div className="col-9 p-0">
-          <table className="custom-table-admin m-0">
-            <thead>
-              <tr>
-                <td className="custom-table-td-admin" colSpan="2">
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <input
+    <>
+      <div className="search-box">
+         <input
                       className="rounded-0 input-custom-admin input-custom-add "
                       type="text"
                       name="category"
@@ -140,19 +63,22 @@ function Category() {
                         },
                       })}
                     />
-
+                     {errors.category && (
+                    <div className="error">
+                      2-20 simbolių, tik raidės. Kategorija negali kartotis.
+                    </div>
+                  )}
+                    <form onSubmit={handleSubmit(onSubmit)}>
                     <button className=" custom-button-submit " type="submit">
                       Pridėti naują kategoriją
                     </button>
                   </form>
-                  {errors.category && (
-                    <div className=" col-10 text-danger fw-light text-start ps-3 ">
-                      2-20 simbolių, tik raidės. Kategorija negali kartotis.
-                    </div>
-                  )}
-                </td>
-                <td className="custom-table-td-admin"></td>
-              </tr>
+                  
+      </div>
+    <div className="Category-container">
+          <table className="Category-body">
+            <thead className="Category-thead">
+             
               <tr className="text-center">
                 <th scope="col">Kategorijos</th>
                 <th scope="col">Veiksmai</th>
@@ -163,43 +89,8 @@ function Category() {
             </tbody>
           </table>
         </div>
-      </div>
-      {/* <div className="row d-flex justify-content-center pt-5 ">
-        <div className="col-lg-10 ">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="rounded-0 input-custom-admin input-custom-add "
-              type="text"
-              name="category"
-              id="category"
-              {...register("category", {
-                required: true,
-                maxLength: 20,
-                minLength: 2,
-                pattern:
-                  /^[a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+(?: [a-ząčęėįšųūž|A-ZĄČĘĖĮŠŲŪŽ]+)*$/,
-                validate: {
-                  find: (value) => {
-                    let result = expensesCategories.map((a) =>
-                      a.category.toUpperCase()
-                    );
-                    return !result.includes(value.toUpperCase());
-                  },
-                },
-              })}
-            />
-            <button className=" custom-button-submit " type="submit">
-              Pridėti naują kategoriją
-            </button>
-          </form>
-        </div>
-        {errors.category && (
-          <div className=" col-10 text-danger fw-light ">
-            2-20 simbolių, tik raidės. Kategorija negali kartotis.
-          </div>
-        )}
-      </div> */}
-    </div>
+    
+        </>
   );
 }
 

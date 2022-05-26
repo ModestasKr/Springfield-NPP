@@ -293,7 +293,16 @@ export async function getLogs() {
 
 // Create category
 export async function addCategory(data) {
-  const res = await axiosClient.post(`/add/category`, JSON.stringify(data));
+  const res = await axiosClient.post(`/add/category`, JSON.stringify(data))
+  .then((result) => {
+    console.log("Success:", result);
+    swal({
+      text: "Pridėta!",
+      icon: "success",
+      button: "Gerai",
+      timer: 2000,
+    });
+  })
   return res;
 }
 
