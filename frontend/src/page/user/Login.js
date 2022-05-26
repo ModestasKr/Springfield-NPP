@@ -30,7 +30,6 @@ function Login() {
   function onSubmit(data) {
     // API
     loginUser(data);
-
     // Context
     doLogin(data);
     addLog({
@@ -39,7 +38,7 @@ function Login() {
       action: "Prisijungta",
     });
     setTimeout(() => {
-      navigate("/application");
+      navigate("/");
     }, "500");
   }
 
