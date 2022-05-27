@@ -36,6 +36,7 @@ Tools to help create app:
 - Powershell
 - Mongoose
 - Rest API
+- Docker
 
 ## Testing
 
@@ -44,7 +45,8 @@ Using Postman to test API.
 ## Getting Started
 
 Using npm to install:
- ```
+
+```
 # clone the project
 git clone git@github.com:ModestasKr/Springfield-NPP.git
 
@@ -68,13 +70,28 @@ npm start
 # application will open on your browser at
 http://localhost:3000
 ```
+
+Or you can use Docker container:
+
+```
+Clone repository in computer.
+
+Open VS Code and install Extension "Docker".
+
+Open terminal and write in console "docker-compose up"
+
+That's all
+
+If you wanna close localhost write in console "docker-compose down"
+```
+
 ## Team
 
 - Paulius: https://github.com/KietasRiestutelis
 - Henrikas: https://github.com/HenrikasKr
 - Modestas: https://github.com/ModestasKr
 - Rokas: https://github.com/Rokiis1
-- QA/Tomas: 
+- QA/Tomas:
 - SM/Justina: https://github.com/JustinaBalse
 
 ## Link
