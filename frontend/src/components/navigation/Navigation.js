@@ -27,9 +27,12 @@ function Navigation() {
   return (
     <nav className="Nav-container">
       <ul className="Nav-links">
-        <li id="username">
-          <FaUserAlt /> {userData.username}
-        </li>
+        {user && (
+          <li id="username">
+            <FaUserAlt /> {userData.username}
+          </li>
+        )}
+
         {!user && (
           <li>
             <Link to="/login">Prisijungti</Link>
