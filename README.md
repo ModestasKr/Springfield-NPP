@@ -91,7 +91,7 @@ If you wanna close localhost write in console "docker-compose down"
 - Henrikas: https://github.com/HenrikasKr
 - Modestas: https://github.com/ModestasKr
 - Rokas: https://github.com/Rokiis1
-- QA/Tomas:
+- QA/Tomas: https://github.com/TomasCetkauskas
 - SM/Justina: https://github.com/JustinaBalse
 
 ## Link
