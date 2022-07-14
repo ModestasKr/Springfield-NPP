@@ -35,15 +35,15 @@ router.route("/updateUser").post(updateUserById);
 router.route("/userByEmail").post(getUsersByEmail);
 router.route("/deleteUser/:id").delete(deleteUserById);
 router.route("/:id").get(getUserById);
-router.route("/:id/expenses").patch(createUserExpenses);
-router.route("/:id/income").patch(createUserIncome);
+router.route("/:id/expenses").post(createUserExpenses); // patch?
+router.route("/:id/income").post(createUserIncome); // patch?
 router.route("/category/delete/:id").get(deleteCategory);
-router.route("/:id/income/:subID").patch(findIncomeDataAndUpdate);
-router.route("/:id/expenses/:subID").patch(findExpensesDataAndUpdate);
+router.route("/:id/income/:subID").post(findIncomeDataAndUpdate); // patch?
+router.route("/:id/expenses/:subID").post(findExpensesDataAndUpdate); // patch?
 router.route("/:id/income/month").get(getAllUserIncomeByMonth);
 router.route("/:id/expenses/month").get(getAllUserExpensesByMonth);
-router.route("/:id/income/delete/:subID").patch(deleteUserIncome);
-router.route("/:id/expenses/delete/:subID").patch(deleteUserExpenses);
+router.route("/:id/income/delete/:subID").post(deleteUserIncome); // patch?
+router.route("/:id/expenses/delete/:subID").post(deleteUserExpenses); // patch?
 router.route("/:id/expenses/current/month").post(getUserExpensesByMonth);
 router.route("/:id/income/current/month").post(getUserIncomeByMonth);
 router.route("/:id/balance/current/month").post(getUserBalanceByMonth);

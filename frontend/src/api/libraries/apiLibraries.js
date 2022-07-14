@@ -54,7 +54,7 @@ export async function updateUserById(data) {
 // UPDATE user data income
 export async function findIncomeDataAndUpdate(data, id, subID) {
   const res = await axiosClient
-    .patch(`/${id}/income/${subID}`, JSON.stringify(data))
+    .post(`/${id}/income/${subID}`, JSON.stringify(data)) // patch?
     .then((result) => {
       swal({
         text: "Įrašas išsaugotas!",
@@ -78,7 +78,7 @@ export async function findIncomeDataAndUpdate(data, id, subID) {
 // UPDATE user data expenses
 export async function findExpensesDataAndUpdate(data, id, subID) {
   const res = await axiosClient
-    .patch(`/${id}/expenses/${subID}`, JSON.stringify(data))
+    .post(`/${id}/expenses/${subID}`, JSON.stringify(data)) // patch?
     .then((result) => {
       swal({
         text: "Klaida ištaisyta",
@@ -101,7 +101,7 @@ export async function findExpensesDataAndUpdate(data, id, subID) {
 // ADD user Income
 export async function createUserIncome(data, id) {
   const res = await axiosClient
-    .patch(`/${id}/income/`, JSON.stringify(data))
+    .post(`/${id}/income/`, JSON.stringify(data)) // patch?
     .then((result) => {
       swal({
         text: "Įrašas išsaugotas!",
@@ -124,7 +124,7 @@ export async function createUserIncome(data, id) {
 // ADD user Expenes
 export async function createUserExpenses(data, id) {
   const res = await axiosClient
-    .patch(`/${id}/expenses/`, JSON.stringify(data))
+    .post(`/${id}/expenses/`, JSON.stringify(data)) //patch?
     .then((result) => {
       swal({
         text: "Įrašas išsaugotas!",
@@ -153,12 +153,12 @@ export async function deleteUserById(id) {
 }
 // Delete expenses
 export async function deleteUserExpenses(id, subID) {
-  const res = await axiosClient.patch(`/${id}/expenses/delete/${subID}`)
+  const res = await axiosClient.post(`/${id}/expenses/delete/${subID}`) // patch?
   return res;
 }
 // Delete incomes
 export async function deleteUserIncome(id, subID) {
-  const res = await axiosClient.patch(`/${id}/income/delete/${subID}`)
+  const res = await axiosClient.post(`/${id}/income/delete/${subID}`) // patch?
     return res;
 }
 
